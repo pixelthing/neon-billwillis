@@ -1,0 +1,27 @@
+{{#content}}
+
+        <!-- CTA BLOCK -->
+        <link rel="stylesheet" href="/static/shared/modules/cta/cta.css" /> <script> </script>
+        <div class="Section{{#color}} Section--{{.}}{{/color}}{{#lineTop}} Section--line-top{{/lineTop}}{{#lineBottom}} Section--line-bottom{{/lineBottom}}{{#margin}} Section--{{.}}{{/margin}} Cta{{#theme}} Theme--{{.}}{{/theme}}">
+
+            <figure class="Section-Inner{{#width}} Section-Inner--{{.}}{{/width}} Cta-Inner">
+
+                <figcaption class="Cta-Caption">
+                    {{#title}}<h2 class="Cta-Title">{{title}}</h2>{{/title}}
+                    {{#text}}<p class="Cta-Text">{{text}}</p>{{/text}}
+                </figcaption>
+                {{! if links exist }}
+                <div class="Btn-bar Cta-Btns">
+                    {{#links}}
+                    <a {{#link}}href="{{.}}"{{/link}} class="Btn Btn--bar Cta-Btn {{#class}}{{.}}{{/class}}" {{#datatype}}{{.}}{{/datatype}}>
+                        {{#icon}}<svg viewBox="0 0 512 512" class="Icon Cta-Source-Icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#{{.}}"></use></svg>{{/icon}}
+                        {{text}}
+                    </a>
+                    {{/links}}
+                </div>
+                {{!/ if links exist }}
+
+            </figure>
+
+        </div>
+{{/content}}

@@ -1,0 +1,141 @@
+@charset "UTF-8";
+/* height */
+/* RESPONSIVE */
+/* TYPOGRAPHY */
+/* ELEMENTS */
+/* PATTERNS */
+/* ACCESSIBILITY */
+.Image-Inner {
+  margin: 0 auto; }
+  @media (max-width: 767px) {
+    .Image-Inner {
+      margin: 0 -12px; } }
+  @media print {
+    .Image-Inner {
+      max-width: 45rem; } }
+
+.Image-Frame {
+  background-color: #ddd;
+  background-image: repeating-linear-gradient(-45deg, #999, #999 10px, #939393 10px, #939393 20px); }
+  @media print {
+    .Image-Frame {
+      border: 1px solid #999;
+      background: transparent;
+      position: relative; }
+      .Image-Frame:before {
+        content: url("data:image/svg+xml;utf8,<svg width='712' height='428' xmlns='http://www.w3.org/2000/svg'><g><path d='M.835.5l711.03 425.82M707.165 2.5L.835 427.5' stroke='#ccc'/><text font-family='ArialMT, Arial' font-size='18' fill='#ddd'><tspan x='275.438' y='300'>bilden är inte laddad</tspan></text></g></svg>");
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-align-items: center;
+            -ms-flex-align: center;
+                align-items: center;
+        width: 100%;
+        height: 100%; } }
+  .Image-Frame--crop169, .Image-Frame--crop43, .Image-Frame--crop32, .Image-Frame--crop235, .Image-Frame--crop31 {
+    position: relative;
+    height: 0;
+    padding-top: 56.25%;
+    overflow: hidden;
+    background-size: cover;
+    background-position: 50% 50%; }
+    .Image-Frame--crop169 img,
+    .Image-Frame--crop169 picture, .Image-Frame--crop43 img,
+    .Image-Frame--crop43 picture, .Image-Frame--crop32 img,
+    .Image-Frame--crop32 picture, .Image-Frame--crop235 img,
+    .Image-Frame--crop235 picture, .Image-Frame--crop31 img,
+    .Image-Frame--crop31 picture {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      min-height: 100%; }
+      @supports (object-fit: cover) {
+        .Image-Frame--crop169 img,
+        .Image-Frame--crop169 picture, .Image-Frame--crop43 img,
+        .Image-Frame--crop43 picture, .Image-Frame--crop32 img,
+        .Image-Frame--crop32 picture, .Image-Frame--crop235 img,
+        .Image-Frame--crop235 picture, .Image-Frame--crop31 img,
+        .Image-Frame--crop31 picture {
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: 50% 50%; } }
+  .Image-Frame--crop169 {
+    padding-top: 56.25%; }
+  .Image-Frame--crop43 {
+    padding-top: 75%; }
+  .Image-Frame--crop32 {
+    padding-top: 66.667%; }
+  .Image-Frame--crop235 {
+    padding-top: 42.5%; }
+  .Image-Frame--crop31 {
+    padding-top: 33.333%; }
+
+.Image-Img {
+  display: block;
+  max-width: 100%;
+  height: auto; }
+  .no-js .Image-Img, .Image-Img--Hidden {
+    display: none; }
+
+.no-js .Image-Fallback {
+  display: block; }
+
+.Image-Caption {
+  margin: 0;
+  padding: 12px 0 0;
+  color: #999;
+  background-color: #fff;
+  text-align: center; }
+  @media (max-width: 767px) {
+    .Image-Caption {
+      font-size: 0.9rem;
+      padding: 12px 12px 0; } }
+  .Image-Caption--pullup {
+    display: block;
+    position: relative;
+    min-width: 15em;
+    margin: -12px 24px 0;
+    padding: 12px 12px 0;
+    color: inherit; }
+    @media (min-width: 600px) {
+      .Image-Caption--pullup {
+        width: 50%;
+        margin: -6px 25% 0; } }
+    @media (min-width: 768px) {
+      .Image-Caption--pullup {
+        padding: 28.8px 28.8px 0; } }
+  @media (min-width: 600px) {
+    .Image-Caption--left {
+      text-align: left; }
+      .Image-Caption--left.ImaCaption--pullup {
+        width: 25em;
+        min-height: 120px;
+        margin: -120px 0 0 50px; } }
+  @media (min-width: 600px) {
+    .Image-Caption--right {
+      text-align: right; }
+      .Image-Caption--right.ImaCaption--pullup {
+        width: 25em;
+        min-height: 120px;
+        margin: -120px 50px 0 auto;
+        text-align: left; } }
+  .Image-Caption-Title {
+    font-family: "brandon-grotesque-n1", "brandon-grotesque", "Gill Sans", "Calibri", "Gill Sans MT", arial, sans-serif;
+    font-weight: 400;
+    margin: 0 0 0.3em;
+    font-size: 1.5rem; }
+    @media (max-width: 599px) {
+      .Image-Caption-Title {
+        font-size: 1.25rem;
+        margin: 0 0 0.25em; } }
+
+/*# sourceMappingURL=image.css.map */

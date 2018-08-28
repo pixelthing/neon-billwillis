@@ -1,0 +1,85 @@
+// Spinner
+//
+// Status: near final.
+// spinner from Tobias Ahlin: http://tobiasahlin.com/spinkit/ - can be used with and without the label. The label is absolutely positioned in relation to the spinner (so watch out for overflow into other elements), and is centered with a max width of ``200px``. This component is sized in pixels and so is not designed to scale. Spinners should be ``aria-hidden="true"`` when hidden, and ``aria-hidden="false"`` when revealed.
+//
+// .Spinner - default
+// .Spinner.Spinner--center - centered block
+// .Spinner.Spinner--black - color variation
+// .Spinner.Spinner--white - color variation
+//
+// markup:
+// <span class="{$modifiers}" aria-hidden="false">
+//     <span class="Spinner-bounce Spinner-bounce-1"></span>
+//     <span class="Spinner-bounce Spinner-bounce-2"></span>
+//     <span class="Spinner-bounce Spinner-bounce-3"></span>
+//     <div class="Spinner-label">Label</div>
+// </span>
+// &#160;
+//
+// sg-wrapper:
+// <div class="Section-Inner" style="padding:20px;background-color:#ccc;">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.50.
+
+.Spinner {
+    display: block;
+    position: relative;
+    width: 3.9em;
+    color: $color-primary;
+    font-size: 1rem;
+    text-align: center;
+    transform: scale3d(1,1,1);
+    &--center {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    &--black {
+        color: #000;
+    }
+    &--white {
+        color: #fff;
+    }
+    &-bounce {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        background-color: $color-primary;
+        border-radius: 100%;
+        animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+        &-1 {
+            animation-delay: -0.32s;
+        }
+        &-2 {
+            animation-delay: -0.16s;
+        }
+        .Spinner--black & {
+            background-color: #000;
+        }
+        .Spinner--white & {
+            background-color: #fff;
+        }
+    }
+    &-label {
+        position: absolute;
+        top: 30px;
+        left: -65px;
+        display: block;
+        width: 200px;
+        text-align: center;
+        font-size: 1rem;
+    }
+    &[aria-hidden=true] {
+        display: none;
+    }
+}
+
+@keyframes sk-bouncedelay {
+    0%, 80%, 100% {
+        transform: scale(0);
+    } 40% {
+        transform: scale(1.0);
+    }
+}

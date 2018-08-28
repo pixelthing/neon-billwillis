@@ -1,0 +1,56 @@
+// JS: GA abstraction
+//
+// *NEEDS REWRITE!!*
+//
+// An abstraction of the Google Analytics events calls to add redundancy, fallbacks, cleaner code and shorthand triggers.
+// 
+// **TRIGGERING GA EVENTS IN MARKUP:**
+// 
+// No one likes ``<button onclick="ga('foo','bar')">``, it hard-links GA to markup and fails badly if GA isn't available. So here are some abstractions to hopefully make life better.
+// 
+// Click/change/blur events: attach ``data-js-beacon-click``/``data-js-beacon-change``/``data-js-beacon-blur`` to any element, with GA event data (see below). Make sure you don't ``event.preventDefault()`` the click in other scripts!
+// ```
+// <button data-js-beacon-click="from list page,12">Click me</button>
+// ```
+// 
+// **TRIGGERING GA EVENTS IN JS:**
+// 
+// send an event "beacon" to the root
+// ```
+// app.trigger('beacon','ajax request,success,145')
+// ```
+// 
+// GA DATA TO PASS TO THE EVENT BEACON
+// 
+// The information you send to the beacon is:
+// 
+// - eventCategory:   (I lied, this is actually skipped, because the script takes care of it. This makes event categories more consistent across the spectrum, rather than leaving them to a million different calls)
+// - eventAction:     The type of interaction (e.g. 'play') REQUIRED
+// - eventLabel:      Useful for categorizing events (e.g. 'Fall Campaign') OPTIONAL
+// - eventValue:      A numeric value associated with the event (e.g. 42) OPTIONAL
+// 
+// You can choose from two formats of data to send to the beacon:
+// 
+// - comma delimited list of eventAction, eventLabel, eventValue (https://developers.google.com/analytics/devguides/collection/analyticsjs/events). Don't forget to mask commas in all fields!
+//     open,from list page,12
+// ```
+//     <button data-js-beacon-click="from list page,12">Click me</button>
+//     <input data-js-beacon-blur="open,from list page,12">Click me</input>
+//     app.trigger('beacon','open,from list page,12');
+// ```
+// 
+// - GA fieldsObject, a plain JS object with the above fields, labelled with keys:
+// ```
+//     {eventAction: 'open', eventLabel: 'from list page', eventValue: 12}
+//     <button data-js-beacon-click="{eventAction: 'open', eventLabel: 'from list page', eventValue: 12}">Click me</button>
+//     app.trigger('beacon',{eventAction: 'open', eventLabel: 'from list page', eventValue: 12});
+// ```
+// 
+// TODO:
+// 
+// - queue events if temporarily offline.
+// - detect adblockers that prevent GA and redirect the event to the host site (either to give an indication of the percentage of the traffic missing from adblockers, or to even to backfill data gaps?)
+//
+// .
+// 
+// Styleguide 5.5.

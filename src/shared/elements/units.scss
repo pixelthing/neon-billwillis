@@ -1,0 +1,53 @@
+// Unit price
+//
+// Status: near final.
+// This allows unit prices to be displayed consistently (and developed quickly) across the site.
+// 
+// markup:
+// <!-- variant: regular -->
+// <p>The preffix and suffix will be 1em of the container, but the number is a consistent ratio bigger. The unit price doesn't need the <code>.Units</code> wrapper class but it does prevent it from ever wrapping the units onto the next line.</p>
+// <div class="Units" style="margin: 2em 0;">
+//     <span class="Units-approx">ca</span> 
+//     <strong class="Units-total">315</strong> 
+//     <span class="Units-units">kr/mån</span>
+// </div>
+// <!-- variant: scaled by font size -->
+// <p>The unit price will scale with the container font size:</p>
+// <div class="Units" style="margin: 0.5em 0;font-size:4rem">
+//     <span class="Units-approx">ca</span> 
+//     <strong class="Units-total">315</strong> 
+//     <span class="Units-units">kr/mån</span>
+// </div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.7.
+
+
+.Units {
+    margin: 0;
+    white-space: nowrap;
+    &-total {
+        font-size: 1.3em;
+        font-weight: normal;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        transform: scale3d(1,1,1);
+        transition: color 1000ms;
+        transition-delay: 200ms;
+    }
+    &-approx, 
+    &-units {
+        font-size: 1em;
+        line-height: 1;
+    }
+}
+
+.Units-Rolling {
+    //color: $color-primary;
+    //transition: color 0ms !important;
+    //transition-delay: 0ms !important;
+}

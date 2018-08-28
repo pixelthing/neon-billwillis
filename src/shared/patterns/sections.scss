@@ -1,0 +1,308 @@
+// Vertical sections
+//
+// Status: near final
+//
+// A pattern to bring reliable, repeatable vertical rhythm and consistent centered column containers. Each section has a standard margin above it, providing control over spacing between sections.
+//
+// A section is based around an outer and an inner div. The outer should always be the width of the page (well, it also controls the page edge gutter, so maybe not the **whole** width), and controls the vertical margin between the previous section and this one. The inner div controls the width of the central column.
+//
+// .Section - a simple section that handles vertical spacing, and an inner container that handles column width.
+// 
+// markup:
+// <div class="Section">
+//     <div class="Section-Inner">
+//         <h2>This is a section container</h2>
+//         Eiusmod eu id commodo labore incididunt anim consectetur deserunt amet minim labore non nostrud irure enim consectetur. Ad nisi laborum laborum nulla aute consectetur sunt ut aute mollit deserunt aute ullamco nostrud. Est tempor irure Lorem exercitation id ullamco nulla. Excepteur do enim in et occaecat veniam exercitation ea.
+//     </div>
+// </div>
+//
+// Styleguide 4.2.
+
+// Section margin options
+//
+// By default, margins between sections are pretty wide. There are two smaller margin options plus a fully collapsed margin if you need a block to be right up next to the preceding block. Most of these options have a smaller option for small/shallow screens.
+//
+// .Section - standard top margin
+// .Section.Section--sm - smaller top margin
+// .Section.Section--xs - smallest top margin
+// .Section.Section--no-margin - no top margin
+// 
+// markup:
+// <div class="{$modifiers}">
+//     <div class="Section-Inner">
+//         <h2>This is a section container</h2>
+//         Eiusmod eu id commodo labore incididunt anim consectetur deserunt amet minim labore non nostrud irure enim consectetur. Ad nisi laborum laborum nulla aute consectetur sunt ut aute mollit deserunt aute ullamco nostrud. Est tempor irure Lorem exercitation id ullamco nulla. Excepteur do enim in et occaecat veniam exercitation ea.
+//     </div>
+// </div>
+//
+// Styleguide 4.2.1.
+
+// Section column widths
+//
+// The section inner div can have a variety of widths, all from the standard width variables (and with the same names).
+// 
+// .Section-Inner - default, *LG* size (980px)
+// .Section-Inner.Section-Inner--xs - up to an *XS* size column (35rem)
+// .Section-Inner.Section-Inner--sm - up to an *SM* size column (40rem)
+// .Section-Inner.Section-Inner--md - up to an *MD* size column (50rem)
+// .Section-Inner.Section-Inner--lg - up to an *LG* size column (980px)
+// .Section-Inner.Section-Inner--xl - up to an *XL* size column (1200px)
+// .Section-Inner.Section-Inner--xxl - full width (or at least max size)
+// 
+// markup:
+// <div class="Section">
+//     <div class="{$modifiers}">
+//         <h2>This is a section container</h2>
+//         Eiusmod eu id commodo labore incididunt anim consectetur deserunt amet minim labore non nostrud irure enim consectetur. Ad nisi laborum laborum nulla aute consectetur sunt ut aute mollit deserunt aute ullamco nostrud. Est tempor irure Lorem exercitation id ullamco nulla. Excepteur do enim in et occaecat veniam exercitation ea.
+//     </div>
+// </div>
+//
+// Styleguide 4.2.2.
+
+// Section keylines
+// 
+// You can add keylines to the top of bottom of a section nice a quickly. The keyline stretches to the full width if a section (the easiest way to make sure they were always the same width al the way down). When you add a keyline, it adds padding in addition to the margin, so you get a good consistent space between everything. Don't be tempted to add keylines everywhere, you'll find them doubling up and spreading your content out too much. Use them sparingly to make a clear demarkation between types of content, eg a text block and a promo.
+//
+// .Section.Section--line-top - keyline
+// .Section.Section--line-bottom - keyline
+// 
+// markup:
+// <div class="{$modifiers}">
+//     <div class="Section-Inner">
+//         <h2>This is a section container</h2>
+//         Eiusmod eu id commodo labore incididunt anim consectetur deserunt amet minim labore non nostrud irure enim consectetur. Ad nisi laborum laborum nulla aute consectetur sunt ut aute mollit deserunt aute ullamco nostrud. Est tempor irure Lorem exercitation id ullamco nulla. Excepteur do enim in et occaecat veniam exercitation ea.
+//     </div>
+// </div>
+//
+// Styleguide 4.2.3.
+
+// Section background-colours
+//
+// full-width background colours in sections! There are only a couple of options at the moment so no-one is tempted to go crazy. When you add a background colour, section-gutter size padding is added as well to keep it all looking tickety-boo, lickety-spit.
+//
+// .Section.Section--primary - blue
+// .Section.Section--secondary - green
+// .Section.Section--grey0 - lightest grey
+// .Section.Section--grey1 - grey
+// 
+// markup:
+// <div class="{$modifiers}">
+//     <div class="Section-Inner">
+//         <h2>This is a section container</h2>
+//         Eiusmod eu id commodo labore incididunt anim consectetur deserunt amet minim labore non nostrud irure enim consectetur. Ad nisi laborum laborum nulla aute consectetur sunt ut aute mollit deserunt aute ullamco nostrud. Est tempor irure Lorem exercitation id ullamco nulla. Excepteur do enim in et occaecat veniam exercitation ea.
+//     </div>
+// </div>
+//
+// Styleguide 4.2.4.
+
+.Section {
+    margin: $gutter-section-md-sm $gutter 0;
+    pabreak-inside: avoid;
+    @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+        margin: $gutter-section-md $gutter 0;
+    }
+
+    // iPhone x landscape
+    margin-left:  calc(#{$gutter} - env(safe-area-inset-left));
+    margin-right: calc(#{$gutter} - env(safe-area-inset-right));
+    @media (min-width: $xs-and-up) {
+        padding-left:  env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+    }
+
+    // alternative margin sizes
+    &--lg {
+        margin-top: $gutter-section-lg-sm;
+        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+            margin-top: $gutter-section-lg;
+        }
+    }
+    &--sm {
+        margin-top: $gutter-section-sm-sm;
+        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+            margin-top: $gutter-section-sm;
+        }
+    }
+    &--xs {
+        margin-top: $gutter-section-xs-sm;
+        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+            margin-top: $gutter-section-xs;
+        }
+    }
+    @media print {
+        margin-top: $print-margin;
+    }
+    &--no-margin {
+        margin-top: 0;
+    }
+
+    // first section of content has top margin overriden (so it's constant on every page)
+    #maincontent + &,
+    #maincontent + link + script + &,
+    .Hero + &,
+    .Hero + link + script + &,
+    .HeroNoImage + &,
+    .HeroNoImage + link + script + & {
+        // NOT IMPLEMENTED - A ONE-SIZE-FIOTS-ALL SOLUTION DOESN'T CUT IT - MIGHT HAVE TO BE A DEFAULT TOP MARGIN IN THE CMS ADMIN FOR FIRST BLOCK ON PAGE
+        //margin-top: $gutter-section-sm-sm;
+        //@media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+        //    margin-top: $gutter-section-sm;
+        //}
+
+        // if we're dead-centering all the content, kill the top margin
+        .Wrap--middle & {
+            margin-top: 0;
+        }
+    }
+
+    // lines
+    &--line-top {
+        border-top: 1px solid $color-line;
+        padding-top: $gutter-section-md-sm;
+        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+            padding-top: $gutter-section-md;
+        }
+        @media print {
+            padding-top: $print-margin;
+        }
+    }
+    &--line-bottom {
+        border-bottom: 1px solid $color-line;
+        padding-bottom: $gutter-section-md-sm;
+        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+            padding-bottom: $gutter-section-md;
+        }
+        @media print {
+            padding-bottom: $print-margin;
+        }
+    }
+    // sepcific uses
+    &--header {
+        margin-top: $gutter-section-md;
+        @media print {
+            margin-top: $print-margin;
+        }
+    }
+    &--header,
+    &--center {
+        text-align: center;
+        @media print {
+            text-align: left;
+        }
+    }
+    // colors
+    &--white,
+    &--grey0,
+    &--grey1,
+    &--primary,
+    &--secondary {
+        padding: $gutter-section-md-sm $gutter;
+
+        padding-left:  calc(#{$gutter} + env(safe-area-inset-left));
+        padding-right: calc(#{$gutter} + env(safe-area-inset-right));
+
+        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+            padding-top: $gutter-section-md;
+            padding-bottom: $gutter-section-md;
+            // adjust the padding depending on the external margin?? Sound right - but looks wrong.
+            //&.Section--sm {
+            //    padding-top: $gutter-section-sm-sm;
+            //    padding-bottom: $gutter-section-sm-sm;
+            //}
+            //&.Section--xs {
+            //    padding-top: $gutter-section-xs-sm;
+            //    padding-bottom: $gutter-section-xs-sm;
+            //}
+        }
+        // on mobile, coloured sections stretch to full width (largely because they also have left/right padding, so we're eating away at the available space)
+        @media (max-width: $less-than-xs) and (max-height: $h-less-than-md) {
+            margin-left: 0;
+            margin-right: 0;
+
+            margin-left:  calc(0px - env(safe-area-inset-left));
+            margin-right: calc(0px - env(safe-area-inset-right));
+        }
+        @media print {
+            margin-bottom: -1px;
+            padding-top: $print-margin;
+            padding-bottom: $print-margin;
+            border-top: 1px solid $color-line;
+            border-bottom: 1px solid $color-line;
+        }
+    }
+    &--grey0 {
+        background-color: $color-grey0;
+    }
+    &--grey1 {
+        background-color: $color-grey1;
+    }
+    &--primary {
+        background-color: $color-primary-light;
+    }
+    &--secondary {
+        background-color: $color-secondary-light;
+    }
+    &--padding {
+        &-sm {
+            padding-top: $gutter-section-sm-sm;
+            padding-bottom: $gutter-section-sm-sm;
+        }
+        &-xs {
+            padding-top: $gutter-section-xs-sm;
+            padding-bottom: $gutter-section-xs-sm;
+        }
+    }
+
+    &-Inner {
+        @include clearmargin();
+        max-width: $width-lg;
+        margin-left: auto;
+        margin-right: auto;
+        
+        &--xxl {
+            max-width: 9000px;
+            max-width: 100vw;
+        }
+        &--xl {
+            max-width: $width-xl;
+        }
+        &--lg {
+            max-width: $width-lg;
+        }
+        &--md {
+            max-width: $width-md;
+        }
+        &--sm {
+            max-width: $width-sm;
+        }
+        &--xs {
+            max-width: $width-xs;
+        }
+        // specials
+        &--caged {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: $gutter;
+        }
+        &>h1,
+        &>h2,
+        &>h3,
+        &>h4,
+        &>h5,
+        &>h6,
+        &>p {
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+        &>h2 {
+            &:first-child {
+                margin-top: -0.25em;
+            }
+        }
+        @media print {
+            max-width: $print-width;
+        }
+    }
+
+}

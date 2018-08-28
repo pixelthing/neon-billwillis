@@ -1,0 +1,19 @@
+{{#content}}
+
+        <!-- QUOTE BLOCK -->
+        <link rel="stylesheet" href="/static/shared/modules/quote/quote.css" /> <script> </script>
+        <div class="Section Quote{{#color}} Section--{{.}}{{/color}}{{#lineBottom}} Section--line-bottom{{/lineBottom}}{{#margin}} Section--{{.}}{{/margin}}">
+
+            <blockquote class="Section-Inner Quote-Inner{{#width}} Quote-Inner--{{.}}{{/width}}">
+
+                <p class="Quote-Text">{{text}}</p>
+                {{#source}}
+                <footer class="Quote-Source">
+                    {{source}}
+                </footer>
+                {{/source}}
+            
+            </blockquote>
+
+        </div>
+{{/content}}

@@ -1,0 +1,709 @@
+// Icons
+//
+// Status: WIP, building library, investigating page "build" process where CMS compiles sprite sheet.
+//
+// Styleguide 2.5.
+
+// Icons - SVG
+//
+// These are the SVG icons that exist so far. The sprite sheet currently holds all these icons on every page, but that could change if we manage to get the CMS to be smarter about icons.
+//
+// Styleguide 2.5.1.
+
+// Icons - chevrons
+//
+// markup:
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-left"></use>
+//     </svg>
+//     #chevron-left
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-right"></use>
+//     </svg>
+//     #chevron-right
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-up"></use>
+//     </svg>
+//     #chevron-up
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-down"></use>
+//     </svg>
+//     #chevron-down
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-disc-left"></use>
+//     </svg>
+//     #chevron-disc-left
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-disc-right"></use>
+//     </svg>
+//     #chevron-disc-right
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-disc-up"></use>
+//     </svg>
+//     #chevron-disc-up
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-disc-down"></use>
+//     </svg>
+//     #chevron-disc-down
+// </div>
+//
+// Styleguide 2.5.2.
+
+
+// Icons - small icons
+//
+// markup:
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_small-yes"></use>
+//     </svg>
+//     #icon_small-yes
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_small-no"></use>
+//     </svg>
+//     #icon_small-no
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_small-tick"></use>
+//     </svg>
+//     #icon_small-tick
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_small-plus"></use>
+//     </svg>
+//     #icon_small-plus
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_small-close"></use>
+//     </svg>
+//     #icon_small-close
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_small-user"></use>
+//     </svg>
+//     #icon_small-user
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_small-magnify"></use>
+//     </svg>
+//     #icon_small-magnify
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon_small-refresh"></use>
+//     </svg>
+//     #icon_small-refresh
+// </div>
+//
+// Styleguide 2.5.3.
+
+
+// Icons - big icons
+//
+// markup:
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-play"></use>
+//     </svg>
+//     #icon-play
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-stop"></use>
+//     </svg>
+//     #icon-stop
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-check-circle"></use>
+//     </svg>
+//     #icon-check-circle
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-property-flat"></use>
+//     </svg>
+//     #icon-property-flat
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-property-villa"></use>
+//     </svg>
+//     #icon-property-villa
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-property-villa1"></use>
+//     </svg>
+//     #icon-property-villa1
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-property-company"></use>
+//     </svg>
+//     #icon-property-company
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#flyttanmalan"></use>
+//     </svg>
+//     #flyttanmalan
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#felanmalan"></use>
+//     </svg>
+//     #felanmalan
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chat"></use>
+//     </svg>
+//     #icon-chat
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-skraddarsydd"></use>
+//     </svg>
+//     #icon-skraddarsydd
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-mail"></use>
+//     </svg>
+//     #icon-mail
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-phone"></use>
+//     </svg>
+//     #icon-phone
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#telefon"></use>
+//     </svg>
+//     #telefon
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-avbrott-mobil"></use>
+//     </svg>
+//     #icon-avbrott-mobil
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-avbrott"></use>
+//     </svg>
+//     #icon-avbrott
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-lorry1"></use>
+//     </svg>
+//     #icon-lorry1
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-truck"></use>
+//     </svg>
+//     #icon-truck
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-kivra"></use>
+//     </svg>
+//     #icon-kivra
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-clock"></use>
+//     </svg>
+//     #icon-clock
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-kalkyl"></use>
+//     </svg>
+//     #icon-kalkyl
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-ersattning"></use>
+//     </svg>
+//     #icon-ersattning
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-refresh2"></use>
+//     </svg>
+//     #icon-refresh2
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-leveranssaker"></use>
+//     </svg>
+//     #icon-leveranssaker
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-bulb"></use>
+//     </svg>
+//     #icon-bulb
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-plug"></use>
+//     </svg>
+//     #icon-plug
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ehandel"></use>
+//     </svg>
+//     #ehandel
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#elnat"></use>
+//     </svg>
+//     #elnat
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#gas"></use>
+//     </svg>
+//     #gas
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fjarrvarme"></use>
+//     </svg>
+//     #fjarrvarme
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fjarrkyla"></use>
+//     </svg>
+//     #fjarrkyla
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fastighetsanslutning"></use>
+//     </svg>
+//     #fastighetsanslutning
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#inplacering"></use>
+//     </svg>
+//     #inplacering
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#vindkraft"></use>
+//     </svg>
+//     #vindkraft
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#solnat"></use>
+//     </svg>
+//     #solnat
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#vaglangd"></use>
+//     </svg>
+//     #vaglangd
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#laddtjanster"></use>
+//     </svg>
+//     #laddtjanster
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#snabbladdastation"></use>
+//     </svg>
+//     #snabbladdastation
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-hitta-laddare"></use>
+//     </svg>
+//     #icon-hitta-laddare
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-samarbetspartners"></use>
+//     </svg>
+//     #icon-samarbetspartners
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svartfiber"></use>
+//     </svg>
+//     #svartfiber
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#ethernet"></use>
+//     </svg>
+//     #ethernet
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-anslut-fiber"></use>
+//     </svg>
+//     #icon-anslut-fiber
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#fler_tar_sikte"></use>
+//     </svg>
+//     #fler_tar_sikte
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-installatorswebben"></use>
+//     </svg>
+//     #icon-installatorswebben
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-clipboard"></use>
+//     </svg>
+//     #icon-clipboard
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#energitjanster"></use>
+//     </svg>
+//     #energitjanster
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-teckna-elavtal"></use>
+//     </svg>
+//     #icon-teckna-elavtal
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-teckna-gasavtal"></use>
+//     </svg>
+//     #icon-teckna-gasavtal
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#handskakning"></use>
+//     </svg>
+//     #handskakning
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-user-outline"></use>
+//     </svg>
+//     #icon-user-outline
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-user-question"></use>
+//     </svg>
+//     #icon-user-question
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-user-question-thick"></use>
+//     </svg>
+//     #icon-user-question-thick
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-redan-kund"></use>
+//     </svg>
+//     #icon-redan-kund
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-kundradgivare-mobil"></use>
+//     </svg>
+//     #icon-kundradgivare-mobil
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-kundservice-outline"></use>
+//     </svg>
+//     #icon-kundservice-outline
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-ett"></use>
+//     </svg>
+//     #icon-ett
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tva"></use>
+//     </svg>
+//     #icon-tva
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-tre"></use>
+//     </svg>
+//     #icon-tre
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-file"></use>
+//     </svg>
+//     #icon-file
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-file-pdf"></use>
+//     </svg>
+//     #icon-file-pdf
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-file-img"></use>
+//     </svg>
+//     #icon-file-img
+// </div>
+// <style>.guide {float:left;width:120px;height:200px;margin:10px;padding:10px;border:1px solid #eee;text-align:center;font-size:12px;}.guide svg {width:80px;height:80px;font-size:80px;}</style>
+//
+// Styleguide 2.5.4.
+
+
+// Icons - social
+//
+// markup:
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-facebook"></use>
+//     </svg>
+//     #icon-facebook
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-twitter"></use>
+//     </svg>
+//     #icon-twitter
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-instagram"></use>
+//     </svg>
+//     #icon-instagram
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-youtube"></use>
+//     </svg>
+//     #icon-youtube
+// </div>
+// <div class="guide">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#logo-linkedin"></use>
+//     </svg>
+//     #icon-linkedin
+// </div>
+// <style>.guide {float:left;width:120px;height:200px;margin:10px;padding:10px;border:1px solid #eee;text-align:center;font-size:12px;}.guide svg {width:80px;height:80px;font-size:80px;fill:#ccc}</style>
+//
+// Styleguide 2.5.5.
+
+
+// Icons - making SVGs into icons 
+//
+// This is hard won advice on making SCG icons. It's by no means exhaustive, there are still some results of some implementations on some browsers that I can't explain. But here's any advice we currently have.
+//
+// ## The pipeline to get an SVG to the browser.
+//
+// We use an SVG spritesheet that crams all our SVGs as multiple ``SYMBOL`` tags in a single SVG. This spritesheet is then included at the bottom of the page and effectively hidden. The spritesheet looks like:
+// ````
+// <div class="Icon-Store">
+//   <!-- inject:svg --><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><symbol id="chevron-disc-down" viewBox="0 0 27 27"><title>chevro...
+// </div>
+// ````
+// We then use the IDs of the SVG symbols where we need them in the markup. For instance a chevron in a disc is written like:
+// ````
+// <svg viewBox="0 0 512 512" class="Icon">
+//   <use xlink:href="#chevron-disc-down"></use>
+// </svg>
+// ````
+// hey presto, an icon appears. The icon should have the the ``.Icon`` class to carry out some basic clean up like making it square and setting the fill colour of to the current text colour. 
+// 
+// To streamline the process of creating the stylesheet, we use a gulp plugin called [SVGStore](https://github.com/svgstore/svgstore), so we can drop a new SVG with a name of "*icon-XXX.svg*" into a folder, and gulp can update a spritesheet with a symbol called ``id="icon-XXX"``. We then inject the spritesheet into a mustache partial, which is included at the bottom of every page. This process creates a big spritesheet with every available sprite on the page, even if it's not required on the page viewed. We're working with Initiva to get the CMS to be aware of what icons are being used, and compile the spritesheet per page (in a similar way to how modules can expose JS files and compile a list of script includes).
+//
+// ## Creating an SVG icon.
+//
+// Our most common editor for SVGs is [Sketch](https://www.sketchapp.com/). Here's an icon in sketch, a random SVG imported into the app.
+// <figure style="text-align:center"><figcaption>fig 1</figcaption><img src="/static/patterns/icon-build00.png" ></figure>
+//
+// We need to place the icon in a square, and resize it so that it matches the proportions of other icons in the library, so it should take up about 70-80% of the space, and be centrally aligned. You could try aligning automatically, but be careful to accept that you might need to optically align the icon. In this example, the clipboard is vertically aligned to the center, even if that means the icon is offset as a whole because of the circle on the side. If you need help, imagine it in a circle and if it looks offset or not. The sizes of the square doesn't actually matter, the SVG will always scale to the required size anyway.
+// <figure style="text-align:center"><figcaption>fig 2</figcaption><img src="/static/patterns/icon-build10.png" ></figure>
+//
+// Next remove any clipping masks:
+// <figure style="text-align:center"><figcaption>fig 3</figcaption><img src="/static/patterns/icon-build20.png" ></figure>
+//
+// Change the colours to be black (unless you have good reason not to, eg an icon on a disc should have a black disc and an white icon ontop). If you have any lines (eg a chevron made up of two lines), convert them to paths by selecting them and using *Layer > Convert to outlines*. This will mean in the final SVG, their colour will be determined by the fill, not the stroke, and having all the icons controlled in the same way makes's our life *much* simpler.
+// <figure style="text-align:center"><figcaption>fig 4</figcaption><img src="/static/patterns/icon-build30.png" ></figure>
+//
+// Now we're ready to export the icon as an SVG. Make sure you export the square artboard (or slice), not just the icon elements.
+// <figure style="text-align:center"><figcaption>fig 5</figcaption><img src="/static/patterns/icon-build40.png" ></figure>
+//
+// You'll get some SVG code that looks like:
+// ```
+// <?xml version="1.0" encoding="UTF-8"?>
+// <svg width="83px" height="83px" viewBox="0 0 83 83" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+//     <!-- Generator: Sketch 47 (45396) - http://www.bohemiancoding.com/sketch -->
+//     <title>Artboard</title>
+//     <desc>Created with Sketch.</desc>
+//     <defs></defs>
+//     <g id="Pa1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+//         <g id="Artboard" fill-rule="nonzero" fill="#000000">
+//             <g id="purp-icon" transform="translate(22.000000, 14.000000)">
+//                 <g id="Pa1">
+//                     <g id="Group-3" transform="translate(0.000000, 1.136333)">
+//                         <g id="Fill-1-Clipped">
+//                             <path d="M20.2424276,50.2521667 L2.50891034,50.2521667 C1.12518621,50.2521667 -0.000331034483,49.1188333 -0.000331034483,47.7255 L-0.000331034483,3.31883333 C-0.000331034483,1.92716667 1.12518621,0.793833333 2.50891034,0.793833333 L11.7778759,0.793833333 L11.7778759,2.7555 L2.50891034,2.7555 C2.20601379,2.7555 1.94946207,3.01383333 1.94946207,3.31883333 L1.94946207,47.7255 C1.94946207,48.0371667 2.20104828,48.2888333 2.50891034,48.2888333 L20.2424276,48.2888333 L20.2424276,50.2521667 Z" id="Fill-1"></path>
+//                         </g>
+//                     </g>
+//                     <path d="M38.5156966,32.0476667 L36.5659034,32.0476667 L36.5659034,
+//                      ...
+//                     L31.0399448,51.2256667 Z" id="Fill-20"></path>
+//                 </g>
+//             </g>
+//         </g>
+//     </g>
+// </svg>
+// ```
+//
+// Run this through an SVG compressor like [SVGOMG](https://jakearchibald.github.io/svgomg/) to strip away 40% of unused code:
+// <figure style="text-align:center"><figcaption>fig 6</figcaption><img src="/static/patterns/icon-build50.png" ></figure>
+//
+// Now the SVG looks like:
+// ```
+// <?xml version="1.0" encoding="UTF-8"?>
+// <svg width="83" height="83" viewBox="0 0 83 83" xmlns="http://www.w3.org/2000/svg"><title>Artboard</title><g fill-rule="nonzero" fill="#000"><path d="M42.242 65.388H24.51c-1.385 0-2.51-1.133-2.51-2.526V18.455c0-1.392  ...  1.962l-7.51 9.493c-.256.32-.635.65-1.042.65h-.038z"/></g></svg>
+// ```
+//
+// ...you'll notice that as well as amalgamating many of the ``<path>``s and taking away most of the meta data, it's stripped away all but one of the ``<g>`` groups. This group contains the fill and fill-group that cascades down to all the child paths.
+//
+// Things to watch out for here are groups that have a ``fill="none"`` and then paths inside that have coloured fills. This will screw things up, so remove ``fill="none"`` from any groups unless you have a specific need for them. You can also strip out any IDs if you can (the icon will probably appear multiple times in the page, so multiple IDs is naughty - especially if you want a good lighthouse score).
+//
+// Now we're finally ready. If you need specific control over internal components (eg the play icon has a transparent "stop" square inside it so we can transition between play and stop), label elements with a CSS class.
+//
+// Now drop it into ``/src/shared/static/icons/sprites`` and gulp will add it to the sprite sheet. You might want to add it here to the documentation too, so devs are aware of it and not tempted to recreate the same one again.
+//
+// **done!**
+//
+// One edge case is using CSS to add a keyline to an icon like a disc that goes to the edge of the viewbox. SVGs (at least in SVG1) can only add a stroke on the line, setting the keyline inside or outside the line is not possible. That means if you have an icon on a disc that you add a keline to (eg ``svg .icon-disc {stroke:white}``), the keyline will get clipped by the viewbox as below. Also note that the chevron is thicker, because adding a stroke to the icon has added a stroke to all components of the SVG.
+// <figure style="text-align:center"><figcaption>fig 7</figcaption><img src="/static/patterns/icon-build60.png" ></figure>
+//
+// Rather than create two icons to deal with this, we can create an additional element in the SVG that is hidden most of the time. 
+// - In sketch, duplicate the disc and re-position it in the same place. 
+// - make it one pixel smaller than the disc, so there's no possibility of it's colour fuzzing around the edge due to antialiasing. 
+// - give it a border colour (centered, not inside or outside). Normally the border colour is white - but anything but black. If the icon is big, you might want to make the thickness a couple of pixels.
+// - remove the fill colour so it's just the rim of the circle.
+// - Convert the border to paths by selecting it and running *Layer > Convert to outlines*. 
+// - Once you export the SVG, make sure the circle rim is in the markup before the circle disc (SVGs don't do z-index, so you just need to get them in the right order in the markup).
+// - You can now hide the disc by giving the SVG ``.this-icon {color:transparent}``, revealing the circle underneath. Two icons for the price of one. Nice.
+//
+// <figure style="text-align:center"><figcaption>fig 8 (after the border was converted to paths)</figcaption><img src="/static/patterns/icon-build70.png" ></figure>
+//
+// ## Good SVG icons should have:
+// - a square viewbox (any size square).
+// - the icon automatically (plus optically) centered and taking up roughly 80% of the width of the viewbox (unless it has a disc/background, which should go to the edges)
+// - be run through [SVGOMG](https://jakearchibald.github.io/svgomg/) (or similar compressor) to strip stuff you don't need (on average this will reduce file size by 40-50%).
+// - as few clip-paths and transforms as possible.
+// - as few group ``<g>`` tags as possible.
+// - as few ids, eg ``id="symbol-7"`` as possible.
+// - as few ``stroke``s as possible, and lines turned into paths where possible to use ``fill`` instead of stroke.
+// - no ``fill="none"`` in any ``<g>`` groups, unless you really need it.
+// - the fill that you want to inherit the currentColor should be black in the default SVG (``fill="#000"``). This makes it usable as a mask or a CSS background-image, as well as via the spritesheet.
+// - if you need specific access to innner components (ie, you need to make a path fill with red that contrasts with the currentColor), give it a CSS class (eg ``class="icon-play-square"``) so you can refer to it in a stylesheet later (you might not be able to do this trick with the spritesheet, you might need to include this icon as a partial inline in the page - but the icon is still part of the library, even if we have multiple tricks )
+// 
+// **Resources of SVGs**
+// - [5 gotchas of getting SVGs into production](https://css-tricks.com/gotchas-on-getting-svg-into-production/)
+// - [fill colour/currentColor](https://css-tricks.com/cascading-svg-fill-color/)
+// - [SVG stroke options](https://css-tricks.com/almanac/properties/s/stroke/)
+// - [SVGStore](https://github.com/svgstore/svgstore)
+//
+// Styleguide 2.5.10.
+
+svg { pointer-events: none; }
+
+.Icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    &--lg {
+        width: 86px;
+        height: 86px;
+        font-size: 86px;
+        line-height: 1;
+
+    }
+    &--md {
+        width: 60px;
+        height: 60px;
+        font-size: 60px;
+        line-height: 1;
+    }
+    &--sm {
+        width: 43px;
+        height: 43px;
+        font-size: 43px;
+        &--xxs {
+            @media (max-width: $less-than-sm) {
+                width: 43px;
+                height: 43px;
+                font-size: 43px;
+            }
+        }
+    }
+    &--white {
+        fill: #fff;
+    }
+    &--block {
+        display: block;
+    }
+    &--inline {
+        vertical-align: middle;
+    }
+}
+.Icon-Store {
+    position: absolute;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    bottom: 0;
+}

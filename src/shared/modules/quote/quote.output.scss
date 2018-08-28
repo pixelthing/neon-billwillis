@@ -1,0 +1,101 @@
+@import "../../base/variables-colors";
+@import "../../base/variables-typography";
+@import "../../base/variables-breakpoints";
+@import "../../base/variables";
+@import "../../base/mixins";
+
+// Quote block
+//
+// Status: near final
+//
+// A citat/quote block with quote in brush script and a source. Can inherit colours from [standard section options](/patterns/#!/section/4.2), but can only use the bottom keyline.
+//
+// Styleguide 3.20
+
+// Quote block width
+//
+// This module works with different standard column sizes, but doesn't use the standard ``Section-Inner`` classnames so that it can have a different default.
+//
+// .default! - no modifier: MD/50rem
+// .Quote-Inner--xs - XS
+// .Quote-Inner--sm - SM (standard text column width)
+// .Quote-Inner--md - MD
+// .Quote-Inner--lg - LG
+// .Quote-Inner--xl - XL
+// .Quote-Inner--xxl - XXL (full screen width)
+//
+// markup:
+//      <link rel="stylesheet" href="/static/shared/modules/quote/quote.css"> <script> </script>
+//      <div class="Section Quote">
+//          <blockquote class="Section-Inner Quote-Inner {$modifiers}">
+//              <div class="Quote-Text">
+//                  Deserunt nostrud eu sint deserunt consectetur eiusmod amet.
+//               </div>
+//               <footer class="Quote-Source">
+//                   Janne Andersson, fjärrvärmekund
+//               </footer>
+//           </blockquote>
+//       </div>
+//
+// Styleguide 3.20.1
+
+.Quote {
+    &-Inner {
+        position: relative;
+        max-width: $width-md;
+        margin-top: 0;
+        margin-bottom: 0;
+        color: $color-primary;
+        font-size: 1rem;
+        text-align: center;
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 300px;
+            margin-left: -150px;
+            height: 5px;
+            background-color: $color-primary;
+        }
+        &--xxl {
+            max-width: 9000px;
+            max-width: 100vw;
+        }
+        &--xl {
+            max-width: $width-xl;
+        }
+        &--lg {
+            max-width: $width-lg;
+        }
+        &--md {
+            // note this is the default
+        }
+        &--sm {
+            max-width: $width-sm;
+        }
+        &--xs {
+            max-width: $width-xs;
+        }
+    }
+    &-Text {
+        margin: 0;
+        padding: $gutter*3 0;
+        @include typo-cursive();
+        font-style: normal;
+        font-size: $font-size-xxl;
+        line-height: 1.2;
+        @media (max-width: $less-than-xs) {
+            padding: $gutter*2 0;
+            font-size: $font-size-xxl-sm;
+        }
+    }
+    &-Source {
+        @include typo-header();
+        margin: 0;
+        font-size: $font-size-lg;
+        @media (max-width: $less-than-xs) {
+            font-size: $font-size-lg-sm;
+        }
+    }
+}

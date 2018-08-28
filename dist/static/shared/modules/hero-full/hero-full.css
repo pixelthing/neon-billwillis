@@ -1,0 +1,275 @@
+/* height */
+/* RESPONSIVE */
+/* TYPOGRAPHY */
+/* ELEMENTS */
+/* PATTERNS */
+/* ACCESSIBILITY */
+.HeroFull {
+  margin: 0 calc(0px - env(safe-area-inset-right)) 0 calc(0px - env(safe-area-inset-left)); }
+  .HeroFull-Inner {
+    position: relative;
+    height: 500px;
+    height: 100vh;
+    max-height: 200vw;
+    margin: 0;
+    padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+    color: #fff;
+    background-position: 0 0;
+    background-color: #ccc;
+    background-image: repeating-linear-gradient(-45deg, #999, #999 10px, #939393 10px, #939393 20px);
+    /* protected areas! */ }
+    .android-mobile .HeroFull-Inner {
+      max-height: calc(100vh - 56px); }
+    .android-tablet .HeroFull-Inner {
+      max-height: calc(100vh - 96px); }
+    .android-vh-old .HeroFull-Inner,
+    .samsung-browser .HeroFull-Inner {
+      max-height: 100vh; }
+    .iphone .HeroFull-Inner {
+      max-height: calc(100vh - 75px); }
+      @media screen and (min-height: 635px) {
+        .iphone .HeroFull-Inner {
+          max-height: calc(100vh - 114px); } }
+      @media screen and (orientation: landscape) {
+        .iphone .HeroFull-Inner {
+          max-height: calc(100vh - 50px); } }
+    .ipad .HeroFull-Inner {
+      max-height: calc(100vh - 60px); }
+    @media (max-width: 599px) {
+      .HeroFull-Inner {
+        padding-top: 60px; } }
+    @media (max-width: 599px) and (min-height: 500px) {
+      .HeroFull-Inner {
+        padding-top: 60px;
+        padding-bottom: 80px; } }
+    @media (min-width: 600px) and (max-height: 499px) {
+      .HeroFull-Inner {
+        padding-top: 100px; } }
+    @media (min-width: 600px) and (min-height: 500px) and (max-height: 720px) {
+      .HeroFull-Inner {
+        padding-top: 100px;
+        padding-bottom: 80px; } }
+    @media (min-width: 600px) and (min-height: 721px) {
+      .HeroFull-Inner {
+        padding-top: 130px;
+        padding-bottom: 80px; } }
+  .HeroFull-Frame {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: 50% 50%; }
+    @supports (animation: none) {
+      .HeroFull-Frame {
+        opacity: 0;
+        transition: opacity 0s;
+        -webkit-animation: fade-in 300ms forwards;
+                animation: fade-in 300ms forwards;
+        -webkit-animation-delay: 2s;
+                animation-delay: 2s; }
+        .no-js .HeroFull-Frame,
+        .HeroFull--ready .HeroFull-Frame {
+          opacity: 1;
+          -webkit-animation: none;
+                  animation: none;
+          transition: opacity 300ms; } }
+  .HeroFull-Img {
+    width: 100%;
+    height: auto; }
+    @media (orientation: portrait) {
+      .HeroFull-Img {
+        width: auto;
+        height: 100%; } }
+    @supports (object-fit: cover) {
+      .HeroFull-Img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%; } }
+    .HeroFull-Img.ImaImg--Hidden {
+      display: none; }
+  .HeroFull-Mask {
+    position: absolute;
+    bottom: -0.5px;
+    left: 0;
+    right: 0;
+    height: 25px; }
+    @media (min-width: 980px) {
+      .HeroFull-Mask {
+        height: 30px; } }
+    @media (min-width: 1200px) {
+      .HeroFull-Mask {
+        height: 50px; } }
+  .HeroFull-Main {
+    display: table;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto; }
+    @media (min-width: 600px) and (min-height: 500px) {
+      .HeroFull-Main {
+        min-height: 500px; } }
+    @supports (animation: none) {
+      .HeroFull-Main {
+        opacity: 0;
+        transition: opacity 0s;
+        -webkit-animation: fade-in 300ms forwards;
+                animation: fade-in 300ms forwards;
+        -webkit-animation-delay: 2s;
+                animation-delay: 2s; }
+        .no-js .HeroFull-Main,
+        .HeroFull--ready .HeroFull-Main {
+          opacity: 1;
+          -webkit-animation: none;
+                  animation: none;
+          transition: opacity 300ms; } }
+    .HeroFull-Main-Inner {
+      display: table-cell;
+      height: 100%;
+      padding: 0 12px;
+      vertical-align: middle; }
+  .HeroFull-Title {
+    font-family: "brandon-grotesque-n1", "brandon-grotesque", "Gill Sans", "Calibri", "Gill Sans MT", arial, sans-serif;
+    font-weight: 200;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.5rem;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    line-height: 1; }
+    .wf-brandongrotesque-n3-active .HeroFull-Title {
+      font-weight: 300; }
+    .HeroFull-Title--lg {
+      max-width: 10em; }
+    .HeroFull-Title--md {
+      max-width: 8em; }
+    .HeroFull-Title--sm {
+      max-width: 6em; }
+    @media (min-width: 360px) {
+      .HeroFull-Title {
+        font-size: 3.25rem; } }
+    @media (max-width: 599px) and (orientation: portrait) {
+      .HeroFull-Title {
+        font-size: 2.4rem; } }
+    @media (max-height: 499px) and (orientation: landscape) {
+      .HeroFull-Title {
+        font-size: 2.4rem; } }
+    @media (max-height: 499px) {
+      .HeroFull-Title {
+        max-width: 100%; } }
+  .HeroFull-Text {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    display: block;
+    max-width: 25em;
+    margin: 0.5em auto 0;
+    line-height: 1.4;
+    font-size: 1rem;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.4); }
+    @media (min-width: 600px) and (min-height: 500px) {
+      .HeroFull-Text {
+        margin: 1em auto 0; } }
+  .HeroFull-PreModules {
+    text-align: center;
+    margin: 1em 0 0; }
+    .HeroFull-PreModules-Title {
+      font-family: "brandon-grotesque-n1", "brandon-grotesque", "Gill Sans", "Calibri", "Gill Sans MT", arial, sans-serif;
+      font-weight: 400;
+      margin: 0 0 0.5em;
+      line-height: 1.3; }
+  .HeroFull-Field {
+    margin: 0 5px;
+    max-width: calc(100% - 24px);
+    text-align: left;
+    vertical-align: middle; }
+    .HeroFull-Field--block {
+      width: 375px; }
+  .HeroFull-Btn {
+    margin: 0;
+    vertical-align: middle; }
+  .HeroFull-Link {
+    font-family: "brandon-grotesque-n1", "brandon-grotesque", "Gill Sans", "Calibri", "Gill Sans MT", arial, sans-serif;
+    font-weight: 200;
+    margin: 0.5em;
+    font-size: 1.5rem;
+    color: #fff; }
+    .wf-brandongrotesque-n3-active .HeroFull-Link {
+      font-weight: 300; }
+    .HeroFull-Link:hover, .HeroFull-Link:visited {
+      color: #fff; }
+    .HeroFull-Link--block {
+      display: block; }
+    .HeroFull-Link-Icon {
+      width: 1.3em;
+      height: 1.3em;
+      vertical-align: middle;
+      margin-top: -0.23em;
+      fill: #fff; }
+  .HeroFull-More {
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: inherit;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    width: 10em;
+    margin: 0 0 0 -5em;
+    color: #fff;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    outline: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    cursor: pointer; }
+    @media (min-height: 500px) {
+      .HeroFull-More {
+        display: block; } }
+    @supports (animation: none) {
+      .HeroFull-More {
+        opacity: 0;
+        transition: opacity 0s;
+        -webkit-animation: fade-in 300ms forwards;
+                animation: fade-in 300ms forwards;
+        -webkit-animation-delay: 2s;
+                animation-delay: 2s; }
+        .no-js .HeroFull-More,
+        .HeroFull--ready .HeroFull-More {
+          opacity: 1;
+          -webkit-animation: none;
+                  animation: none;
+          transition: opacity 300ms; } }
+    .HeroFull-More-Icon {
+      display: block;
+      width: 1.4em;
+      height: 1.4em;
+      margin: 0.2em auto 0;
+      color: transparent; }
+      @media (min-width: 600px) {
+        .HeroFull-More-Icon {
+          margin-top: 0.4em; } }
+      .HeroFull-More-Icon.disc {
+        fill: none; }
+      .HeroFull-More-Icon.circle {
+        fill: #fff; }
+
+/*# sourceMappingURL=hero-full.css.map */

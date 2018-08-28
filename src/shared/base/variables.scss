@@ -1,0 +1,172 @@
+// Size variables
+//
+// Status: near final.
+//
+// Styleguide 1.14.
+
+// Column widths
+//
+// These central column widths are used mainly by [Section 4.2: sections](/patterns/#!/section/4.2) or any element that wishes to replicate section widths.
+//
+// $width-xl - largest width of text column
+// $width-lg - large width of text column
+// $width-md - narrow width of text column
+// $width-sm - narrower width of text column
+// $width-xs - narrowest width of text column
+//
+// markup:
+// <div style="width: {$modifiers}; margin: 15px auto; padding: 5px 0; border: 1px solid #79ad3e; color: #79ad3e; background: #ded; text-align: center;">{$modifiers}</div>
+//
+// Styleguide 1.14.1.
+
+$width-xl:          1200px;
+$width-lg:          980px;
+$width-md:          50rem;
+$width-sm:          40rem;
+$width-xs:          35rem;
+$pamax-width:    $width-lg; // deprecated
+
+
+// Gutters/spacings
+//
+// All spacings should be a multiple of the smallest gutter. For more details on section gutters, view [vertical sections - 4.2](/patterns/#!/section/4.2).
+//
+// $gutter - single gutter
+// $gutter-section-md - the margin between two vertical sections
+// $gutter-section-md-sm - the margin between two vertical sections on small screens
+//
+// markup:
+// <div style="--margin-var: calc({$modifiers}); box-sizing: content-box; display: block; margin: {$modifiers}; margin: var(--margin-var); padding: 5px; border: 1px solid #79ad3e; color: #79ad3e; background: #ded; text-align: center;">{$modifiers}</div>
+// <!-- the CSS variables stuff is just to demonstrate this SASS in this pattern guide. It's not recommended -->
+//
+// sg-wrapper:
+// <div class="sg" style="display: block; width: 400px; margin: 15px auto; position: relative; border: 1px solid #c00; background: #fcc; text-align: center;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 1.14.2.
+
+$gutter:                12px;
+$gutter-section-lg:     $gutter*12;
+$gutter-section-lg-sm:  $gutter*7;
+$gutter-section-md:     $gutter*8;
+$gutter-section-md-sm:  $gutter*5;
+$gutter-section-sm:     $gutter*4;
+$gutter-section-sm-sm:  $gutter*3;
+$gutter-section-xs:     $gutter*2;
+$gutter-section-xs-sm:  $gutter*2;
+
+
+
+
+// Misc variables
+//
+// Status: near final.
+//
+// Styleguide 1.5.
+
+
+// Misc variables - border radius
+//
+// $border-radius - standard border radius on all rounded boxes
+//
+// markup:
+// <div style="display: inline-block; border-radius: {$modifiers}; padding: 20px; border: 1px solid #999; color: #333; background: #eee; text-align: center;">border-radius: {$modifiers}</div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 1.15.1.
+
+$border-radius:     5px;
+
+
+// Misc variables - shadow offset
+//
+// $shadow-offset - standard shadow offset on inputs and popovers
+//
+// markup:
+// <div style="display: inline-block; margin: 15px; padding: 20px; border: 1px solid #999; color: #333; background: #eee; text-align: center; box-shadow: {$modifiers} {$modifiers} 0 0 rgba(204, 204, 204, 0.5);">box shadow: {$modifiers} {$modifiers} 0 0 rgba(204, 204, 204, 0.5)</div>
+// <div style="display: inline-block; margin: 15px; padding: 20px; border: 1px solid #999; color: #333; background: #eee; text-align: center; box-shadow: inset {$modifiers} {$modifiers} 0 0 rgba(204, 204, 204, 0.5);">box shadow: inset {$modifiers} {$modifiers} 0 0 rgba(204, 204, 204, 0.5)</div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 1.15.2.
+
+$shadow-offset:     3px;
+
+
+
+// Misc variables - focus outline
+//
+// $color-input-outline - box-shadow property to add focus outline
+//
+// markup:
+// <div style="display: inline-block; margin: 15px; padding: 20px; border: 1px solid #999; color: #333; background: #eee; text-align: center; box-shadow: {$modifiers};">box shadow: {$modifiers}</div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 1.15.3.
+
+$color-input-outline: 0 0 0 2px #fff, 0 0 7px 3px $color-focus;
+
+
+// standard drop shadow
+
+$regular-shadow: 0 2px 6px rgba(0,0,0,0.3);
+
+
+// button variables (not colours)
+
+$input-regular-padding-horiz: 1em;
+
+$btn-regular-padding-top: 0.65em;
+$btn-regular-padding-bottom: 0.85em;
+$btn-regular-padding-horiz: 2em;
+
+$btn-skinny-padding-top: 0.35em;
+$btn-skinny-padding-bottom: 0.40em;
+$btn-skinny-padding-horiz: 1em;
+
+$btn-fat-padding-top: 0.7em;
+$btn-fat-padding-bottom: 0.8em;
+$btn-fat-padding-horiz: 2em;
+
+$btn-fattest-padding-top: 1.45em;
+$btn-fattest-padding-bottom: 1.55em;
+$btn-fattest-padding-horiz: 2em;
+
+
+$btn-narrow-padding-horiz: 0.2em;
+
+$btn-wide-padding-horiz: 2em;
+
+// print stylesheets
+
+$print-width:       45rem;
+$print-margin:      $gutter*4;
+$print-top-offset:  100px;
+$print-header-line: 1.4;
+
+// aspect ratios. To use it as a padding hack you need it as a percentage, so do something like: padding-top: $aspect-ratio-31 * 1%;
+
+$aspect-ratio-169:  56.25;
+$aspect-ratio-1610: 62.5;
+$aspect-ratio-43:   75;
+$aspect-ratio-32:   66.667;
+$aspect-ratio-235:  42.5;
+$aspect-ratio-31:   33.333;
+
+
+// disc sizing
+
+$disc-size: 1.4em;
+$disc-padding-top: 0.17em;

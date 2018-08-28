@@ -1,0 +1,168 @@
+// Grid patterns
+//
+// Status: near final
+//
+// Basic grid to allow quick assembly of page sub-layouts. This grid is similar in function to a bootstrap grid, 
+// in that it has a row wrapper and internal cells that form different combinations of columns. 
+// It differs from a bootstrap grid in that it uses flexbox with a ``display:inline-block`` fallback instead of floats, 
+// to better control the alignment of the columns. But to do this, the grid wrapper sets a ``font-size: 0`` and 
+// re-inflates the font size for each cell. This is a known way around having a pixel gap between inline blocks, 
+// but it means that if you place any item inside the grid (apart from the cells), be aware that you will need to 
+// reset the font-size.
+//
+// Styleguide 4.4.
+
+// Grid: basic example
+//
+// The below grid has a ``.Grid-Row`` container, and four 1/4 columns with ``.Grid-1-4``. Theres is a 30px gutter between each column. Each column has a 15px margin each side, which is why the row container has a -15px margin each side, so that the left and right column stretch to the edges of the overall section container (represented in by the blue lines). the grid will adjust to any width of parent container and respond to changes in the parent (and almost certainly, therfore, the window) width. Below the XS breakpoint, it will swap to being a column of blocks. **Don't mix the use of the ``.Grid-Row`` container, adding ``.Section`` for example will override the margins and give unexpected results**.
+//
+// markup:
+// <div class="Grid-Row">
+//     <div class="Grid-1-4"> Id voluptate officia commodo qui dolore duis sit ut culpa fugiat excepteur exercitation. </div>
+//     <div class="Grid-1-4"> Id voluptate officia commodo qui dolore duis sit ut culpa fugiat excepteur exercitation. </div>
+//     <div class="Grid-1-4"> Id voluptate officia commodo qui dolore duis sit ut culpa fugiat excepteur exercitation. </div>
+//     <div class="Grid-1-4"> Id voluptate officia commodo qui dolore duis sit ut culpa fugiat excepteur exercitation. </div>
+// </div>
+// <div style="margin: 45px 0;text-align: center;">
+//     <h2>If we coloured the row green and the cells red/yellow:</h2>
+//     <p>Note that each cell has a 15px margin on both sides.</p>
+// </div>
+// <div class="Grid-Row" style="background: #2ECC40;"">
+//     <div class="Grid-1-4" style="background: #FF4136;"> Id voluptate officia commodo qui dolore duis sit ut culpa fugiat excepteur exercitation. </div>
+//     <div class="Grid-1-4" style="background: #FFDC00;"> Id voluptate officia commodo qui dolore duis sit ut culpa fugiat excepteur exercitation. </div>
+//     <div class="Grid-1-4" style="background: #FF4136;"> Id voluptate officia commodo qui dolore duis sit ut culpa fugiat excepteur exercitation. </div>
+//     <div class="Grid-1-4" style="background: #FFDC00;"> Id voluptate officia commodo qui dolore duis sit ut culpa fugiat excepteur exercitation. </div>
+// </div>
+//
+// sg-wrapper:
+// <div class="Section-Inner" style="box-shadow: inset 2px 0 0 #99f, inset -2px 0 0 #99f;">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 4.4.1
+
+
+// Grid: combinations
+//
+// The grid can be sliced up in 1/2, 1/3 and 1/4, with any combination of sizes.
+//
+// markup:
+// <!-- 1/2s -->
+// <div class="Grid-Row" style="margin-bottom: 30px;">
+//     <div class="Grid-1-2" style="padding: 20px; background: #eee;">1/2</div>
+//     <div class="Grid-1-2" style="padding: 20px; background: #eee;">1/2</div>
+// </div>
+// <!-- 1/3s -->
+// <div class="Grid-Row" style="margin-bottom: 30px;">
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+// </div>
+// <!-- 1/4s -->
+// <div class="Grid-Row" style="margin-bottom: 30px;">
+//     <div class="Grid-1-4" style="padding: 20px; background: #eee;">1/4</div>
+//     <div class="Grid-1-4" style="padding: 20px; background: #eee;">1/4</div>
+//     <div class="Grid-1-4" style="padding: 20px; background: #eee;">1/4</div>
+//     <div class="Grid-1-4" style="padding: 20px; background: #eee;">1/4</div>
+// </div>
+// <!-- 3/4 + 1/4 -->
+// <div class="Grid-Row" style="margin-bottom: 30px;">
+//     <div class="Grid-3-4" style="padding: 20px; background: #eee;">3/4</div>
+//     <div class="Grid-1-4" style="padding: 20px; background: #eee;">1/4</div>
+// </div>
+// <!-- 1/2 + 1/4 + 1/4 -->
+// <div class="Grid-Row" style="margin-bottom: 30px;">
+//     <div class="Grid-1-2" style="padding: 20px; background: #eee;">1/2</div>
+//     <div class="Grid-1-4" style="padding: 20px; background: #eee;">1/4</div>
+//     <div class="Grid-1-4" style="padding: 20px; background: #eee;">1/4</div>
+// </div>
+// <!-- 2/3 + 1/3 -->
+// <div class="Grid-Row" style="margin-bottom: 30px;">
+//     <div class="Grid-2-3" style="padding: 20px; background: #eee;">2/3</div>
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+// </div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 4.4.2
+
+// Grid: underhangs and overhangs
+//
+// If there aren't enough cells in a row, or two many, the remaining cells will be centered. The alignment can be changed to *left-aligned* with the ``.Grid-Row--left`` modifier on the row container.
+//
+// markup:
+// <!-- 1/2s -->
+// <div class="Grid-Row" style="margin-bottom: 30px;">
+//     <div class="Grid-1-2" style="padding: 20px; background: #eee;">single 1/2 in a row</div>
+// </div>
+// <!-- 1/2s left aligned -->
+// <div class="Grid-Row Grid-Row--left" style="margin-bottom: 30px;">
+//     <div class="Grid-1-2" style="padding: 20px; background: #eee;">single 1/2 in a row - in a left aligned grid</div>
+// </div>
+// <!-- 1/3s -->
+// <div class="Grid-Row" style="margin-bottom: 30px;">
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">extra 1/3 - remember no vertical margin is specified in this grid!</div>
+// </div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 4.4.3
+
+// Grid: row options
+//
+// .Grid-Row - no modifier
+// .Grid-Row.Grid-Row--contained - remove the negative margins left and right, to add a gutter each side (useful for when the background is coloured)
+//
+// markup:
+// <div class="{$modifiers}" style="margin-bottom: 30px;">
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+//     <div class="Grid-1-3" style="padding: 20px; background: #eee;">1/3</div>
+// </div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 4.4.4
+
+
+.Grid-Row {
+    @include grid-row("","gutters");
+}
+.Grid-1-1,
+.Grid-1-2,
+.Grid-1-3,
+.Grid-2-3,
+.Grid-1-4,
+.Grid-3-4 {
+    @include grid-column("","gutters");
+}
+.Grid-1-1 {
+    @include grid-column-width(100%,"","gutters");
+}
+.Grid-1-2 {
+    @include grid-column-width(50%,"","gutters");
+}
+.Grid-1-3 {
+    @include grid-column-width(33.333%,"","gutters");
+}
+.Grid-2-3 {
+    @include grid-column-width(66.667%,"","gutters");
+}
+.Grid-1-4 {
+    @include grid-column-width(25%,"","gutters");
+}
+.Grid-3-4 {
+    @include grid-column-width(75%,"","gutters");
+}
