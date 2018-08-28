@@ -69,9 +69,9 @@ const videoFrame = function(el, app) {
     const play = function() {
         $iframe.setAttribute('aria-hidden',false);
         $poster.classList.add('Video-Poster--active');
-        $poster.attr('tabindex','-1');
+        $poster.setAttribute('tabindex','-1');
         $iframe.classList.add('Video-Iframe--active');
-        const src = $poster.setAttribute('data-js-video-src');
+        const src = $poster.getAttribute('data-js-video-src');
         $iframe.setAttribute('src', src);
         // add the classes that control the transition
         $play.classList.add('Video-Play--play-stop');
@@ -81,7 +81,7 @@ const videoFrame = function(el, app) {
         // remove the transition classes once done
         setTimeout(function playTimer () {
             $play.classList.remove('Video-Play--play-stop');
-            $play.attr('tabindex','0');
+            $play.setAttribute('tabindex','0');
             $allyOpen.style.display = 'none';
             $allyClose.style.display = 'block';
         },duration);
@@ -90,7 +90,7 @@ const videoFrame = function(el, app) {
     const playToStop = function(instant) {
         const styleCore = 'transform: ' + $play.getAttribute('data-js-transform');
         $play.classList.add('Video-Play--active');
-        $play.attr('style', styleCore);
+        $play.setAttribute('style', styleCore);
         $allyOpen.style.display = 'block';
         $allyClose.style.display = 'none';
         $iframe.setAttribute('aria-hidden',true);
@@ -142,7 +142,7 @@ const videoFrame = function(el, app) {
         };
 
         // throttle resize events
-        $(window).resize(function onResizeUnThrottled (ev) {
+        window.addEventListener("resize", function onResizeUnThrottled (ev) {
             // Don't trigger resize on vertical resize (mobile OS' do this all the time just on scroll). 
             // Note that we try and do every kind of "soft" measurement before we attempt to recalc styles (which is costly in FPS)
             viewportWidth = ev.target.innerWidth || window.innerWidth || document.documentElement.clientWidth || $(window).width();

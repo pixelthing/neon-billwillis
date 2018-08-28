@@ -53,12 +53,12 @@ const helperAnalytics = function(app,noInit) {
     // register the internal and shorthand events
     const registerEvents = function() {
 
-        app.addEventListener('beacon', function registerEventsMethod1 (data){
-            beacon(false, data);
-        });
-        app.addEventListener('beaconLoaders', function registerEventsMethod2 (data){
-            triggerLoaders();
-        });
+        //app.addEventListener('beacon', function registerEventsMethod1 (data){
+        //    beacon(false, data);
+        //});
+        //app.addEventListener('beaconLoaders', function registerEventsMethod2 (data){
+        //    triggerLoaders();
+        //});
         // new
         document.addEventListener('click',  () => {
             if (event.target.matches('[' + datatypes.clickers + ']')) {
@@ -81,9 +81,9 @@ const helperAnalytics = function(app,noInit) {
             }
         });
         // any module could put this user into a populaton bucket, eg in the företag-gas-teckna area, put this user in the "engaged" bucket this session
-        app.addEventListener('addToBucket', function(ev) {
-            addToBucket(ev[0], ev[1]);
-        });
+        //app.addEventListener('addToBucket', function(ev) {
+        //    addToBucket(ev[0], ev[1]);
+        //});
     };
 
     const sendNavigationTimingMetrics = () => {

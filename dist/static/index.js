@@ -141,9 +141,9 @@ var videoFrame = function videoFrame(el, app) {
     var play = function play() {
         $iframe.setAttribute('aria-hidden', false);
         $poster.classList.add('Video-Poster--active');
-        $poster.attr('tabindex', '-1');
+        $poster.setAttribute('tabindex', '-1');
         $iframe.classList.add('Video-Iframe--active');
-        var src = $poster.setAttribute('data-js-video-src');
+        var src = $poster.getAttribute('data-js-video-src');
         $iframe.setAttribute('src', src);
         // add the classes that control the transition
         $play.classList.add('Video-Play--play-stop');
@@ -153,7 +153,7 @@ var videoFrame = function videoFrame(el, app) {
         // remove the transition classes once done
         setTimeout(function playTimer() {
             $play.classList.remove('Video-Play--play-stop');
-            $play.attr('tabindex', '0');
+            $play.setAttribute('tabindex', '0');
             $allyOpen.style.display = 'none';
             $allyClose.style.display = 'block';
         }, duration);
@@ -162,7 +162,7 @@ var videoFrame = function videoFrame(el, app) {
     var playToStop = function playToStop(instant) {
         var styleCore = 'transform: ' + $play.getAttribute('data-js-transform');
         $play.classList.add('Video-Play--active');
-        $play.attr('style', styleCore);
+        $play.setAttribute('style', styleCore);
         $allyOpen.style.display = 'block';
         $allyClose.style.display = 'none';
         $iframe.setAttribute('aria-hidden', true);
@@ -214,7 +214,7 @@ var videoFrame = function videoFrame(el, app) {
         };
 
         // throttle resize events
-        $(window).resize(function onResizeUnThrottled(ev) {
+        window.addEventListener("resize", function onResizeUnThrottled(ev) {
             // Don't trigger resize on vertical resize (mobile OS' do this all the time just on scroll). 
             // Note that we try and do every kind of "soft" measurement before we attempt to recalc styles (which is costly in FPS)
             viewportWidth = ev.target.innerWidth || window.innerWidth || document.documentElement.clientWidth || $(window).width();
@@ -256,11 +256,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var selector = '[data-js-hero-full]';
 var heroFull = function heroFull(el, app) {
 
-    var $el = $(el);
     var height = 0;
-    var viewportWidth = window.innerWidth || document.documentElement.clientWidth || $(window).width();
+    var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
     var viewportWidthPrev = viewportWidth;
-    var viewportHeight = window.innerHeight || document.documentElement.clientHeight || $(window).height();
+    var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     var viewportHeightPrev = viewportHeight;
 
     var init = function init() {
@@ -273,7 +272,7 @@ var heroFull = function heroFull(el, app) {
         // click for more button
         moreButton();
         // set as ready
-        $el.addClass('HeroFull--ready');
+        el.classList.add('HeroFull--ready');
     };
 
     // measure the widths of all core components
@@ -289,7 +288,7 @@ var heroFull = function heroFull(el, app) {
     };
 
     var moreButton = function moreButton() {
-        $('[data-js-hero-full-more]').click(function (ev) {
+        document.querySelector('[data-js-hero-full-more]').addEventListener('click', function (ev) {
             ev.preventDefault();
             $("html, body").animate({ scrollTop: el.offsetHeight }, 500);
         });
@@ -301,7 +300,7 @@ var heroFull = function heroFull(el, app) {
         var timer = false;
 
         var scrolling = false;
-        $(window).scroll(function onScroll(ev) {
+        window.addEventListener("scroll", function onScroll(ev) {
             scrolling = true;
         });
 
@@ -314,16 +313,16 @@ var heroFull = function heroFull(el, app) {
                 el.setAttribute('style', '');
                 measure();
                 setHeight();
-                $el.addClass('HeroFull--ready');
+                el.classlist.add('HeroFull--ready');
             }
             viewportWidthPrev = viewportWidth;
             viewportHeightPrev = viewportHeight;
         };
 
         // throttle resize events
-        $(window).resize(function onResizeUnThrottled(ev) {
+        window.addEventListener("resize", function onResizeUnThrottled(ev) {
             if (!scrolling) {
-                $el.removeClass('HeroFull--ready');
+                el.classList.remove('HeroFull--ready');
             }
             (0, _lodash2.default)(function () {
                 onResizeThrottled(ev);
@@ -395,13 +394,12 @@ var app = function app() {
     mods = mods || modules;
 
     mods.forEach(function (module) {
-      $(module.selector).each(function (i, el) {
-        var $el = $(el);
-        if ($el.prop(module.selector)) {
+      document.querySelectorAll(module.selector).forEach(function (el, i) {
+        if (el.getAttribute('data-bound') === module.selector) {
           return;
         }
         module(el, self);
-        $el.prop(module.selector, true);
+        el.setAttribute('data-bound', module.selector);
       });
     });
   };
@@ -875,12 +873,12 @@ var helperAnalytics = function helperAnalytics(app, noInit) {
     // register the internal and shorthand events
     var registerEvents = function registerEvents() {
 
-        app.addEventListener('beacon', function registerEventsMethod1(data) {
-            beacon(false, data);
-        });
-        app.addEventListener('beaconLoaders', function registerEventsMethod2(data) {
-            triggerLoaders();
-        });
+        //app.addEventListener('beacon', function registerEventsMethod1 (data){
+        //    beacon(false, data);
+        //});
+        //app.addEventListener('beaconLoaders', function registerEventsMethod2 (data){
+        //    triggerLoaders();
+        //});
         // new
         document.addEventListener('click', function () {
             if (event.target.matches('[' + datatypes.clickers + ']')) {
@@ -903,9 +901,9 @@ var helperAnalytics = function helperAnalytics(app, noInit) {
             }
         });
         // any module could put this user into a populaton bucket, eg in the företag-gas-teckna area, put this user in the "engaged" bucket this session
-        app.addEventListener('addToBucket', function (ev) {
-            addToBucket(ev[0], ev[1]);
-        });
+        //app.addEventListener('addToBucket', function(ev) {
+        //    addToBucket(ev[0], ev[1]);
+        //});
     };
 
     var sendNavigationTimingMetrics = function sendNavigationTimingMetrics() {

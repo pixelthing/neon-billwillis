@@ -45,11 +45,10 @@ const app = function() {
     mods = mods || modules;
 
     mods.forEach((module) => {
-      $(module.selector).each((i, el) => {
-        let $el = $(el);
-        if ($el.prop(module.selector)) { return; }
+      document.querySelectorAll(module.selector).forEach((el, i) => {
+        if (el.getAttribute('data-bound') === module.selector) { return; }
         module(el, self);
-        $el.prop(module.selector, true);
+        el.setAttribute('data-bound', module.selector);
       });
     });
   };

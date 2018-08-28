@@ -8,11 +8,10 @@ import debounce        from 'lodash.debounce';
 const selector = '[data-js-hero-full]';
 const heroFull = function(el, app) {
 
-    const $el = $(el);
     let   height = 0;
-    let   viewportWidth = window.innerWidth || document.documentElement.clientWidth || $(window).width();
+    let   viewportWidth = window.innerWidth || document.documentElement.clientWidth;
     let   viewportWidthPrev = viewportWidth;
-    let   viewportHeight = window.innerHeight || document.documentElement.clientHeight || $(window).height();
+    let   viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     let   viewportHeightPrev = viewportHeight;
     
     const init = function() {
@@ -25,7 +24,7 @@ const heroFull = function(el, app) {
         // click for more button
         moreButton();
         // set as ready
-        $el.addClass('HeroFull--ready');
+        el.classList.add('HeroFull--ready');
     };
 
     // measure the widths of all core components
@@ -41,7 +40,7 @@ const heroFull = function(el, app) {
     };
 
     const moreButton = function() {
-        $('[data-js-hero-full-more]').click(function(ev) {
+        document.querySelector('[data-js-hero-full-more]').addEventListener('click',function(ev) {
             ev.preventDefault();
             $("html, body").animate({ scrollTop: el.offsetHeight }, 500);
         });
@@ -53,7 +52,7 @@ const heroFull = function(el, app) {
         let   timer = false;
         
         let   scrolling = false;
-        $(window).scroll(function onScroll (ev) {
+        window.addEventListener("scroll", function onScroll (ev) {
             scrolling = true;
         });
         
@@ -66,7 +65,7 @@ const heroFull = function(el, app) {
                 el.setAttribute('style','');
                 measure();
                 setHeight();
-                $el.addClass('HeroFull--ready');
+                el.classlist.add('HeroFull--ready');
             }
             viewportWidthPrev = viewportWidth;
             viewportHeightPrev = viewportHeight;
@@ -74,9 +73,9 @@ const heroFull = function(el, app) {
         };
 
         // throttle resize events
-        $(window).resize(function onResizeUnThrottled (ev) {
+        window.addEventListener("resize", function onResizeUnThrottled (ev) {
             if (!scrolling) {
-                $el.removeClass('HeroFull--ready');
+                el.classList.remove('HeroFull--ready');
             }
             debounce(function() {
                 onResizeThrottled(ev);
