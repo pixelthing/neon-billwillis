@@ -6,6 +6,9 @@
 
 .HeroFull {
     margin: 0 calc(0px - env(safe-area-inset-right)) 0 calc(0px - env(safe-area-inset-left));
+    @media print {
+        height: auto !important;
+    }
     &-Inner {
         position: relative;
         height: 500px;

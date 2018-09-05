@@ -40,6 +40,9 @@
                 animation: fade-in 1000ms forwards;
         -webkit-animation-delay: 500ms;
                 animation-delay: 500ms; } }
+    @media print {
+      .Quote-Inner:before {
+        display: none; } }
 
 .Quote-Text {
   margin: 0;

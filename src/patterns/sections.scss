@@ -97,7 +97,7 @@
 
 .Section {
     margin: $gutter-section-md-sm $gutter 0;
-    pabreak-inside: avoid;
+    page-break-inside: avoid;
     @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
         margin: $gutter-section-md $gutter 0;
     }

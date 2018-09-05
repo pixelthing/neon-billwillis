@@ -22,7 +22,7 @@
   margin: 60px calc(0px - env(safe-area-inset-right)) 60px calc(0px - env(safe-area-inset-left));
   padding: 0 12px;
   font-size: 0.8rem;
-  pabreak-inside: avoid;
+  page-break-inside: avoid;
   text-align: center; }
   @media (min-width: 600px) {
     .Footer-Base {
@@ -31,9 +31,9 @@
       padding-right: calc(12px + env(safe-area-inset-right)); } }
   @media print {
     .Footer-Base {
-      border-top: 10px solid #ddd;
+      border-top: 2px solid #ddd;
       margin-top: 48px !important;
-      padding-top: 12px; } }
+      padding-top: 48px; } }
   .Footer-Base-Logos {
     display: -webkit-flex;
     display: -ms-flexbox;

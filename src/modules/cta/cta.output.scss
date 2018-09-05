@@ -21,7 +21,7 @@
 // .Section-Inner--sm - SM (standard text column width)
 //
 // markup:
-//    <link rel="stylesheet" href="/static/modules/cta/cta.css"> <script> </script>
+//    <link rel="stylesheet" href="static/modules/cta/cta.css"> <script> </script>
 //    <div class="Section Cta">
 //        <figure class="Section-Inner {$modifiers} Cta-Inner">
 //            <figcaption class="Cta-Caption">
@@ -42,7 +42,7 @@
 // Multiple buttons (or no buttons) can be added. Each button can have a link (href) or a data-type added (for JS hooks), text and an optional icon, plus a class added (eg "Button--secondary")
 //
 // markup:
-//    <link rel="stylesheet" href="/static/modules/cta/cta.css"> <script> </script>
+//    <link rel="stylesheet" href="static/modules/cta/cta.css"> <script> </script>
 //    <div class="Section Cta">
 //        <figure class="Section-Inner Section-Inner--sm Cta-Inner">
 //            <figcaption class="Cta-Caption">

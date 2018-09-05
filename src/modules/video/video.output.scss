@@ -31,15 +31,15 @@
 // .Section-Inner--xxl - XXL (full screen width)
 //
 // markup:
-//      <link rel="stylesheet" href="/static/modules/video/video.css"> <script> </script>
+//      <link rel="stylesheet" href="static/modules/video/video.css"> <script> </script>
 //      <div class="Section Video Video" data-js-video="">
 //          <figure class="Section-Inner {$modifiers} Video-Inner">
 //              <div class="Video-Frame">
 //                  <div class="Video-Mask Video-Mask--235">
 //                      <button class="Video-Poster" data-js-video-poster data-js-video-src="https://www.youtube.com/embed/3P5wYa-7S2g?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;rel=0&amp;hl=sv" data-js-poly-object-fit="">
-//                          <img data-src="/static/imgs/video-poster-md.jpg" data-srcset="/static/imgs/video-poster-lg.jpg 1600w, /static/imgs/video-poster-md.jpg 1100w, /static/imgs/video-poster-sm.jpg 600w" alt="" width="1100px" height="462px" class=" Video-Poster-Img lazyload">
+//                          <img data-src="static/imgs/video-poster-md.jpg" data-srcset="static/imgs/video-poster-lg.jpg 1600w, /static/imgs/video-poster-md.jpg 1100w, /static/imgs/video-poster-sm.jpg 600w" alt="" width="1100px" height="462px" class=" Video-Poster-Img lazyload">
 //                          <noscript>
-//                              <img src="/static/imgs/video-poster-md.jpg"
+//                              <img src="static/imgs/video-poster-md.jpg"
 //                              alt="" 
 //                              class="Video-Poster-Img Video-Poster-Img-Fallback" />
 //                          </noscript>
@@ -71,15 +71,15 @@
 // .Video-Mask--235 - 2.35:1 a very wide ration used in cinema;
 //
 // markup:
-//      <link rel="stylesheet" href="/static/modules/video/video.css"> <script> </script>
+//      <link rel="stylesheet" href="static/modules/video/video.css"> <script> </script>
 //      <div class="Section Video Video" data-js-video="">
 //          <figure class="Section-Inner Video-Inner">
 //              <div class="Video-Frame">
 //                  <div class="Video-Mask  {$modifiers}">
 //                      <button class="Video-Poster" data-js-video-poster data-js-video-src="https://www.youtube.com/embed/3P5wYa-7S2g?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;rel=0&amp;hl=sv" data-js-poly-object-fit="">
-//                          <img data-src="/static/imgs/video-poster-md.jpg" data-srcset="/static/imgs/video-poster-lg.jpg 1600w, /static/imgs/video-poster-md.jpg 1100w, /static/imgs/video-poster-sm.jpg 600w" alt="" width="1100px" height="462px" class=" Video-Poster-Img lazyload">
+//                          <img data-src="static/imgs/video-poster-md.jpg" data-srcset="static/imgs/video-poster-lg.jpg 1600w, /static/imgs/video-poster-md.jpg 1100w, /static/imgs/video-poster-sm.jpg 600w" alt="" width="1100px" height="462px" class=" Video-Poster-Img lazyload">
 //                          <noscript>
-//                              <img src="/static/imgs/video-poster-md.jpg"
+//                              <img src="static/imgs/video-poster-md.jpg"
 //                              alt="" 
 //                              class="Video-Poster-Img Video-Poster-Img-Fallback" />
 //                          </noscript>
@@ -110,11 +110,11 @@
 //
 // markup:
 //      <pre>**sm** image: 800x???px (336px high for a 2.35:1 video)</pre>
-//      <img src="/static/imgs/video-poster-sm.jpg" alt="">
+//      <img src="static/imgs/video-poster-sm.jpg" alt="">
 //      <pre>**md** image: 1100x???px (462px high for a 2.35:1 video)</pre>
-//      <img src="/static/imgs/video-poster-md.jpg" alt="">
+//      <img src="static/imgs/video-poster-md.jpg" alt="">
 //      <pre>**lg** image: 1600x???px (671px high for a 2.35:1 video)</pre>
-//      <img src="/static/imgs/video-poster-lg.jpg" alt="">
+//      <img src="static/imgs/video-poster-lg.jpg" alt="">
 //
 // sg-wrapper:
 // <div class="Section-Inner" style="overflow: auto;">

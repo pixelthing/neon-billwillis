@@ -55,14 +55,14 @@
 //
 // markup:
 // <span class="lazyload-strut">
-//     <img data-src="/static/imgs/dusk-md.jpg" 
+//     <img data-src="static/imgs/dusk-md.jpg" 
 //        data-srcset=" /static/imgs/dusk-lg.jpg 1600w, /static/imgs/dusk-md.jpg 1100w, /static/imgs/dusk-sm.jpg 600w" 
 //        width="1100" 
 //        height="743" 
 //        alt="test image alt" 
 //        class="lazyload" />
 //     <noscript>
-//       <img src="/static/imgs/dusk-md.jpg" alt="" class="" />
+//       <img src="static/imgs/dusk-md.jpg" alt="" class="" />
 //     </noscript>
 // </span>
 // 

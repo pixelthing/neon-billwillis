@@ -44,7 +44,7 @@ $footer-font-size-lg: $font-size-sm;
         margin: $gutter-section-md-sm calc(0px - env(safe-area-inset-right)) $gutter-section-md-sm calc(0px - env(safe-area-inset-left));
         padding: 0 $gutter;
         font-size: $footer-font-size-sm;
-        pabreak-inside: avoid;
+        page-break-inside: avoid;
         @media (min-width: $xs-and-up) {
             margin-top: $gutter-section-md;
             padding-left:  calc(#{$gutter} + env(safe-area-inset-left));
@@ -53,9 +53,9 @@ $footer-font-size-lg: $font-size-sm;
 
         text-align: center;
         @media print {
-            border-top: 10px solid $color-line;
+            border-top: 2px solid $color-line;
             margin-top: $print-margin !important;
-            padding-top: $gutter;
+            padding-top: $print-margin;
         }
         &-Logos {
             display: flex;

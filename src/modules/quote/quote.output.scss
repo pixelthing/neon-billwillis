@@ -25,7 +25,7 @@
 // .Quote-Inner--xxl - XXL (full screen width)
 //
 // markup:
-//      <link rel="stylesheet" href="/static/modules/quote/quote.css"> <script> </script>
+//      <link rel="stylesheet" href="static/modules/quote/quote.css"> <script> </script>
 //      <div class="Section Quote">
 //          <blockquote class="Section-Inner Quote-Inner {$modifiers}">
 //              <div class="Quote-Text">
@@ -81,6 +81,9 @@
                 opacity: 0;
                 animation: fade-in 1000ms forwards;
                 animation-delay: 500ms;
+            }
+            @media print {
+                display: none;
             }
         }
     }

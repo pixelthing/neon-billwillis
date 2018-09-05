@@ -1330,7 +1330,7 @@ picture.lazyload {
 
 .Section {
   margin: 60px 12px 0;
-  pabreak-inside: avoid;
+  page-break-inside: avoid;
   margin-left: calc(12px - env(safe-area-inset-left));
   margin-right: calc(12px - env(safe-area-inset-right)); }
   @media (min-width: 600px) and (min-height: 721px) {

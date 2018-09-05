@@ -563,19 +563,19 @@
 // ## Creating an SVG icon.
 //
 // Our most common editor for SVGs is [Sketch](http://www.sketchapp.com/). Here's an icon in sketch, a random SVG imported into the app.
-// <figure style="text-align:center"><figcaption>fig 1</figcaption><img src="/static/patterns/icon-build00.png" ></figure>
+// <figure style="text-align:center"><figcaption>fig 1</figcaption><img src="static/patterns/icon-build00.png" ></figure>
 //
 // We need to place the icon in a square, and resize it so that it matches the proportions of other icons in the library, so it should take up about 70-80% of the space, and be centrally aligned. You could try aligning automatically, but be careful to accept that you might need to optically align the icon. In this example, the clipboard is vertically aligned to the center, even if that means the icon is offset as a whole because of the circle on the side. If you need help, imagine it in a circle and if it looks offset or not. The sizes of the square doesn't actually matter, the SVG will always scale to the required size anyway.
-// <figure style="text-align:center"><figcaption>fig 2</figcaption><img src="/static/patterns/icon-build10.png" ></figure>
+// <figure style="text-align:center"><figcaption>fig 2</figcaption><img src="static/patterns/icon-build10.png" ></figure>
 //
 // Next remove any clipping masks:
-// <figure style="text-align:center"><figcaption>fig 3</figcaption><img src="/static/patterns/icon-build20.png" ></figure>
+// <figure style="text-align:center"><figcaption>fig 3</figcaption><img src="static/patterns/icon-build20.png" ></figure>
 //
 // Change the colours to be black (unless you have good reason not to, eg an icon on a disc should have a black disc and an white icon ontop). If you have any lines (eg a chevron made up of two lines), convert them to paths by selecting them and using *Layer > Convert to outlines*. This will mean in the final SVG, their colour will be determined by the fill, not the stroke, and having all the icons controlled in the same way makes's our life *much* simpler.
-// <figure style="text-align:center"><figcaption>fig 4</figcaption><img src="/static/patterns/icon-build30.png" ></figure>
+// <figure style="text-align:center"><figcaption>fig 4</figcaption><img src="static/patterns/icon-build30.png" ></figure>
 //
 // Now we're ready to export the icon as an SVG. Make sure you export the square artboard (or slice), not just the icon elements.
-// <figure style="text-align:center"><figcaption>fig 5</figcaption><img src="/static/patterns/icon-build40.png" ></figure>
+// <figure style="text-align:center"><figcaption>fig 5</figcaption><img src="static/patterns/icon-build40.png" ></figure>
 //
 // You'll get some SVG code that looks like:
 // ```
@@ -605,7 +605,7 @@
 // ```
 //
 // Run this through an SVG compressor like [SVGOMG](http://jakearchibald.github.io/svgomg/) to strip away 40% of unused code:
-// <figure style="text-align:center"><figcaption>fig 6</figcaption><img src="/static/patterns/icon-build50.png" ></figure>
+// <figure style="text-align:center"><figcaption>fig 6</figcaption><img src="static/patterns/icon-build50.png" ></figure>
 //
 // Now the SVG looks like:
 // ```
@@ -624,7 +624,7 @@
 // **done!**
 //
 // One edge case is using CSS to add a keyline to an icon like a disc that goes to the edge of the viewbox. SVGs (at least in SVG1) can only add a stroke on the line, setting the keyline inside or outside the line is not possible. That means if you have an icon on a disc that you add a keline to (eg ``svg .icon-disc {stroke:white}``), the keyline will get clipped by the viewbox as below. Also note that the chevron is thicker, because adding a stroke to the icon has added a stroke to all components of the SVG.
-// <figure style="text-align:center"><figcaption>fig 7</figcaption><img src="/static/patterns/icon-build60.png" ></figure>
+// <figure style="text-align:center"><figcaption>fig 7</figcaption><img src="static/patterns/icon-build60.png" ></figure>
 //
 // Rather than create two icons to deal with this, we can create an additional element in the SVG that is hidden most of the time. 
 // - In sketch, duplicate the disc and re-position it in the same place. 
@@ -635,7 +635,7 @@
 // - Once you export the SVG, make sure the circle rim is in the markup before the circle disc (SVGs don't do z-index, so you just need to get them in the right order in the markup).
 // - You can now hide the disc by giving the SVG ``.this-icon {color:transparent}``, revealing the circle underneath. Two icons for the price of one. Nice.
 //
-// <figure style="text-align:center"><figcaption>fig 8 (after the border was converted to paths)</figcaption><img src="/static/patterns/icon-build70.png" ></figure>
+// <figure style="text-align:center"><figcaption>fig 8 (after the border was converted to paths)</figcaption><img src="static/patterns/icon-build70.png" ></figure>
 //
 // ## Good SVG icons should have:
 // - a square viewbox (any size square).
