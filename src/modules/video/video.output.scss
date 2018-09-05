@@ -1,0 +1,405 @@
+@import "../../base/variables-colors";
+@import "../../base/variables-typography";
+@import "../../base/variables-breakpoints";
+@import "../../base/variables";
+@import "../../base/mixins";
+
+
+// Video block
+//
+// A Video block that shows a poster frame, that transitions into an in-page iframe (eg, youtube iframe) video player. 
+// It acts in many similar ways to the cropped image block. The YouTube (t.e.x) URL is held as a data-type on the 
+// poster frame button. Hitting the play button(s) will substitute the url into a hidden iFrame and reveal it. 
+// The play button transitions to a stop button (via F.L.I.P style transition animation), which then returns the poster 
+// frame and removes the src of the iFrame to stop the video. Fallbacks exist for browsers that don't support transitions 
+// (or have prefixed transitions), to make the module usable on Android webkit browser, iOS8 and older IE.   
+// Can inherit top/bottom keyline and colours options from [standard section options](/patterns/#!/section/4.2).
+// If you are looking for a pattern to pop-up a video in a modal, you might want to use the [video modal element](/patterns/#!/section/2.15).
+//
+// Styleguide 3.18
+
+// Video block Width
+//
+// This module works with different standard column sizes. Default size is 980px wide.
+//
+// .default! - no modifier: LG/980px
+// .Section-Inner--xs - XS
+// .Section-Inner--sm - SM (standard text column width)
+// .Section-Inner--md - MD
+// .Section-Inner--lg - LG
+// .Section-Inner--xl - XL
+// .Section-Inner--xxl - XXL (full screen width)
+//
+// markup:
+//      <link rel="stylesheet" href="/static/modules/video/video.css"> <script> </script>
+//      <div class="Section Video Video" data-js-video="">
+//          <figure class="Section-Inner {$modifiers} Video-Inner">
+//              <div class="Video-Frame">
+//                  <div class="Video-Mask Video-Mask--235">
+//                      <button class="Video-Poster" data-js-video-poster data-js-video-src="https://www.youtube.com/embed/3P5wYa-7S2g?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;rel=0&amp;hl=sv" data-js-poly-object-fit="">
+//                          <img data-src="/static/imgs/video-poster-md.jpg" data-srcset="/static/imgs/video-poster-lg.jpg 1600w, /static/imgs/video-poster-md.jpg 1100w, /static/imgs/video-poster-sm.jpg 600w" alt="" width="1100px" height="462px" class=" Video-Poster-Img lazyload">
+//                          <noscript>
+//                              <img src="/static/imgs/video-poster-md.jpg"
+//                              alt="" 
+//                              class="Video-Poster-Img Video-Poster-Img-Fallback" />
+//                          </noscript>
+//                          <span class="a11y Video-Ally-Open" data-js-video-ally-open="" tabindex="-1">clicka att spel Youtube video</span>
+//                          <span class="a11y Video-Ally-Close" data-js-video-ally-close="" tabindex="-1">clicka att stäng Youtube video</span>
+//                      </button>
+//                      <iframe class="Video-Iframe" src="" frameborder="0" allowtransparency="true" allowfullscreen="" data-js-video-iframe="" aria-hidden="true"></iframe>
+//                  </div>
+//                  <span class="Video-Play" data-js-video-play="" data-js-transform="translateX(513.5px) translateY(-232.5px) scale(0.35714285714285715) rotate(90deg)" style="transition:all 0ms">
+//                      <svg width="73" height="73" viewBox="0 0 73 73" xmlns="http://www.w3.org/2000/svg"><title>play</title><g fill="none"><ellipse class="icon-play-disc" fill="#79ad3e" cx="36.285" cy="36.274" rx="36.285" ry="36.274"></ellipse><path class="icon-play-triangle" d="M53.254 34.44l-23.45-15.107c-1.39-.75-2.985-.67-2.985 2.018V51.1c0 2.46 1.71 2.846 2.984 2.018l23.45-15.108c.966-.986.966-2.583 0-3.57" fill="#FFF"></path><rect class="icon-play-square" fill="transparent" x="20" y="20" width="33" height="33" rx="3"></rect></g></svg>
+//                  </span>
+//              </div>
+//              <figcaption class="Video-Caption">
+//                  This is a caption for the video
+//              </figcaption>
+//          </figure>
+//      </div>
+//
+// Styleguide 3.18.1
+
+
+
+// Video aspect ratios
+//
+// Different image sizes that the picture will fill
+//
+// .null - 16:9 a TV wide-screen type image - the default.
+// .Video-Mask--43 - 4:3 a square-ish type image;
+// .Video-Mask--235 - 2.35:1 a very wide ration used in cinema;
+//
+// markup:
+//      <link rel="stylesheet" href="/static/modules/video/video.css"> <script> </script>
+//      <div class="Section Video Video" data-js-video="">
+//          <figure class="Section-Inner Video-Inner">
+//              <div class="Video-Frame">
+//                  <div class="Video-Mask  {$modifiers}">
+//                      <button class="Video-Poster" data-js-video-poster data-js-video-src="https://www.youtube.com/embed/3P5wYa-7S2g?autoplay=1&amp;modestbranding=1&amp;showinfo=0&amp;rel=0&amp;hl=sv" data-js-poly-object-fit="">
+//                          <img data-src="/static/imgs/video-poster-md.jpg" data-srcset="/static/imgs/video-poster-lg.jpg 1600w, /static/imgs/video-poster-md.jpg 1100w, /static/imgs/video-poster-sm.jpg 600w" alt="" width="1100px" height="462px" class=" Video-Poster-Img lazyload">
+//                          <noscript>
+//                              <img src="/static/imgs/video-poster-md.jpg"
+//                              alt="" 
+//                              class="Video-Poster-Img Video-Poster-Img-Fallback" />
+//                          </noscript>
+//                          <span class="a11y Video-Ally-Open" data-js-video-ally-open="" tabindex="-1">clicka att spel Youtube video</span>
+//                          <span class="a11y Video-Ally-Close" data-js-video-ally-close="" tabindex="-1">clicka att stäng Youtube video</span>
+//                      </button>
+//                      <iframe class="Video-Iframe" src="" frameborder="0" allowtransparency="true" allowfullscreen="" data-js-video-iframe="" aria-hidden="true"></iframe>
+//                  </div>
+//                  <span class="Video-Play" data-js-video-play="" data-js-transform="translateX(513.5px) translateY(-232.5px) scale(0.35714285714285715) rotate(90deg)" style="transition:all 0ms">
+//                      <svg width="73" height="73" viewBox="0 0 73 73" xmlns="http://www.w3.org/2000/svg"><title>play</title><g fill="none"><ellipse class="icon-play-disc" fill="#79ad3e" cx="36.285" cy="36.274" rx="36.285" ry="36.274"></ellipse><path class="icon-play-triangle" d="M53.254 34.44l-23.45-15.107c-1.39-.75-2.985-.67-2.985 2.018V51.1c0 2.46 1.71 2.846 2.984 2.018l23.45-15.108c.966-.986.966-2.583 0-3.57" fill="#FFF"></path><rect class="icon-play-square" fill="transparent" x="20" y="20" width="33" height="33" rx="3"></rect></g></svg>
+//                  </span>
+//              </div>
+//              <figcaption class="Video-Caption">
+//                  This is a caption for the video
+//              </figcaption>
+//          </figure>
+//      </div>
+//
+// Styleguide 3.18.2.
+
+
+
+// Video block poster image sizes
+//
+// The video module can deal with responsive images, and three optional sizes are *should* be used, if possible. They should be the same aspect ratio of the video - ie, frame captures from the video.
+//
+// .
+//
+// markup:
+//      <pre>**sm** image: 800x???px (336px high for a 2.35:1 video)</pre>
+//      <img src="/static/imgs/video-poster-sm.jpg" alt="">
+//      <pre>**md** image: 1100x???px (462px high for a 2.35:1 video)</pre>
+//      <img src="/static/imgs/video-poster-md.jpg" alt="">
+//      <pre>**lg** image: 1600x???px (671px high for a 2.35:1 video)</pre>
+//      <img src="/static/imgs/video-poster-lg.jpg" alt="">
+//
+// sg-wrapper:
+// <div class="Section-Inner" style="overflow: auto;">
+//   <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 3.18.3.
+
+
+$duration: 300ms;
+
+.Video {
+    @supports ( animation:none ) {
+        opacity: 0;
+        animation: fade-in 1000ms forwards;
+        animation-delay: 1500ms;
+    }
+    &--resizing {
+        overflow: hidden; // play button could have temporary bad positioning during window resize 
+    }
+    &-Inner {
+        position: relative;
+        margin-top: 0;
+        margin-bottom: 0;
+        @media (max-width: $less-than-sm) {
+            margin: 0 -#{$gutter};
+        }
+        @media print {
+            max-width: $print-width;
+        }
+    }
+    &-Frame {
+        position: relative;
+    }
+    &-Mask {
+        position: relative;
+        background-color: $color-imaloading;
+        height: 0;
+        padding-top: $aspect-ratio-169 * 1%;
+        overflow: hidden;
+        background-color: $color-imaloading;
+        background-image: $stripes-imaloading;
+        background-size : $size-imaloading;
+        @media print {
+            @include printNoImage();
+        }
+        &--43 {
+            padding-top: $aspect-ratio-43 * 1%;
+        }
+        &--235 {
+            padding-top: $aspect-ratio-235 * 1%;
+        }
+    }
+    &-Poster {
+        @include normalize-button();
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        z-index: 1;
+        width: 101%;
+        width: calc(100% + 4px);
+        height: 101%;
+        height: calc(100% + 4px);
+        opacity: 0.7;
+        transition: opacity $duration;
+        &:after {
+            content: '';
+            pointer-events: none;
+            opacity: 0;
+        }
+        &:hover {
+            opacity: 1;
+            @media (pointer: coarse) {
+                opacity: 0.7;
+            }
+        }
+        &:focus {
+            &:after {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 2;
+                opacity: 1;
+                background-color: rgba($color-focus,0.3);
+                transition: opacity 300ms;
+            }
+            &:not(.focus-visible) {
+                &:after {
+                    display: none;
+                }
+            }
+        }
+        &--active {
+            z-index: 0;
+            opacity: 0;
+        }
+        &-Img {
+            display: block;
+            width: 100%;
+            height: auto;
+            min-height: 10px;
+            @supports (object-fit: cover) {
+                height: 100%;
+                object-fit: cover;
+                object-position: 50% 50%;
+            }
+            .no-js & {
+                display: none;
+            }
+            &-Fallback {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                .no-js & {
+                    display: block;
+                }
+            }
+        }
+    }
+    &-Iframe {
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        z-index: 0;
+        width: 101%;
+        width: calc(100% + 4px);
+        height: 101%;
+        height: calc(100% + 4px);
+        background-color: transparent;
+        opacity: 0;
+        transition: opacity $duration;
+        &--active {
+            z-index: 1;
+            opacity: 1;
+        }
+    }
+    &-Title {
+        margin: 0 0 0.5em;
+        text-align: center;
+        &-Logo {
+            &-Text {
+                display: block;
+                height: 0;
+                overflow: hidden;
+                text-indent: -9999px;
+            }
+            svg,img {
+                max-width: 80vw;
+                height: auto;
+                @media (max-width: $less-than-sm) {
+                    max-width: 220px;
+                }
+            }
+        }
+    }
+    &-Caption {
+        @include typo-serif();
+        margin: 0;
+        padding: $gutter 0 0;
+        text-align: center;
+        @media (max-width: $less-than-sm) {
+            padding: $gutter $gutter 0;
+        }
+        &--pullup {
+            display: block;
+            position: relative;
+            min-width: 15em;
+            margin: -$gutter $gutter*2 0;
+            padding: $gutter $gutter 0;
+            @media (min-width: $xs-and-up) {
+                width: 50%;
+                margin: -#{$gutter/2} 25% 0;
+            }
+            @media (min-width: $sm-and-up) {
+                padding: $gutter*2 $gutter*2 0;
+            }
+        }
+        &--left {
+            @media (min-width: $xs-and-up) {
+                text-align: left;
+                &.Video-Caption--pullup {
+                    width: 33.333%;
+                    min-height: 100px;
+                    margin: -100px 0 0 $gutter-section-md;
+                }
+            }
+        }
+        &--right {
+            @media (min-width: $xs-and-up) {
+                text-align: right;
+                &.Video-Caption--pullup {
+                    width: 33.333%;
+                    min-height: 100px;
+                    margin: -100px $gutter-section-md 0 auto;
+                    text-align: left;
+                }
+            }
+        }
+        a {
+            @include typo-smallcaps();
+        }
+    }
+    &-Play {
+        @include normalize-button();
+        position: absolute;
+        right: 50%;
+        top: 50%;
+        z-index: 1;
+        width: 92px;
+        height: 92px;
+        margin: -46px -46px 0 0;
+        border-radius: 100%;
+        transition: all 0ms;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(255,255,255,0);
+        outline: none;
+        user-select: none;
+        @include a11yShadowFocus(noRadius,0.3,15px);
+        &--play-stop {
+            transition: transform $duration, opacity 300ms;
+        } 
+        .Video--resizing & {
+            opacity: 0;
+        }
+        @media (min-width: $xs-and-up) {
+            width: 112px;
+            height: 112px;
+            margin: -56px -56px 0 0;
+        }
+        // svg
+        .icon-play-triangle {
+            fill: #fff;
+        }
+        .icon-play-circle {
+            fill: none;
+            @media print {
+                fill: #fff;
+            }
+        }
+        .icon-play-disc {
+            fill: none;
+        }
+        .icon-play-circle {
+            fill: #fff;
+        }
+        &--active {
+            display: none;
+            @supports(transition:all 0ms) { // fallback for browsers that don't support transform/transition, or have prefixed versions - best not to risk leaving a big play button in the middle of a playing movie!
+                display: block;
+            }
+            // svg
+            .icon-play-disc {
+                fill: $color-primary;
+            }
+            .icon-play-triangle {
+                fill: rgba(255,255,255,0);
+            }
+            .icon-play-circle {
+                fill: transparent;
+            }
+            .icon-play-square {
+                fill: #000;
+            }
+        }
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &-Ally {
+        &-Open {
+            display: block;
+            .Video-Poster--active & {
+                display: none;
+            }
+        }
+        &-Close {
+            display: none;
+            .Video-Poster--active & {
+                display: block;
+            }
+        }
+    }
+}

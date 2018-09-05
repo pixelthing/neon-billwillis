@@ -1,0 +1,111 @@
+// Links
+//
+// Status: near final.
+// ```.Link``` classes can be used on pretty much any element, and will give it a link appearance. Note that the text underline is actually a bottom-border.
+//
+// .Link - default
+// .Link.Link--strong - emphasised (bold)
+// .Link.Link--lined - decorated to shop this is a lined link
+// .Link.Link--pop - decorated to shop this is a pop-over link
+// 
+// markup:
+// This is text <a href="#" class="{$modifiers}">this is an ANCHOR tag</a> | <span class="Link {$modifiers}">this is a SPAN tag</span> | <button class="Link {$modifiers}">this is a BUTTON tag</button>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.3.    
+
+
+// Arrow link
+//
+// Status: near final.
+// ```.Link``` 
+//
+// .Link.Link--arrow - blocked links with arrows
+// 
+// markup:
+// <a href="#" class="{$modifiers}">this is an ANCHOR tag</a><span class="Link {$modifiers}">this is a SPAN tag</span><button class="Link {$modifiers}">this is a BUTTON tag</button>
+//
+// sg-wrapper:
+// <div class="Section-Inner Section-Inner--xs">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.3.1. 
+
+
+// Block link
+//
+// Status: near final.
+// ```.Link``` classes can be used on pretty much any element, and will give it a link appearance. Note that the text underline is actually a bottom-border.
+//
+// .Link.Link--block - blocked links
+// .Link.Link--block-arrow - blocked links with arrows
+// 
+// markup:
+//<a href="#" class="{$modifiers}">this is an ANCHOR tag</a><span class="Link {$modifiers}">this is a SPAN tag</span><button class="Link {$modifiers}">this is a BUTTON tag</button>
+//
+// sg-wrapper:
+// <div class="Section-Inner Section-Inner--xs">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.3.2.
+
+.Link {
+    @include link;
+    &--strong {
+        @include typo-emphasis;
+    }
+    &--lined {
+        @include underlined();
+    }
+    &--pop {
+        @include underlined(true);
+    }
+
+    &--block {
+        display: block;
+        width: 100%;
+        padding: 0.5em 1em;
+        text-align: left;
+        line-height: 1.3;
+    }
+    &--arrow,
+    &--block-arrow  {
+        position: relative;
+        display: inline-block;
+        max-width: 95%;
+        max-width: calc(100% - 1.5em);
+        padding-left: 1em;
+        padding-right: 0.5em;
+        text-align: left;
+        line-height: 1.3;
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0.15em;
+            left: -0.4em;
+            width: 1em;
+            height: 1em;
+            background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%2027%2027%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20d%3D%27M15.63%2013.364l-5.308%204.9%201.356%201.47%206.83-6.305-6.797-6.873-1.42%201.406z%27%20fill-rule%3D%27nonzero%27%20fill%3D%27%23000%27%2F%3E%3C%2Fsvg%3E");
+            background-size: 100% 100%;
+        }
+    }
+    &--block-arrow {
+        display: block;
+        width: 100%;
+        padding: 0.5em 1em;
+        padding-right: 1em;
+        line-height: 1.3;
+        &:before {
+            top: 0.6em;
+            left: auto;
+            right: 0;
+        }
+    }
+}

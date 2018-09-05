@@ -1,0 +1,481 @@
+// Buttons
+//
+// Status: close to final, needs some signing-off.
+//
+// Styleguide 2.1.
+
+// Basics
+//
+// ```.Btn``` classes can be used on pretty much any element, and will normalise almost all features across the button. The text is always the default site body-text font at "regular" weight and style, in the default case (no case transform is applied, but it's recommended that uppercase is never applied).
+//
+// Text is always on a single line, and if the button size is constrained and the text doesn't fit, the text will be clipped with an ellipsis.
+//
+// markup:
+// <button class="Btn">this is a BUTTON tag</button>
+// <input type="button" value="this is an INPUT tag" class="Btn">
+// <a href="#" class="Btn">this is an ANCHOR tag</a>
+// <span class="Btn">this is a SPAN tag</span>
+// <button class="Btn" style="max-width:10em">this has too much text that overflows the button</button>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.1.
+
+
+// Button states
+//
+// :null - regular button
+// :visited - link previously visited
+// :hover - Hover state (uses @media/pointer to not trigger hover on touch devices)
+// :focus - focus (ONLY appears via keyboardfocus, using ``:focus-visible`` polyfill)
+// :active - button active
+// :disabled - Disabled (with additional change to cursor icon)
+//
+// markup:
+// <button class="Btn {$modifiers}">Button</button>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.2.
+
+
+// Button sizes
+//
+// button sizes are defined in several different ways.
+//
+// .Btn.Btn--lg - Font-size: Matches the ```LG``` text size you'll find in typography
+// .Btn - Standard font size and padding: The inherited font-size of the container
+// .Btn.Btn--sm - Font-size: A fixed font-size.
+// .Btn.Btn--xs - Font-size: A fixed font-size.
+// .Btn.Btn--xxs - Font-size: A fixed font-size.
+// .Btn.Btn--tag - Font-size: As XXS
+// .Btn.Btn--skinny - Padding: Less vertical padding in the button. Can be used in in conjunction with any font size.
+// .Btn.Btn--fat - Padding: Extra vertical padding in the button. Can be used in in conjunction with any font size.
+// .Btn.Btn--narrowish - Padding: Less horizontal padding in the button. Can be used in in conjunction with any font size.
+// .Btn.Btn--narrow - Padding: Less horizontal padding in the button. Can be used in in conjunction with any font size.
+// .Btn.Btn--wide - Padding: more horizontal padding in the button. Can be used in in conjunction with any font size.
+// .Btn.Btn--block - Display: Make the button fill-out it's container (beware, it has a ```width:100%``` on it)
+// .Btn.Btn--block-xs - Display: Make the button fill-out it's container as above, but only on screen widths of breakpoint ```$less-than-sm```
+// .Btn.Btn--block-xxs - Display: Make the button fill-out it's container as above, but only on screen widths of breakpoint    ```$less-than-xs```
+//
+// markup:
+// <button class="{$modifiers}">Button</button>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.3.
+
+
+// Button colours
+//
+//
+// .Btn - Unassigned colour
+// .Btn.Btn--primary - Primary CTA button
+// .Btn.Btn--shy - Low priority button
+// .Btn.Btn--outline - Outlined button
+// .Btn.Btn--flat - Flat button
+//
+// markup:
+// <button class="{$modifiers}">Button</button>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.4.
+
+
+// Button bars
+//
+// There are a few small contextural containers and modifiers to deal with common spacing in button bars. **.Btn-bar** is a button container block that just gives some space between the page content and the buttons and **.Btn--bar** is a button modifier that gives left and right margin to space buttons apart better whe they're inline. Shown in this example:
+//
+// .Btn-Bar - default is centered
+// .Btn-Bar.Btn-Bar--left - aligned left
+// .Btn-Bar.Btn-Bar--right - aligned right
+//
+// markup:
+// <div class="{$modifiers}">
+//     <a href="hjälp-mig.html" class="Btn Btn--fat Btn--block-xxs Btn--primary Btn--bar">Hjälp att välja</a>
+//     <a href="#" class="Btn Btn--fat Btn--block-xxs Btn--secondary Btn--bar">Välj sov gott</a>
+// </div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.5.
+
+// Button icons
+//
+// markup:
+// <button class="Btn">
+//     <svg viewBox="0 0 512 512" class="Icon">
+//         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-chat"></use>
+//     </svg>
+//     Button
+// </button>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.6.
+
+// Button Path
+//
+// tag buttons can be strung together to result into a path:
+//
+// markup:
+//     <div>
+//          <span class="Btn Btn--tag Btn--path">Om oss</span>
+//          <span class="Btn Btn--tag Btn--path">Leverantörer</span>
+//          <span class="Btn Btn--tag Btn--path">Leverantörsfakturor</span>
+//          <span class="Btn Btn--tag Btn--path">innehåll faktura</span>
+//     </div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.1.7.
+
+.Btn {
+    @include normalize-button;
+    @include ui-block-size();
+    @include ellipsis();
+    position: relative;
+    z-index: 1;
+    color: #000;
+    background-color: $color-grey1;
+    border: 1px solid $color-grey1;
+    text-align: center;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    border-radius: 100px;
+    line-height: normal;
+    user-select: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    transition-property: color, background-color, border-color, box-shadow;
+    transition-duration: 500ms;
+
+    @media print {
+        color: #000 !important;
+        border-color: $color-grey3 !important;
+        background-color: #fff !important;
+    }
+
+    /* States */
+    @include a11yShadowFocus(noRadius);
+    @include a11yBGFocus();
+    &:hover,
+    &--hover {
+        color: #fff;
+        background-color: $color-grey4;
+        transition-duration: 100ms;
+        @media (pointer: coarse) {
+            background-color: #999;
+        }
+    }
+    &:active,
+    &--active {
+        color: #fff;
+        background-color: $color-grey5;
+        transition-duration: 50ms;
+        //transform: scale(1,0.9);
+    }
+    &:disabled,
+    &--disabled {
+        color: $color-grey4 !important;
+        border-color: $color-grey2 !important;
+        background-color: $color-grey2 !important;
+        cursor: not-allowed;
+    }
+
+    /* Sizes and shapes */
+    &--lg {
+        font-size: $font-size-lg;
+    }
+    &--sm {
+        padding-top: $btn-skinny-padding-top;
+        padding-bottom: $btn-skinny-padding-bottom;
+        padding-left: $btn-skinny-padding-horiz;
+        padding-right: $btn-skinny-padding-horiz;
+        font-size: $font-size-sm;
+    }
+    &--xs {
+        padding-top: $btn-skinny-padding-top;
+        padding-bottom: $btn-skinny-padding-bottom;
+        padding-left: $btn-skinny-padding-horiz;
+        padding-right: $btn-skinny-padding-horiz;
+        font-size: $font-size-xs;
+    }
+    &--tag,
+    &--xxs {
+        padding: 0.15em 0.5em 0.25em;
+        font-size: $font-size-xs;
+    }
+
+    /*  */
+    &--skinny {
+        padding-top: $btn-skinny-padding-top;
+        padding-bottom: $btn-skinny-padding-bottom;
+        padding-left: $btn-skinny-padding-horiz;
+        padding-right: $btn-skinny-padding-horiz;
+    }
+    &--fat {
+        font-size: 1.15em;
+        padding-top: $btn-fat-padding-top;
+        padding-bottom: $btn-fat-padding-bottom;
+        padding-left: $btn-fat-padding-horiz;
+        padding-right: $btn-fat-padding-horiz;
+        @media (max-width: $less-than-xs) {
+            padding-left: $btn-skinny-padding-horiz;
+            padding-right: $btn-skinny-padding-horiz;
+        }
+    }
+    &--fattest {
+        padding-top: $btn-fattest-padding-top;
+        padding-bottom: $btn-fattest-padding-bottom;
+        padding-left: $btn-fattest-padding-horiz;
+        padding-right: $btn-fattest-padding-horiz;
+        @media (max-width: $less-than-xs) {
+            padding-left: $btn-regular-padding-horiz;
+            padding-right: $btn-regular-padding-horiz;
+        }
+    }
+    &--narrowish {
+        min-width: 0;
+        padding-left: $btn-skinny-padding-horiz;
+        padding-right: $btn-skinny-padding-horiz;
+    }
+    &--narrow {
+        min-width: 0;
+        padding-left: $btn-narrow-padding-horiz;
+        padding-right: $btn-narrow-padding-horiz;
+    }
+    &--wide {
+        min-width: 0;
+        padding-left: $btn-wide-padding-horiz;
+        padding-right: $btn-wide-padding-horiz;
+    }
+    &--block {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        padding-left: 1em;
+        padding-right: 1em;
+        &-xs {
+            @media (max-width:$less-than-sm) {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                margin: $gutter 0;
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+        }
+        &-xxs {
+            @media (max-width:$less-than-xs) {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                margin: $gutter 0;
+                padding-left: 1em;
+                padding-right: 1em;
+            }
+        }
+    }
+    &--path {
+        position: relative;
+        padding-right: 15px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        overflow: visible;
+        background-color: $color-primary-light;
+        border-color: $color-primary-light;
+        &:after {
+            content: '';
+            position: absolute;
+            right: -1px;
+            top: -1px;
+            bottom: -1px;
+            z-index: 1;
+            border-left: 5px solid transparent;
+            border-top: 0.86em solid #fff;
+            border-bottom: 0.86em solid #fff;
+        }
+        &:first-of-type {
+            padding-left: 1em;
+        }
+        &:last-of-type {
+            padding-right: 1em;
+            border-top-right-radius: 100px;
+            border-bottom-right-radius: 100px;
+            &:after {
+                display: none;
+            }
+        }
+        .Btn--path + & {
+            margin-left: 0;
+            padding-left: 15px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            &:before {
+                content: '';
+                position: absolute;
+                left: -1px;
+                top: -1px;
+                bottom: -1px;
+                border-left: 5px solid #fff;
+                border-top: 0.86em solid transparent;
+                border-bottom: 0.86em solid transparent;
+            }
+        }
+        &:hover {
+            border-color: $color-primary;
+            background-color: $color-primary;
+            @media (pointer: coarse) {
+                color: #000;
+                border-color: $color-primary-light;
+                background-color: $color-primary-light;
+            }
+        }
+        &:active {
+            background-color: $color-primary;
+        }
+    }
+
+    /* Colours */
+    &--primary {
+        color: #000;
+        border-color: $color-primary;
+        background-color: $color-primary;
+        &:hover,
+        &--hover {
+            background-color: $color-primary-lo;
+            @media (pointer: coarse) {
+                background-color: $color-primary;
+            }
+        }
+        &:active,
+        &--active {
+            background-color: $color-primary-lo2;
+        }
+    }
+
+    &--shy {
+        border-color: $color-grey3;
+        background-color: $color-grey3;
+        &:hover,
+        &--hover {
+            background-color: $color-grey2;
+            @media (pointer: coarse) {
+                background-color: $color-grey3;
+            }
+        }
+        &:active,
+        &--active {
+            background-color: $color-grey4;
+        }
+    }
+
+    &--outline {
+        color: $color-primary;
+        background-color: #fff;
+        border-color: $color-primary;
+        &:hover,
+        &--hover {
+            color: $color-primary;
+            background-color: $color-primary-light;
+            @media (pointer: coarse) {
+                background-color: #fff;
+            }
+        }
+        &:active,
+        &--active {
+            color: #fff;
+            background-color: $color-primary-lo;
+        }
+    }
+
+    &--flat {
+        color: $color-primary;
+        background-color: transparent;
+        border: none;
+        &:hover,
+        &--hover {
+            color: #fff;
+            fill: #fff;
+            border-color: $color-primary;
+            background-color: $color-primary;
+        }
+        &:hover,
+        &--hover {
+            background-color: $color-primary;
+            @media (pointer: coarse) {
+                background-color: $color-primary;
+            }
+        }
+        &:active,
+        &--active {
+            background-color: $color-primary-lo;
+        }
+    }
+
+    /* Context */
+    &-bar, // yikes, this is dotted throughout the site with both upper and lower case. This is a quick fix rather than change mutliple views.
+    &-Bar {
+        margin-top: 40px;
+        margin-left: $gutter/-4;
+        margin-right: $gutter/-4;
+        text-align: center;
+        &:empty {
+            height: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        &--left {
+            text-align: left;
+        }
+        &--right {
+            text-align: right;
+        }
+    }
+    &--bar {
+        margin-left: $gutter/4;
+        margin-right: $gutter/4;
+        margin-bottom: $gutter;
+        @media (min-width: $xs-and-up) {
+            margin-bottom: $gutter;
+        }
+    }
+
+    &--label-line { // on a line where it should align with .Label elements
+        margin: $gutter 0;
+    }
+
+    .Icon {
+        vertical-align: middle;
+        margin-top: -0.3em;
+        margin-bottom: -0.2em;
+        font-size: 1.8em;
+        //&:first-child {
+        //    margin-left: -0.25em
+        //}
+    }
+}

@@ -1,0 +1,144 @@
+// Colours
+//
+// Status: near final.
+// 
+// Styleguide 1.10.
+
+// Colours - primary scale
+// 
+// $color-primary - primary color
+// $color-primary-hi - primary tint 1
+// $color-primary-light - primary background
+// $color-primary-lo - primary tint 2
+//
+// markup:
+// <div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+//
+// Styleguide 1.10.1.
+
+$color-fg: #fff;
+$color-bg: #2e2a24;
+$color-bg-hi: #312c26;
+$color-bg-hi2: #9a8a76;
+$color-bg-lo: #2b2722;
+ 
+$color-primary: #ffcc00;
+$color-primary-hi: lighten($color-primary,45%);
+$color-primary-light: darken($color-primary,8%);
+$color-primary-lo: darken($color-primary,16%);
+$color-primary-lo2: darken($color-primary,20%);
+
+// Colours - grey scale
+// 
+// $color-grey0 - grey tint0
+// $color-grey1 - grey tint1
+// $color-grey2 - grey tint2
+// $color-grey3 - grey tint3
+// $color-grey4 - grey tint4
+// $color-grey5 - grey tint5
+// $color-grey6 - grey tint6
+//
+// markup:
+// <div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+//
+// Styleguide 1.10.2.
+
+$color-grey0: #f6f6f6;
+$color-grey1: #eee;
+$color-grey2: #ddd;
+$color-grey3: #ccc;
+$color-grey4: #999;
+$color-grey5: #666;
+$color-grey6: #333;
+
+// Colours - messaging scale
+// 
+// $color-ok - success/OK/valid
+// $color-ok-hi - tint
+// $color-error - fail/error/in-valid
+// $color-error-hi - tint
+// $color-warning - warning/additional info
+// $color-warning-hi - tint
+//
+// markup:
+// <div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+//
+// Styleguide 1.10.3.
+
+$color-ok: #2ECC40;
+$color-ok-hi: lighten($color-ok,45%);
+$color-error: #E34B4D;
+$color-error-hi: lighten($color-error,35%);
+$color-warning: #EFE9AB;
+$color-warning-lo: #be9200;
+$color-warning-alt: #ffd000;
+
+// Color applications - links
+//
+// $color-link - Link default colour
+// $color-link-hover - Link hover colour
+// $color-link-active - Link active colour
+// $color-link-visited - Link visited colour
+//
+// markup:
+// <div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+//
+// Styleguide 1.10.5.
+
+$color-link: $color-primary;
+$color-link-hover: $color-primary-hi;
+$color-link-active: $color-primary-hi;
+$color-link-visited: $color-primary;
+
+// Color applications - inputs
+//
+// $color-input-line - Input line colour
+// $color-input-line-hover - Input hover line
+// $color-input-line-active - Input active line
+// $color-input-line-disabled - Input disabled line
+// $color-input-bg-disabled - Input disabled bg
+// $color-input-text-disabled - Input disabled text
+// $color-shadow - Inset and box shadow colour for inputs
+//
+// markup:
+// <div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+//
+// Styleguide 1.10.6.
+
+$color-input-line: $color-grey3;
+$color-input-line-hover: $color-grey4;
+$color-input-line-focus: $color-primary;
+$color-input-line-active: $color-primary;
+$color-input-line-disabled: $color-grey3;
+$color-input-bg-disabled: $color-grey1;
+$color-input-text-disabled: $color-grey5;
+$color-shadow: rgba($color-grey3,0.5);
+$color-check: $color-primary;
+
+
+
+// Color applications - misc
+//
+// $color-line - Line colour (outlines, horizontal/vertical rules)
+// $color-imaloading - Underlying background to images etc, as a placeholder whilst loading
+// $stripes-imaloading - Underlying background pattern to images etc, as a placeholder whilst loading
+// $stripes-paloading - Underlying background pattern to small "paloading" indicators
+// $stripes-paloading-alt - As above but when it needs to sit on a dark background.
+// $color-focus - Accessibility focus color (normally used i a box shadow)
+//
+// markup:
+// <div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+//
+// Styleguide 1.10.8.
+
+$color-line: $color-grey2;
+$color-divider: rgba($color-grey3,0.5);
+
+$color-imaloading: $color-bg-hi;
+$stripes-imaloading: linear-gradient(45deg, $color-bg-lo 25%, transparent 25%, transparent 75%, $color-bg-lo 75%, $color-bg-lo), linear-gradient(-45deg, $color-bg-lo 25%, transparent 25%, transparent 75%, $color-bg-lo 75%, $color-bg-lo);
+$size-imaloading: 120px 120px;
+
+$stripes-paloading: repeating-linear-gradient(-45deg,#fafafa,#fafafa 10px,#ddd 10px,#ddd 20px);
+$stripes-paloading-alt: repeating-linear-gradient(-45deg,#fafafa,#fafafa 10px,rgba(255,255,255,0.3) 10px,rgba(255,255,255,0.3) 20px);
+
+$color-focus: $color-primary;

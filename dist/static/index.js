@@ -1,13 +1,13 @@
 require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({11:[function(require,module,exports){
 'use strict';
 
-var _shared = require('../shared/shared');
+var _shared = require('./shared');
 
 var _shared2 = _interopRequireDefault(_shared);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-},{"../shared/shared":21}],21:[function(require,module,exports){
+},{"./shared":21}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -117,8 +117,8 @@ var videoFrame = function videoFrame(el, app) {
     var setButtonTransition = function setButtonTransition() {
         var playEndWidth = 40;
         var transformScale = playEndWidth / playWidth;
-        var transformX = posterWidth - playEndWidth - (posterWidth / 2 - playWidth / 2) - playEndWidth - 12;
-        var transformY = posterHeight - playEndWidth - (posterHeight / 2 - playWidth / 2) - playEndWidth - 12;
+        var transformX = posterWidth - playEndWidth - (posterWidth / 2 - playWidth / 2) - playEndWidth - (window.innerWidth < 600 ? -2 : 5);
+        var transformY = posterHeight - playEndWidth - (posterHeight / 2 - playWidth / 2) - playEndWidth + 60;
         var transform = 'translateX(' + transformX + 'px) translateY(-' + transformY + 'px) scale(' + transformScale + ') rotate(90deg)';
         // store the transform
         $play.setAttribute('data-js-transform', transform);
@@ -261,6 +261,7 @@ var heroFull = function heroFull(el, app) {
     var viewportWidthPrev = viewportWidth;
     var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
     var viewportHeightPrev = viewportHeight;
+    var intersectionOptions = { threshold: 0.2 };
 
     var init = function init() {
         // do the initial measurements of all widths
@@ -273,6 +274,30 @@ var heroFull = function heroFull(el, app) {
         moreButton();
         // set as ready
         el.classList.add('HeroFull--ready');
+        // pause the video if it goes off screen
+        intersectionInit();
+    };
+
+    // set-up the intersection observer
+    var intersectionInit = function intersectionInit() {
+        var observer = new IntersectionObserver(intersectionObserved, intersectionOptions);
+        observer.observe(el);
+    };
+
+    // intersection event handler
+    var intersectionObserved = function intersectionObserved(entries, observer) {
+        var $videoEl = el.querySelector('[data-js-hero-video]');
+        entries.forEach(function (entry) {
+            // when the video if off screen, pause it
+            if (entry.intersectionRatio < intersectionOptions.threshold) {
+                $videoEl.pause();
+                // if it is paused and returns to onscreen, play it!
+            } else {
+                if ($videoEl.paused) {
+                    $videoEl.play();
+                }
+            }
+        });
     };
 
     // measure the widths of all core components
@@ -290,7 +315,22 @@ var heroFull = function heroFull(el, app) {
     var moreButton = function moreButton() {
         document.querySelector('[data-js-hero-full-more]').addEventListener('click', function (ev) {
             ev.preventDefault();
-            $("html, body").animate({ scrollTop: el.offsetHeight }, 500);
+
+            function scrollTo(endPoint, scrollDuration) {
+                var cosParameter = (endPoint - window.scrollY) / 2;
+                var scrollCount = 0;
+                var oldTimestamp = performance.now();
+                function step(newTimestamp) {
+                    scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
+                    if (scrollCount >= Math.PI) window.scrollTo(0, endPoint);
+                    if (window.scrollY === endPoint) return;
+                    window.scrollTo(0, Math.round(cosParameter - cosParameter * Math.cos(scrollCount)));
+                    oldTimestamp = newTimestamp;
+                    window.requestAnimationFrame(step);
+                }
+                window.requestAnimationFrame(step);
+            }
+            scrollTo(el.offsetHeight, 500);
         });
     };
 
@@ -313,7 +353,7 @@ var heroFull = function heroFull(el, app) {
                 el.setAttribute('style', '');
                 measure();
                 setHeight();
-                el.classlist.add('HeroFull--ready');
+                el.classList.add('HeroFull--ready');
             }
             viewportWidthPrev = viewportWidth;
             viewportHeightPrev = viewportHeight;
@@ -538,10 +578,9 @@ var helperObjectFit = function helperObjectFit(el, app) {
 
     var init = function init() {
 
-        // assumes a IMG or IMG/SRCSET by default, but needs a tweak if it's a PICTURE element
+        // assumes a IMG or ISET by default, but needs a tweak if it's a PICTURE element
         if (image.tagName === 'PICTURE') {
             image = el.children[0].getElementsByTagName("IMG")[0];
-            console.log("image", image);
             // if it's not an PICTURE or an IMG, exit here.
         } else if (image.tagName !== 'IMG') {
             return;
@@ -680,12 +719,15 @@ var helperLazyload = function helperLazyload(el, app) {
         // picture element
         if (imgType === 'PICTURE') {
             imgSources = el.getElementsByTagName("SOURCE");
+            imgAttr.sources = [];
             for (var i = 0; i < imgSources.length; i++) {
                 imgAttr.sources.push(imgSources[i].getAttribute('data-srcset'));
             }
-            var imgTag = el.getElementsByTagName("IMG");
-            imgAttr.width = imgTag.getAttribute('width');
-            imgAttr.height = imgTag.getAttribute('height');
+            var imgTag = el.getElementsByTagName("IMG")[0];
+            if (imgTag) {
+                imgAttr.width = imgTag.getAttribute('width');
+                imgAttr.height = imgTag.getAttribute('height');
+            }
             // img element
         } else if (imgType === 'IMG') {
             imgAttr.src = el.getAttribute('data-src');
@@ -814,7 +856,7 @@ var _lodash = require('lodash.assign');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _helperUtilities = require('shared/mixins/helper-utilities');
+var _helperUtilities = require('mixins/helper-utilities');
 
 var _helperUtilities2 = _interopRequireDefault(_helperUtilities);
 
@@ -1215,7 +1257,7 @@ var helperAnalytics = function helperAnalytics(app, noInit) {
 
 exports.default = helperAnalytics;
 
-},{"lodash.assign":3,"shared/mixins/helper-utilities":17}],10:[function(require,module,exports){
+},{"lodash.assign":3,"mixins/helper-utilities":17}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1226,11 +1268,11 @@ var _raf = require('raf');
 
 var _raf2 = _interopRequireDefault(_raf);
 
-var _helperA11y = require('shared/mixins/helper-a11y');
+var _helperA11y = require('mixins/helper-a11y');
 
 var _helperA11y2 = _interopRequireDefault(_helperA11y);
 
-var _helperUtilities = require('shared/mixins/helper-utilities');
+var _helperUtilities = require('mixins/helper-utilities');
 
 var _helperUtilities2 = _interopRequireDefault(_helperUtilities);
 
@@ -1492,7 +1534,7 @@ toggleContent.selector = selector;
 
 exports.default = toggleContent;
 
-},{"raf":8,"shared/mixins/helper-a11y":12,"shared/mixins/helper-utilities":17}],17:[function(require,module,exports){
+},{"mixins/helper-a11y":12,"mixins/helper-utilities":17,"raf":8}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

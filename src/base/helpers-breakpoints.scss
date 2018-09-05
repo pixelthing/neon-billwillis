@@ -1,0 +1,53 @@
+// Width breakpoint helper classes
+//
+// Status: near final.
+//
+// These are quick helper classes to show or hide content on different screen sizes - they can be combined to span different screen ranges. Don't be tempted to hide lots of content on small screens - there's no evidence to support that mobile users don't want to see all the functionality that desktop users. Instead, design around it, or design from mobile viewpoint first.
+//
+// .Hide--xxs - hidden on screen sizes up to XS
+// .Hide--xs - hidden on screen sizes between XXS and SM
+// .Hide--sm - hidden on screen sizes between XS and MD
+// .Hide--md - hidden on screen sizes between SM and LG
+// .Hide--lg - hidden on screen sizes of LG or bigger
+//    
+// markup:
+// <div class="{$modifiers}" style="padding: 15px; border: 1px solid #79ad3e; background: #ded; color: #79ad3e; text-align: center;">This item is hidden on screen size of {$modifiers}</div>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 1.13.3
+
+/* helper classes */
+
+.hide, // deprecated
+.Hide {
+    display: none;
+    &--xxs {
+        @media(max-width:$less-than-xs) {
+            display: none !important;
+        } 
+    }
+    &--xs {
+        @media(min-width: $xs-and-up) and (max-width:$less-than-sm) {
+            display: none !important;
+        } 
+    }
+    &--sm {
+        @media(min-width: $sm-and-up) and (max-width:$less-than-md) {
+            display: none !important;
+        } 
+    }
+    &--md {
+        @media(min-width: $md-and-up) and (max-width:$less-than-lg) {
+            display: none !important;
+        } 
+    }
+    &--lg {
+        @media(min-width: $lg-and-up) {
+            display: none !important;
+        } 
+    }
+}

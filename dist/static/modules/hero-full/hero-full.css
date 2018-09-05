@@ -1,0 +1,279 @@
+/* height */
+/* RESPONSIVE */
+/* TYPOGRAPHY */
+/* ELEMENTS */
+/* PATTERNS */
+/* ACCESSIBILITY */
+.HeroFull {
+  margin: 0 calc(0px - env(safe-area-inset-right)) 0 calc(0px - env(safe-area-inset-left)); }
+  .HeroFull-Inner {
+    position: relative;
+    height: 500px;
+    height: 100vh;
+    max-height: 200vw;
+    margin: 0;
+    padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
+    color: #fff;
+    background-position: 0 0;
+    background-color: #312c26;
+    background-image: linear-gradient(45deg, #2b2722 25%, transparent 25%, transparent 75%, #2b2722 75%, #2b2722), linear-gradient(-45deg, #2b2722 25%, transparent 25%, transparent 75%, #2b2722 75%, #2b2722);
+    background-size: 120px 120px; }
+    .android-mobile .HeroFull-Inner {
+      max-height: calc(100vh - 56px); }
+    .android-tablet .HeroFull-Inner {
+      max-height: calc(100vh - 96px); }
+    .android-vh-old .HeroFull-Inner,
+    .samsung-browser .HeroFull-Inner {
+      max-height: 100vh; }
+    .iphone .HeroFull-Inner {
+      max-height: calc(100vh - 75px); }
+      @media screen and (min-height: 635px) {
+        .iphone .HeroFull-Inner {
+          max-height: calc(100vh - 114px); } }
+      @media screen and (orientation: landscape) {
+        .iphone .HeroFull-Inner {
+          max-height: calc(100vh - 50px); } }
+    @media (min-width: 768px) {
+      .HeroFull-Inner {
+        max-height: calc(100vw * (56.25*0.01)); } }
+    @media print {
+      .HeroFull-Inner {
+        max-height: 50vw !important; } }
+  .HeroFull-Frame {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+    overflow: hidden;
+    background-size: cover;
+    background-position: 50% 50%; }
+    @supports (animation: none) {
+      .HeroFull-Frame {
+        opacity: 0;
+        transition: opacity 0s;
+        -webkit-animation: fade-in 300ms forwards;
+                animation: fade-in 300ms forwards;
+        -webkit-animation-delay: 2s;
+                animation-delay: 2s; }
+        .no-js .HeroFull-Frame,
+        .HeroFull--ready .HeroFull-Frame {
+          opacity: 1;
+          -webkit-animation: none;
+                  animation: none;
+          transition: opacity 300ms; } }
+  .HeroFull-Img {
+    width: 100%;
+    height: auto; }
+    @supports (animation: none) {
+      .HeroFull-Img {
+        opacity: 0;
+        -webkit-animation: fade-in 1200ms forwards;
+                animation: fade-in 1200ms forwards;
+        -webkit-animation-delay: 1000ms;
+                animation-delay: 1000ms; } }
+    @media (orientation: portrait) {
+      .HeroFull-Img {
+        width: auto;
+        height: 100%; } }
+    @supports (object-fit: cover) {
+      .HeroFull-Img {
+        width: 100%;
+        height: 101%;
+        object-fit: cover;
+        object-position: 50% 50%; } }
+    .HeroFull-Img.ImaImg--Hidden {
+      display: none; }
+  .HeroFull-Video {
+    position: absolute;
+    left: 0;
+    top: 0; }
+    @media print {
+      .HeroFull-Video {
+        display: none !important; } }
+  .HeroFull-Mask {
+    position: absolute;
+    bottom: -0.5px;
+    left: 0;
+    right: 0;
+    height: 25px; }
+    @media (min-width: 980px) {
+      .HeroFull-Mask {
+        height: 30px; } }
+    @media (min-width: 1200px) {
+      .HeroFull-Mask {
+        height: 50px; } }
+  .HeroFull-Main {
+    display: table;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto; }
+    @media (min-width: 600px) and (min-height: 500px) {
+      .HeroFull-Main {
+        min-height: 500px; } }
+    @media print {
+      .HeroFull-Main {
+        min-height: 0; } }
+    @supports (animation: none) {
+      .HeroFull-Main {
+        opacity: 0;
+        transition: opacity 0s;
+        -webkit-animation: fade-in 300ms forwards;
+                animation: fade-in 300ms forwards;
+        -webkit-animation-delay: 2s;
+                animation-delay: 2s; }
+        .no-js .HeroFull-Main,
+        .HeroFull--ready .HeroFull-Main {
+          opacity: 1;
+          -webkit-animation: none;
+                  animation: none;
+          transition: opacity 300ms; } }
+    .HeroFull-Main-Inner {
+      display: table-cell;
+      height: 100%;
+      padding: 0 12px;
+      vertical-align: middle; }
+  .HeroFull-Title {
+    font-family: "mrs-eaves-roman-small-caps", "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
+    font-weight: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0.07em;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1.5rem;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    line-height: 1; }
+    .wf-mrseavesromansmallcaps-n4-active .HeroFull-Title {
+      letter-spacing: normal; }
+    @supports (animation: none) {
+      .HeroFull-Title {
+        opacity: 0;
+        -webkit-animation: fade-in 1000ms forwards;
+                animation: fade-in 1000ms forwards;
+        -webkit-animation-delay: 500ms;
+                animation-delay: 500ms; } }
+    .HeroFull-Title--lg {
+      max-width: 10em; }
+    .HeroFull-Title--md {
+      max-width: 8em; }
+    .HeroFull-Title--sm {
+      max-width: 6em; }
+    @media (min-width: 360px) {
+      .HeroFull-Title {
+        font-size: 3.25rem; } }
+    @media (max-width: 599px) and (orientation: portrait) {
+      .HeroFull-Title {
+        font-size: 2.4rem; } }
+    @media (max-height: 499px) and (orientation: landscape) {
+      .HeroFull-Title {
+        font-size: 2.4rem; } }
+    @media (max-height: 499px) {
+      .HeroFull-Title {
+        max-width: 100%; } }
+    .HeroFull-Title-Logo-Text {
+      display: block;
+      height: 0;
+      overflow: hidden;
+      text-indent: -9999px; }
+    .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
+      max-width: 80vw;
+      height: auto; }
+  .HeroFull-Text {
+    font-family: "mrs-eaves-roman-small-caps", "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
+    font-weight: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0.07em;
+    display: block;
+    max-width: 25em;
+    margin: 0 auto;
+    line-height: 24px;
+    font-size: 1.25rem;
+    text-align: center;
+    text-shadow: 0 0 15px rgba(0, 0, 0, 0.4); }
+    .wf-mrseavesromansmallcaps-n4-active .HeroFull-Text {
+      letter-spacing: normal; }
+    @supports (animation: none) {
+      .HeroFull-Text {
+        opacity: 0;
+        -webkit-animation: fade-in 1200ms forwards;
+                animation: fade-in 1200ms forwards;
+        -webkit-animation-delay: 800ms;
+                animation-delay: 800ms; } }
+    @media (min-width: 600px) and (min-height: 500px) {
+      .HeroFull-Text {
+        margin: 0em auto;
+        font-size: 1.5rem; } }
+    @media (min-width: 980px) and (min-height: 500px) {
+      .HeroFull-Text {
+        font-size: 2rem; } }
+  .HeroFull-More {
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: inherit;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    display: none;
+    position: absolute;
+    left: 50%;
+    bottom: 24px;
+    width: 10em;
+    margin: 0 0 0 -5em;
+    color: #fff;
+    font-family: "mrs-eaves-roman-small-caps", "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
+    font-weight: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0.07em;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    outline: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    cursor: pointer; }
+    .wf-mrseavesromansmallcaps-n4-active .HeroFull-More {
+      letter-spacing: normal; }
+    @supports (animation: none) {
+      .HeroFull-More {
+        opacity: 0;
+        -webkit-animation: fade-in 1000ms forwards;
+                animation: fade-in 1000ms forwards;
+        -webkit-animation-delay: 2500ms;
+                animation-delay: 2500ms; } }
+    @media (max-width: 767px) {
+      .HeroFull-More {
+        display: block; } }
+    @media print {
+      .HeroFull-More {
+        display: none; } }
+    .HeroFull-More-Icon {
+      display: block;
+      width: 1.4em;
+      height: 1.4em;
+      margin: 0.2em auto 0;
+      color: transparent; }
+      @media (min-width: 600px) {
+        .HeroFull-More-Icon {
+          margin-top: 0.4em; } }
+      .HeroFull-More-Icon.disc {
+        fill: none; }
+      .HeroFull-More-Icon.circle {
+        fill: #fff; }
+
+/*# sourceMappingURL=hero-full.css.map */

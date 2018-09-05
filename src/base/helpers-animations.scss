@@ -1,0 +1,25 @@
+@keyframes fade-in {
+    0% { opacity: 0 }
+    100% { opacity: 1 }
+}
+@keyframes fallback-load {
+    0% { opacity: 0 }
+    100% { opacity: 0 }
+}
+@keyframes loading-pulse {
+	0% { opacity: 0.3; }
+	50% { opacity: 0.7; }
+    100% { opacity: 0.3; }
+}
+@keyframes loading-bars {
+	from { background-position: 0 0; }
+	to { background-position: 1000px 0; }
+}
+@keyframes rotate {
+	from { transform: rotate(0) scale(1); }
+	to {  transform: rotate(-360deg) scale(1) }
+}
+@keyframes allyFocusPing {
+	0% { box-shadow: 0 0 0 50vw rgba($color-focus,0); }
+	100% { box-shadow: 0 0 0 5px rgba($color-focus,0.3); }
+}

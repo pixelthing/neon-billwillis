@@ -1,0 +1,72 @@
+{{#content}}
+
+        <!-- HERO (FULL) BLOCK -->
+        <link rel="stylesheet" href="/static/modules/hero-full/hero-full.css" /> <script> </script>
+        <header class="HeroFull Nav-Hero" data-js-hero-full>
+            <div class="HeroFull-Inner">
+                <span class="HeroFull-Frame ObjectFit" data-js-poly-object-fit>
+                {{#img}}
+                    <picture class="HeroFull-Img">
+                        {{#jp2}}
+                            <source srcset="{{#img.jp2.sm}}{{.}} 826w, {{/img.jp2.sm}}{{#img.jp2.xs}}{{.}} 600w{{/img.jp2.xs}}" media="(orientation: portrait) AND (max-width: 767px)" type="image/jp2" />
+                            <source srcset="{{#img.jp2.lg}}{{.}} 1800w, {{/img.jp2.lg}}{{#img.jp2.md}}{{.}} 1100w{{/img.jp2.md}}" type="image/jp2" />
+                        {{/jp2}}
+                        {{#webp}}
+                            <source srcset="{{#img.webp.sm}}{{.}} 826w, {{/img.webp.sm}}{{#img.webp.xs}}{{.}} 600w{{/img.webp.xs}}" media="(orientation: portrait) AND (max-width: 767px)" type="image/webp" />
+                            <source srcset="{{#img.webp.lg}}{{.}} 1800w, {{/img.webp.lg}}{{#img.webp.md}}{{.}} 1100w{{/img.webp.md}}" type="image/webp" />
+                        {{/webp}}
+                        <source srcset="{{#img.sm}}{{.}} 826w, {{/img.sm}}{{#img.xs}}{{.}} 600w{{/img.xs}}" media="(orientation: portrait) AND (max-width: 767px)" type="image/jpeg" />
+                        <source srcset="{{#img.lg}}{{.}} 1800w, {{/img.lg}}{{#img.md}}{{.}} 1100w{{/img.md}}" type="image/jpeg" />
+                        <img src="{{img.md}}" alt="" width="1100" height="734" class="HeroFull-Img" />
+                    </picture>´
+                {{/img}}
+                {{#video}}
+                    <video class="HeroFull-Img HeroFull-Video" data-js-hero-video{{#video.mp4.sm}} data-mp4-portrait="{{.}}"{{/video.mp4.sm}}{{#video.hevc.sm}} data-hevc-portrait="{{.}}"{{/video.hevc.sm}} autoplay loop muted playsinline>
+                        {{#video.hevc}}<source src="{{#video.hevc.lg}}{{.}}{{/video.hevc.lg}}" type="video/mp4;codecs='hvc1'" data-video-codec-hevc />{{/video.hevc}}
+                        {{#video.mp4}}<source src="{{#video.mp4.lg}}{{.}}{{/video.mp4.lg}}" type="video/mp4;" data-video-codec-mp4 />{{/video.mp4}}
+                    </picture>
+                <script>
+                    // these functions need to load immediately, not wait for async load
+                    (function videoPrep() {
+                        // if on a slow 2g connection, remove the video banner completely (only enabled in chrome, not yet in safari)
+                        var $videoEl = document.querySelector( '[data-js-hero-video]' );
+                        if ( navigator.connection && navigator.connection.effectiveType === "2g" ) {
+                            $videoEl.remove();
+                        // if on a small portrait screen (eg mobile), swap the video for one in portrait. It's not any smaller, but all the pixels are used, so it's sharper on the highest res device you hold closest to your eyes.
+                        } else if ( window.innerHeight > window.innerWidth && window.innerWidth < 600 ) {
+                            {{#video.hevc}}$videoEl.querySelector('[data-video-codec-hevc]').src = $videoEl.getAttribute('data-hevc-portrait');{{/video.hevc}}
+                            {{#video.mp4}}$videoEl.querySelector('[data-video-codec-mp4]').src = $videoEl.getAttribute('data-mp4-portrait');{{/video.mp4}}
+                        }
+                    })();
+                </script>
+                {{/video}}
+                </span>
+                {{#title}}
+                    <div class="HeroFull-Main">
+                        <div class="HeroFull-Main-Inner">
+                            <h1 class="HeroFull-Title{{#titleWidth}} HeroFull-Title--{{.}}{{/titleWidth}}">
+                                {{#titleLogo}}
+                                    <span class="HeroFull-Title-Logo-Text">{{title}}</span>
+                                    <span class="HeroFull-Title-Logo">{{{ . }}}</span>
+                                {{/titleLogo}}
+                                {{^titleLogo}}
+                                    {{ title }}
+                                {{/titleLogo}}
+                            </h1>
+                            {{#preamble}}
+                            <h2 class="HeroFull-Text">{{.}}</h2>
+                            {{/preamble}}
+                        </div>
+                    </div>
+                {{/title}}
+                {{#more}}
+                    <button type="button" class="HeroFull-More" data-js-hero-full-more>
+                        {{ . }}
+                        <svg viewBox="0 0 512 512" class="Icon HeroFull-More-Icon">
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-disc-down"></use>
+                        </svg>
+                    </button>
+                {{/more}}
+            </div>
+        </header>
+{{/content}}

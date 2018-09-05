@@ -1,0 +1,27 @@
+
+    <!-- SCRIPTS -->
+    <script>
+      // js is go.
+        document.documentElement.className = document.documentElement.className.replace('no-js', '');
+        document.documentElement.className += ' js';
+        var geWebPath = "";
+    </script>
+
+    <!-- START THE DOWNDLOAD OF CRITICAL SCRIPTS BEFORE THE BROWSER DISCOVERS THEM -->
+    {{^scriptsHideBase}}
+    <link rel="preload" as="script" type="text/javascript" href="/static/shared.js" />  
+    <link rel="preload" as="script" type="text/javascript" href="/static/index.js" />  
+    {{/scriptsHideBase}}
+    {{#scripts}}
+    <link rel="preload" as="script" type="text/javascript" href="{{.}}" />  
+    {{/scripts}}
+
+    <!-- Google Tag Manager -->
+    <script>
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'http://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-MT5PXT');
+    </script>
+    <!-- End Google Tag Manager -->

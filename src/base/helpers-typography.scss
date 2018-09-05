@@ -1,0 +1,146 @@
+// Typography
+//
+// Status: near final.
+// 
+// Styleguide 1.12.
+
+// Typography stacks & typeface override
+//
+// Typography is set up so that basics primitives such as H1-H6 and P have default typefaces, but these can be overriden by any of the following classes.
+//
+// .default! - *No modifier*: Combination of Brandon Grotesque bold and light, and body copy in a system font stack.
+// .Typo--regular - Regular system font stack. *@mixin typo-regular()*
+// .Typo--emphasis - Bold system font stack. *@mixin typo-emphasis()*
+// .Typo--serif - Light Brandon Grotesque. *@mixin typo-serif()*
+// .Typo--serif - Bold Brandon Grotesque. *@mixin typo-serif()*
+// .Typo--smallcaps - FF Market brush script. *@mixin typo-header-smallcaps()*
+//
+// markup:
+// <h1 class="{$modifiers}">H1: Duis do proident</h1>
+// <h2 class="{$modifiers}">h2: Id duis incididunt</h2>
+// <h3 class="{$modifiers}">h3: Pariatur proident</h3>
+// <h4 class="{$modifiers}">h4: Commodo ad incididunt</h4>
+// <h5 class="{$modifiers}">h5: Consequat aliqua excepteur</h5>
+// <h6 class="{$modifiers}">h6: laborum officia ea sit officia et</h6>
+// <p class="{$modifiers}">P: Proident qui adipisicing culpa ea duis duis ipsum. Commodo ad incididunt duis adipisicing irure velit cillum labore. Consequat aliqua excepteur id aute dolor eiusmod laborum officia ea sit officia et.</p>
+//
+// sg-wrapper:
+// <div class="Section">
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+// </div>
+//
+// Styleguide 1.12.1.
+
+// Typography scale
+//
+// There is a typography class scale designed to keep consistency in text sizes. The base font size is 18px (with a 1.64 line height), plus headings (h1-h6) have their own pre-set metrics, but these can be overriden by any of the following classes (so you can make a symantic subheading H2 the same size as a H1 for example).
+//
+// .Typo--xs - XS         variable: *$font-size-xs* 0.8rem
+// .Typo--sm - SM         variable: *$font-size-sm* 0.9rem
+// .Typo--md - MD         variable: *$font-size-md* 1rem (base size 18px)
+// .Typo--md2 - MD2     variable: *$font-size-md2* 1.25rem
+// .Typo--lg - LG         variable: *$font-size-lg* 1.5rem - on XXS: *$font-size-lg-sm* 1.25rem
+// .Typo--xl - XL         variable: *$font-size-xl* 2rem - on XXS: *$font-size-xl-sm* 1.5rem
+// .Typo--xxl - XXL     variable: *$font-size-xxl* 3rem - on XXS: *$font-size-xxl-sm* 2rem
+//
+// markup:
+// <div class="{$modifiers}">Dolore sit irure aliquip voluptate sint nostrud.</div>
+// <div class="{$modifiers} Typo--serif">Dolore sit irure aliquip voluptate sint nostrud.</div>
+// <div class="{$modifiers} Typo--serif">Dolore sit irure aliquip voluptate sint nostrud.</div>
+//
+// sg-wrapper:
+// <div class="Section">
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+// </div>
+//
+// Styleguide 1.12.2.
+
+// Misc
+//
+// .Typo--center - centers text
+// .Typo--secondary - secondary text color
+//
+// markup:
+// <h2 class="{$modifiers}">Dolore sit irure aliquip.</h2>
+// <h3 class="{$modifiers}">Proident qui adipisicing culpa ea duis duis ipsum. Commodo ad incididunt duis adipisicing irure velit cillum labore. Consequat aliqua excepteur id aute dolor eiusmod laborum officia ea sit officia et. Aute nulla amet et consectetur incididunt et nostrud id elit aute. </h3>
+// <p class="{$modifiers}">Velit esse cupidatat Lorem minim eiusmod anim consectetur voluptate aliqua Lorem in do enim do elit ullamco aliqua. Sint quis laborum dolore sunt mollit dolore proident mollit tempor occaecat deserunt laboris velit officia sunt magna. Nostrud nulla tempor sint enim deserunt ut elit nostrud exercitation id commodo esse sint non officia voluptate do. Excepteur ad elit quis excepteur deserunt nostrud ea sit. Ipsum commodo labore ullamco in consectetur ea et anim occaecat cupidatat mollit in sint non. Dolor aliquip exercitation exercitation ad non excepteur cillum eu excepteur magna. Enim laboris tempor nisi sit id tempor ullamco duis sit reprehenderit velit ad minim amet. </p>
+//
+// sg-wrapper:
+// <div class="Section">
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+// </div>
+//
+// Styleguide 1.12.3.
+
+.Typo {
+    // sizes
+    &--xs,
+    &--sm,
+    &--md,
+    &--md2,
+    &--lg,
+    &--xl,
+    &--xxl {
+        letter-spacing: normal;
+    }
+    &--xs {
+        font-size: $font-size-xs;
+    }
+    &--sm {
+        font-size: $font-size-sm;
+    }
+    &--md {
+        font-size: $font-size-md;
+    }
+    &--md2 {
+        font-size: $font-size-md2;
+    }
+    &--lg {
+        font-size: $font-size-lg;
+        @media (max-width: $less-than-xs) {
+            font-size: $font-size-lg-sm;
+        }
+    }
+    &--xl {
+        font-size: $font-size-xl;
+        line-height: 1.3;
+        @media (max-width: $less-than-xs) {
+            font-size: $font-size-xl-sm;
+            line-height: inherit;
+        }
+    }
+    &--xxl {
+        font-size: $font-size-xxl;
+        line-height: 1.2;
+        @media (max-width: $less-than-xs) {
+            font-size: $font-size-xxl-sm;
+            line-height: 1.3;
+        }
+    }
+    // stacks
+    &--regular {
+        @include typo-regular();
+    }
+    &--emphasis {
+        @include typo-emphasis();
+    }
+    &--serif {
+        @include typo-smallcaps();
+    }
+    &--smallcaps {
+        @include typo-serif();
+    }
+    // colour
+    &--secondary {
+        color: $color-grey4;
+    }
+    &--center {
+        text-align: center;
+    }
+}

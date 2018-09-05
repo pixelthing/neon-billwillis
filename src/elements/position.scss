@@ -1,0 +1,36 @@
+.Position {
+    object-position: 50% 50% !important;
+    background-position: 50% 50% !important;
+    &--left {
+        object-position: 0% 50% !important;
+        background-position: 0% 50% !important;
+        &--top {
+            object-position: 0% 0% !important;
+            background-position: 0% 0% !important;
+        }
+        &--bottom {
+            object-position: 0% 100% !important;
+            background-position: 0% 100% !important;
+        }
+    }
+    &--right {
+        object-position: 100% 50% !important;
+        background-position: 100% 50% !important;
+        &--top {
+            object-position: 100% 0% !important;
+            background-position: 100% 0% !important;
+        }
+        &--bottom {
+            object-position: 100% 100% !important;
+            background-position: 100% 100% !important;
+        }
+    }
+    &--top {
+        object-position: 50% 0% !important;
+        background-position: 50% 0% !important;
+    }
+    &--bottom {
+        object-position: 50% 100% !important;
+        background-position: 50% 100% !important;
+    }
+}

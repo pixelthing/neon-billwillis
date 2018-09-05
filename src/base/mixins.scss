@@ -1,0 +1,602 @@
+/* RESPONSIVE */
+
+@mixin t-respond-to-webkit() {
+    @media screen and (-webkit-min-device-pixel-ratio:0) { @content; }
+}
+@mixin t-respond-to-trident() {
+    @media screen and (min-width: 0 \0) { @content; }
+}
+@mixin t-respond-to-firefox() {
+    @media screen and (min--moz-device-pixel-ratio:0) { @content; } 
+}
+
+/* TYPOGRAPHY */
+
+@mixin typo-regular() {
+    font-family: $font-default;
+    font-weight: normal;
+}
+@mixin typo-emphasis() {
+    font-family: $font-default;
+    font-weight: 550;
+}
+@mixin typo-serif() {
+    font-family: $font-serif;
+    font-weight: normal;
+    transform: scale(0.978);
+    transform-origin: 50% 50%;
+    .wf-mrseavesromanlining-n4-active & {
+        transform: none;
+    }
+}
+@mixin typo-smallcaps() {
+    font-family: $font-smallcaps;
+    font-weight: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0.07em;
+    .wf-mrseavesromansmallcaps-n4-active & {
+        letter-spacing: normal;
+    }
+}
+@mixin ellipsis() {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+/* ELEMENTS */
+
+@mixin clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin clearmargin { // clears margins bubbling up (t.ex, a headline with a neg top margin will move the whole containing section up that amount)
+    &:before {
+        content: '';
+        display: block;
+        height: 1px;
+        margin: 0 0 -1px;
+        padding: 0;
+    }
+}
+
+@mixin normalize-button() {
+    -webkit-appearance: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    background-color: transparent;
+    border-width: 0;
+    border-radius: 0;
+    font-family: $font-default;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: inherit;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+}
+
+@mixin close-button() {
+    @include normalize-button();
+    width: 1.4em;
+    height: 1.4em;
+    padding: 0.2em;
+    font-size: $font-size-md2;
+    color: #000;
+    background: transparent;
+    border-radius: 100%;
+    transition: all 500ms;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    @media (pointer: coarse) { // on tap, show that the button was tapped when you take your finger off
+        transition-delay: 300ms;
+    }
+    @media (prefers-reduced-motion) {
+        transition: all 0ms;
+    }
+    &:focus {
+        @include a11yShadowFocus(noRadius);
+        @include a11yBGFocus();
+    }
+    &:active {
+        color: $color-primary;
+        transition-delay: 0ms;
+        background-color: lighten($color-primary, 60%);
+    }
+    .Icon {
+        display: block;
+        pointer-events: none;
+    }
+}
+
+@mixin ui-block-size($type: null) {
+    font-size: $font-size-md;
+    @if $type == 'input' {
+        padding: $btn-regular-padding-top $input-regular-padding-horiz $btn-regular-padding-bottom;
+    } @else {
+        padding: $btn-regular-padding-top $btn-regular-padding-horiz $btn-regular-padding-bottom;
+        @media (max-width: $less-than-xs) {
+            padding-left: $btn-skinny-padding-horiz;
+            padding-right: $btn-skinny-padding-horiz;
+        }
+    }
+}
+
+@mixin link() {
+    @include normalize-button();
+    vertical-align: baseline;
+    color: $color-link;
+    border-color: currentColor;
+    text-align: left;
+    text-decoration: none;
+    font-family: inherit;
+    transition-property: color, background-color;
+    transition-duration: 300ms;
+    -webkit-tap-highlight-color: rgba(255,255,255,0);
+    &:focus {
+        @include a11yTextFocus();
+    }
+    &:visited {
+        color: $color-link-visited;
+    }
+    &:hover {
+        color: $color-link-hover;
+        @media (pointer: coarse) {
+            color: $color-link;
+            border-color: $color-link;
+        }
+    }
+    &:active {
+        color: $color-link-active;
+        transition-duration: 0ms;
+    }
+}
+
+@mixin underlined ($dashed: false) {
+    display: inline-block;
+    vertical-align: baseline;
+    padding-bottom: 0px;
+    @if $dashed {
+        border-bottom: 1px dashed currentColor;
+    } @else {
+        border-bottom: 1px solid currentColor;
+    }
+}
+
+@mixin disc () {
+    @include typo-emphasis();
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    width: $disc-size;
+    height: $disc-size;
+    padding: 0;
+    line-height: $disc-size;
+    color: #fff;
+    background: #999;
+    border-radius: 1000px;
+    text-align: center;
+    .edge &,
+    .ie & {
+        line-height: $disc-size - 0.15em;
+    }
+    .android & {
+        line-height: $disc-size + 0.1em;
+    }
+}
+
+@mixin pop-over($selectorOuter, $selectorButton, $event:'hover', $color:$color-primary) {
+    
+    #{$selectorOuter} {
+        @include normalize-button();
+        position: relative;
+        font-size: 1rem;
+        line-height: normal;
+        vertical-align: top;
+        white-space: normal;
+        text-align: left;
+        &-full {
+            position: absolute;
+            top: 40px;
+            top: calc(100% + 9px);
+            right: 1px;
+            z-index: 100;
+            width: 0px;
+            max-height: 0px;
+            overflow: hidden;
+            background-color: #fff;
+            border: 1px solid $color;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translate3d(0,10px,0);
+            transition: opacity, transform, max-height, width, padding;
+            transition-duration: 300ms, 300ms, 0ms, 0ms, 0ms;
+            transition-delay: 100ms, 100ms, 400ms, 400ms, 400ms;
+            #{$selectorOuter}:hover & {
+                @media (pointer: coarse) {
+                    width: 0;
+                    max-height: 0;
+                }
+            }
+            #{$selectorOuter}--active {
+                width: 250px;
+                max-width: calc(100vw - 20px);
+                max-height: 999em;
+                opacity: 1;
+                padding: $gutter*2;
+                transform: translate3d(0,0,0);
+                transition-delay: 300ms;
+                &--titled {
+                    padding-top: $gutter*3;
+                }
+                &--md {
+                    width: 320px;
+                }
+                &--lg {
+                    width: 450px;
+                }
+                &--xl {
+                    width: 800px;
+                }
+            }
+            &--centered {
+                text-align: center;
+            }
+        }
+        &-title {
+            position: absolute;
+            top: $gutter;
+            left: $gutter;
+            color: $color;
+            text-align: left;
+        }
+    }
+    #{$selectorButton} {
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            z-index: 101;
+            max-height: 0;
+            margin-left: -10px;
+            border-right: 10px solid transparent;
+            border-left: 10px solid transparent;
+            border-bottom: 10px solid $color-primary;
+            border-width: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: opacity, transform, border-width;
+            transition-duration: 300ms, 300ms, 0ms;
+            transition-delay: 100ms, 100ms, 400ms;
+            transform: translate3d(0,10px,0);
+            #{$selectorOuter}:hover & {
+                @media (pointer: coarse) {
+                    max-height: 0;
+                }
+            }
+            #{$selectorOuter}--open & {
+                opacity: 1;
+                max-height: 10px;
+                transform: translate3d(0,0,0);
+                transition-delay: 300ms;
+                border-width: 0 10px 10px;
+            }
+        }
+        &:after {
+            content: ' klicka för mer';
+            top: 101%;
+            top: calc(100% + 0.99px);
+            border-bottom: 10px solid #fff;
+            opacity: 1;
+            font-size: 0;
+            text-indent: 10000px;
+        }
+    }
+    
+}
+
+@mixin ribbon() {
+    @include typo-regular();
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    padding: 0.6em 1em;
+    color: #fff;
+    background-color: $color-primary;
+    border-radius: 3px;
+    font-size: $font-size-xxs;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+    text-shadow: none;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+@mixin section-serif() {
+    text-align: center;
+    max-width: $width-sm;
+    margin: -0.5em auto $gutter*3; // 0.5em visual adjustment
+    @media (min-height: $h-md-and-up) {
+        margin-bottom: $gutter*4;
+    }
+    @media print {
+        text-align: left;
+        max-width: $print-width;
+    }
+}
+@mixin section-header-title() {
+    @include typo-smallcaps();
+    font-size: $font-size-xl;
+    margin-top: 0;
+    margin-bottom: $gutter/2;
+    @media (max-width: $less-than-xs) {
+        font-size: $font-size-lg;
+        @include typo-smallcaps();
+        margin-bottom: $gutter/2;
+    }
+    &:not(h2) { // oooh, hacky. This is a back fix to allow h2 and h3 to have the same class but different sizes - essentially we realised (after the fact) the mixin would suddenly make both headlines the same size in the card grid and wanted to fix that without changing the markup with new/additional classes.
+        font-size: $font-size-lg;
+    }
+    // page/section themes (using the cascade/specificity to our benefit)
+    .Theme--primary &,
+    .Section.Theme--primary & {
+        color: $color-primary;
+    }
+}
+@mixin section-header-text() {
+    margin: 0;
+}
+
+/* PATTERNS */
+
+@mixin grid-row ($allWidths:"",$gutters:"") {
+    @if $allWidths == "allWidths" {
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-wrap: wrap;
+        @if $gutters == "gutters" {
+            margin-left: -$gutter;
+            margin-right: -$gutter;
+        }
+        text-align: left;
+        font-size: 0;
+        .ios8 & { // iOS8 hack
+            display: -webkit-flex;
+            -webkit-justify-content: center;
+            -webkit-flex-wrap: wrap;
+        }
+        &--center,
+        .Section--center & {
+            justify-content: center;
+        }
+    } @else {
+        @media (min-width:$sm-and-up) { 
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin-left: -$gutter;
+            margin-right: -$gutter;
+            text-align: left;
+            font-size: 0;
+            .ios8 & { // iOS8 hack
+                display: -webkit-flex;
+                -webkit-justify-content: center;
+                -webkit-flex-wrap: wrap;
+            }
+            &--center,
+            .Section--center & {
+                justify-content: center;
+            }
+        }
+    }
+    &--left {
+        text-align: left;
+    }
+    &--contained {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+@mixin grid-column ($allWidths:"",$gutters:"") {
+    @if $allWidths == "allWidths" {
+        display: inline-block;
+        flex: 0 0;
+        vertical-align: top;
+        text-align: left;
+        font-size: 1rem;
+        @if $gutters == "gutters" {
+            margin-top: $gutter;
+            margin-bottom: $gutter;
+            padding-top: $gutter;
+            padding-bottom: $gutter;
+        }
+    } @else {
+        display: inline-block;
+        flex: 0 0;
+        vertical-align: top;
+        text-align: left;
+        font-size: 1rem;
+        @media (max-width:$less-than-sm) {
+            display: block;
+            @if $gutters == "gutters" {
+                margin-top: $gutter;
+                margin-bottom: $gutter;
+                padding-top: $gutter;
+                padding-bottom: $gutter;
+            }
+        }
+    }
+    .android-nochrome & {
+        margin-right: -3px;
+    }
+}
+@mixin grid-column-width ($colWidth,$allWidths:"",$gutters:"") {
+    @if $allWidths == "allWidths" {
+        @if $gutters == "gutters" {
+            flex-basis: colWidth;
+            width: $colWidth;
+            padding-left: $gutter;
+            padding-right: $gutter;
+            .ie & {
+                flex-basis: auto;
+            }
+        } @else {
+            flex-basis: $colWidth;
+            width: $colWidth;
+            max-width: $colWidth;
+        }
+        .ios8 & {
+            -webkit-flex: 1 1 #{$colWidth};
+        }
+    } @else {
+        @if $gutters == "gutters" {
+            @media (min-width:$sm-and-up) {
+                flex-basis: $colWidth;
+                width: $colWidth;
+                padding-left: $gutter;
+                padding-right: $gutter;
+                .ie & {
+                    flex-basis: auto;
+                }
+            }
+        } @else {
+            @media (min-width:$sm-and-up) {
+                flex-basis: $colWidth;
+                width: $colWidth;
+                max-width: $colWidth;
+            }
+        }
+        .ios8 & {
+            -webkit-flex: 1 1 #{$colWidth};
+        }
+    }
+}
+
+/* ACCESSIBILITY */
+
+@mixin readyFallback ($selectorReady:"",$wait:5000ms) {
+    @supports (animation: inherit) {
+        @if $selectorReady != "" {
+            &:not(#{$selectorReady}) {
+                animation: $wait fallback-load;
+            }
+            &#{$selectorReady} {
+                animation: fade-in 500ms;
+                animation-direction: forwards;
+            }
+        } @else {
+            animation: $wait fallback-load;
+        }
+    }
+}
+
+@mixin a11yOnly () {
+    position:absolute;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    font-size: 1px;
+    padding-left: 1px;
+    overflow: hidden;
+}
+
+@mixin a11yFocus () {
+    &.focus-visible:focus { @content; }
+}
+
+@mixin a11yTextFocusInner ($display:"",$tint:0.3,$shadow:5px) {
+    outline: none;
+    color: #000;
+    background-color: rgba($color-focus,$tint);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 0 $shadow rgba($color-focus,$tint);
+    transition: background-color 500ms, box-shadow 500ms;
+    //animation: allyFocusPing 500ms;
+}
+
+@mixin a11yTextFocus ($display:"",$tint:0.3,$shadow:5px) {
+    &:focus {
+        outline: none;
+    }
+    @if $display == "" {
+        display: inline-block;
+    }
+    @include a11yFocus() {
+        @include a11yTextFocusInner($display,$tint,$shadow);
+    }
+}
+
+@mixin a11yShadowFocusInner ($noRadius:"",$tint:0.3,$shadow:5px) {
+    outline: none;
+    @if $noRadius == "" {
+        border-radius: 5px;
+    }
+    box-shadow: 0 0 0 $shadow rgba($color-focus,$tint);
+    transition: box-shadow 500ms;
+    //animation: allyFocusPing 500ms;
+    @media (pointer: coarse) {
+        box-shadow: initial;
+    }
+}
+
+@mixin a11yShadowFocus ($noRadius:"",$tint:0.3,$shadow:5px) {
+    &:focus {
+        outline: none;
+    }
+    @include a11yFocus() {
+        @include a11yShadowFocusInner($noRadius,$tint,$shadow);
+    }
+}
+
+@mixin a11yBGFocusInner ($tint:1,$fg:#fff) {
+    outline: none;
+    color: $fg;
+    border-color: $fg;
+    fill: #fff;
+    background-color: rgba($color-focus,$tint);
+    transition: background-color 500ms, box-shadow 500ms;
+    //animation: allyFocusPing 500ms;
+}
+
+@mixin a11yBGFocus ($tint:1,$fg:#fff) {
+    &:focus {
+        outline: none;
+    }
+    @include a11yFocus() {
+        @include a11yBGFocusInner($tint,$fg);
+    }
+}
+
+@mixin printNoImage () {
+    border: 1px solid $color-grey4;
+    background: transparent;
+    position: relative;
+    &:before {
+        content: url("data:image/svg+xml;utf8,<svg width='712' height='428' xmlns='http://www.w3.org/2000/svg'><g><path d='M.835.5l711.03 425.82M707.165 2.5L.835 427.5' stroke='#ccc'/><text font-family='ArialMT, Arial' font-size='18' fill='#ddd'><tspan x='275.438' y='300'>bilden är inte laddad</tspan></text></g></svg>");
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}

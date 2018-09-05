@@ -1,0 +1,111 @@
+@charset "UTF-8";
+/* height */
+/* RESPONSIVE */
+/* TYPOGRAPHY */
+/* ELEMENTS */
+/* PATTERNS */
+/* ACCESSIBILITY */
+.Quote-Inner {
+  position: relative;
+  max-width: 50rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 1rem;
+  text-align: center; }
+  .Quote-Inner--xxl {
+    max-width: 9000px;
+    max-width: 100vw; }
+  .Quote-Inner--xl {
+    max-width: 1200px; }
+  .Quote-Inner--lg {
+    max-width: 980px; }
+  .Quote-Inner--sm {
+    max-width: 40rem; }
+  .Quote-Inner--xs {
+    max-width: 35rem; }
+  .Quote-Inner:before {
+    content: '';
+    display: block;
+    width: 150px;
+    height: 43px;
+    margin: 0 auto;
+    background-image: url("data:image/svg+xml,%3Csvg%20class%3D%27Quote-Separator%27%20width%3D%27250%27%20height%3D%2743%27%20viewBox%3D%270%200%20250%2043%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Ctitle%3Equote%20seperator%3C%2Ftitle%3E%3Cpath%20d%3D%27M119.059%206.248h-8.835v8.837l-6.25%206.249%206.25%206.248v8.837h8.835l6.25%206.248%206.248-6.248h8.836v-8.837l6.249-6.248-6.249-6.249V6.248h-8.836L125.309.001zM0%2021.875l86.888%201.75v-3.501zm163.4%201.751l86.888-1.75-86.888-1.75z%27%20fill%3D%27%23FC3%27%20fill-rule%3D%27evenodd%27%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
+    background-size: 100%; }
+    @supports (animation: none) {
+      .Quote-Inner:before {
+        opacity: 0;
+        -webkit-animation: fade-in 1000ms forwards;
+                animation: fade-in 1000ms forwards;
+        -webkit-animation-delay: 500ms;
+                animation-delay: 500ms; } }
+
+.Quote-Text {
+  margin: 0;
+  padding: 12px 0;
+  font-family: "mrs-eaves-roman-lining", baskerville, georgia, serif;
+  font-weight: normal;
+  -webkit-transform: scale(0.978);
+          transform: scale(0.978);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  font-style: normal;
+  font-size: 2rem;
+  line-height: 1.2; }
+  .wf-mrseavesromanlining-n4-active .Quote-Text {
+    -webkit-transform: none;
+            transform: none; }
+  @supports (animation: none) {
+    .Quote-Text {
+      opacity: 0;
+      -webkit-animation: fade-in 1000ms forwards;
+              animation: fade-in 1000ms forwards;
+      -webkit-animation-delay: 1200ms;
+              animation-delay: 1200ms; } }
+  @media (max-width: 599px) {
+    .Quote-Text {
+      padding: 24px 0;
+      font-size: 1.5rem; } }
+  .Quote-Text-Inner {
+    position: relative;
+    display: inline-block;
+    padding-left: 1.1em;
+    padding-right: 0.9em; }
+    .Quote-Text-Inner:before, .Quote-Text-Inner:after {
+      content: '“';
+      position: absolute;
+      top: -0.25em;
+      left: 0;
+      font-size: 4rem; }
+    .Quote-Text-Inner:after {
+      content: '”';
+      left: auto;
+      right: 0; }
+
+.Quote-Source {
+  font-family: "mrs-eaves-roman-small-caps", "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
+  font-weight: normal;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: 0.07em;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-transform: lowercase; }
+  .wf-mrseavesromansmallcaps-n4-active .Quote-Source {
+    letter-spacing: normal; }
+  @supports (animation: none) {
+    .Quote-Source {
+      opacity: 0;
+      -webkit-animation: fade-in 1000ms forwards;
+              animation: fade-in 1000ms forwards;
+      -webkit-animation-delay: 1500ms;
+              animation-delay: 1500ms; } }
+  @media (max-width: 599px) {
+    .Quote-Source {
+      font-size: 1.25rem; } }
+  .Quote-Source-More {
+    font-style: italic; }
+
+/*# sourceMappingURL=quote.css.map */

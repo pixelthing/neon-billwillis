@@ -1,0 +1,52 @@
+{{#content}}
+
+        <!-- VIDEO (INLINE) BLOCK -->
+        <link rel="stylesheet" href="/static/modules/video/video.css" /> <script> </script>
+        <div class="Section Video Video{{#color}} Section--{{.}}{{/color}}{{#margin}} Section--{{.}}{{/margin}}" data-js-video>
+
+            <figure class="Section-Inner{{#width}} Section-Inner--{{.}}{{/width}} Video-Inner">
+
+                {{#title}}
+                    <h3 class="Video-Title">
+                        {{#titleLogo}}
+                            <span class="Video-Title-Logo-Text">{{title}}</span>
+                            <span class="Video-Title-Logo">{{{ . }}}</span>
+                        {{/titleLogo}}
+                        {{^titleLogo}}
+                            {{ title }}
+                        {{/titleLogo}}
+                    </h3>
+                {{/title}}
+                <div class="Video-Frame">
+                    <div class="Video-Mask{{#ratio}} Video-Mask--{{ratio}}{{/ratio}}">
+                        <button class="Video-Poster" data-js-video-poster data-js-video-src="{{#src.youtube}}http://www.youtube.com/embed/{{src.youtube}}?autoplay=1&modestbranding=1&showinfo=0&rel=0&hl=sv.{{/src.youtube}}{{#src.vimeo}}https://player.vimeo.com/video/{{src.vimeo}}?color=ffcc00&title=0&byline=0&portrait=0{{/src.vimeo}}{{#src.other}}{{.}}{{/src.other}}" data-js-poly-object-fit data-js-beacon-click="movie-open-block,{{src.youtube}}">
+                            
+                            <picture class="Video-Poster-Img lazyload">
+                                {{#jp2}}
+                                    <source data-srcset="{{#poster.jp2.lg}}{{.}} 1800w, {{/poster.jp2.lg}}{{#poster.jp2.md}}{{.}} 1100w, {{/poster.jp2.md}}{{#poster.jp2.sm}}{{.}} 600w{{/poster.jp2.sm}}" type="image/jp2" />
+                                {{/jp2}}
+                                {{#webp}}
+                                    <source data-srcset="{{#poster.webp.lg}}{{.}} 1800w, {{/poster.webp.lg}}{{#poster.webp.md}}{{.}} 1100w, {{/poster.webp.md}}{{#poster.webp.sm}}{{.}} 600w{{/poster.webp.sm}}" type="image/webp" />
+                                {{/webp}}
+                                <source data-srcset="{{#poster.lg}}{{.}} 1800w, {{/poster.lg}}{{#poster.md}}{{.}} 1100w, {{/poster.md}}{{#poster.sm}}{{.}} 600w{{/poster.sm}}" type="image/jpeg" />
+                                <img data-src="{{poster.md}}" alt="" width="1100" height="734" class="Video-Poster-Img-Fallback" />
+                            </picture>
+                            <span class="a11y Video-Ally-Open" data-js-video-ally-open tabindex="-1">Click to play the video</span>
+                            <span class="a11y Video-Ally-Close" data-js-video-ally-close tabindex="-1">Click to close the video</span>
+                        </button>
+                        <iframe class="Video-Iframe" src="" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe aria-hidden="true"></iframe>
+                    </div>
+                    <button class="Video-Play" data-js-video-play tabindex="-1">
+                        {{> ../../static/icons/sprites/icon-play.svg }}
+                    </button>
+                </div>
+                {{#caption}}
+                <figcaption class="Video-Caption{{#position}} Video-Caption--{{position}}{{/position}}">
+                    {{{ html }}}
+                </figcaption>
+                {{/caption}}
+            
+            </figure>
+
+        </div>
+{{/content}}

@@ -1,0 +1,132 @@
+@import "../base/variables-colors";
+@import "../base/variables-typography";
+@import "../base/variables-breakpoints";
+@import "../base/variables";
+@import "../base/mixins";
+
+// Footer
+//
+// This footer is only used in the "takeover" page pattern. It's purpose is actually obscure - when you scroll to the bottom of a page and start updating the page with JS (eg, clicking options in nyteckning elavtal), the page appears to jump up and down. Having the slack in the page with a footer reduces the effect. It's also built so that it anchors to the bottom of the page, even if the page content doesn't reach the bottom of the window.
+//
+// .Footer - footer to use in "takeover" page pattern
+//
+// markup:
+// <div class="Footer"></div>
+//
+// Styleguide 2.9
+
+$color-footer-bg: $color-grey0;
+$color-footer-fg: #000;
+$links-breakpoint-min: 400px;
+$links-breakpoint-max: $links-breakpoint-min - 1px;
+$footer-font-size-sm: $font-size-xs;
+$footer-font-size-lg: $font-size-sm;
+
+.Footer {
+    
+    &-Inner {
+        max-width: $width-xl;
+        margin-left: auto;
+        margin-right: auto;
+        @media print {
+            max-width: $print-width;
+        }
+        &:after {
+            content: '';
+            display: table;
+            height: 0;
+            overflow: hidden;
+        }
+    }
+
+    &-Base {
+        margin: $gutter-section-md-sm 0;
+        margin: $gutter-section-md-sm calc(0px - env(safe-area-inset-right)) $gutter-section-md-sm calc(0px - env(safe-area-inset-left));
+        padding: 0 $gutter;
+        font-size: $footer-font-size-sm;
+        pabreak-inside: avoid;
+        @media (min-width: $xs-and-up) {
+            margin-top: $gutter-section-md;
+            padding-left:  calc(#{$gutter} + env(safe-area-inset-left));
+            padding-right: calc(#{$gutter} + env(safe-area-inset-right));
+        }
+
+        text-align: center;
+        @media print {
+            border-top: 10px solid $color-line;
+            margin-top: $print-margin !important;
+            padding-top: $gutter;
+        }
+        &-Logos {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            margin: 0 0 1em;
+        }
+        &-Logo {
+            display: block;
+            width: 100px;
+            margin: 0 2em;
+            height: auto;
+
+            @media print {
+                filter: invert(100%);
+            }
+
+            &--neon {
+                width: 90px;
+            }
+
+            &-Link {
+                display: inline-block;
+                vertical-align: bottom;
+            }
+        }
+        &-Text {
+            display: block;
+            padding: $gutter 0 0;
+            color: $color-bg-hi2;
+            @media print {
+                margin: 0;
+                padding: 0;
+            }
+        }
+        &-Info {
+            display: block;
+            padding: $gutter 0 0;
+            color: $color-bg-hi2;
+            @media print {
+                display: none;
+            }
+        }
+    }
+}
+
+.Social {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    &-Logo {
+        display: block;
+        @supports ( animation:none ) {
+            opacity: 0;
+            animation: fade-in 1000ms forwards;
+            animation-delay: 1500ms;
+            &--vimeo {
+                animation-delay: 1700ms;
+            }
+        }
+        &-Link {
+            padding: 15px 10px;
+            display: inline-block;
+        }
+    }
+    @media (min-width: $xs-and-up) {
+        left: auto;
+        right: calc(0px + env(safe-area-inset-right))
+    }
+    @media print {
+        display: none;
+    }
+}

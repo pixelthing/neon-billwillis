@@ -1,0 +1,140 @@
+// Bullet ists
+//
+// Status: stripped back functionality from previous version. Near final, maybe needs a icon-check-circle/cross version added.
+// Unumbered lists can have specific icons and colours added to the whole list or inidividual items. Fonts are currently supplied by the same mechanism as the rest of the site, fontello icon font.
+//
+// .List - regular list
+// .List.List--lg - Matches the ```LG``` text size you'll find in typography
+// .List.List--primary - Colour the whole list
+// .List.List--secondary - Colour the whole list
+// .List.List--ok - Colour the whole list
+// .List.List--error - Colour the whole list
+// .List.List--warning - Colour the whole list
+// .List.List--tick - Change to a green tick
+// .List.List--margin - Add a double gutter margin top and bottom to the list
+// .List.List--margin-xl - Add a section sized gutter margin top and bottom to the list
+// 
+// markup:
+// <ul class="{$modifiers}">
+//     <li class="List-Item">List item one</li>
+//     <li class="List-Item">List item two</li>
+// </ul>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.4.
+
+// Bullet lists: changing individual lines
+//
+// The colours can be applied as a modifier to the whole list or individual items, and the naming convention follows colour variable name conventions.
+// 
+// .List-Item - regular text colour 
+// .List-Item.List-Item--primary - Colour just this line
+// .List-Item.List-Item--secondary - Colour just this line
+// .List-Item.List-Item--ok - Colour just this line
+// .List-Item.List-Item--error - Colour just this line
+// .List-Item.List-Item--warning - Colour just this line
+// .List-Item.List-Item--tick - Add a green tick to just this line
+//
+// markup:
+// <ul class="List">
+//     <li class="List-Item">List item one</li>
+//     <li class="{$modifiers}">List item two</li>
+// </ul>
+//
+// sg-wrapper:
+// <div class="Section-Inner">
+//     <sg-wrapper-content/>
+// </div>
+//
+// Styleguide 2.4.1
+
+.List {
+    margin: 1em 0;
+    padding: 0;
+    list-style: none;
+    &--md2 {
+        font-size: $font-size-md2;
+    }
+    &--lg {
+        font-size: $font-size-lg;
+    }
+    &--primary {
+        color: $color-primary;
+    }
+    &--ok {
+        color: $color-ok;
+    }
+    &--error {
+        color: $color-error;
+    }
+    &--warning {
+        color: $color-warning;
+    }
+    &--margin {
+        margin-top: $gutter*2;
+        margin-bottom: $gutter*2;
+        &-xl {
+            margin-top: $gutter*2;
+            margin-bottom: $gutter*2;
+            @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
+                margin-top: $gutter-section-md;
+                margin-bottom: $gutter-section-md;
+            }
+        }
+        &-xs {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        &-xs {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+    &-Item {
+        display: block;
+        position: relative;
+        margin: 0.5em 0;
+        padding: 0 0 0 1.1em;
+        &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: -0.2em;
+            top: 0.35em;
+            width: 1em;
+            height: 1em;
+            opacity: 0.5;
+            background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%2027%2027%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20d%3D%27M15.63%2013.364l-5.308%204.9%201.356%201.47%206.83-6.305-6.797-6.873-1.42%201.406z%27%20fill-rule%3D%27nonzero%27%20fill%3D%27%23000%27%2F%3E%3C%2Fsvg%3E");
+            background-size: 100% 100%;
+        }
+        &--tick,
+        .List--tick & {
+            &:before {
+                background-image: url("data:image/svg+xml,%3Csvg%20viewBox%3D%270%200%2027%2027%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20d%3D%27M3.71%2010.91c-.43.497-.11%201.244.143%201.744.395.783.857%201.538%201.325%202.28.968%201.537%202.034%203.012%203.166%204.432.74.927%201.785%202.855%203.224%202.03.538-.31.915-.83%201.312-1.292.613-.714%201.19-1.46%201.77-2.2%202.304-2.93%204.584-5.88%206.866-8.826l1.66-2.145.773-1c.217-.28.5-.545.546-.913.073-.572-.836-.452-1.14-.294-.736.38-1.387%201.118-2.015%201.652-2.915%202.476-5.868%204.925-8.682%207.514-.55.507-1.185.975-1.962.693-.878-.318-1.704-.92-2.462-1.454-1.29-.905-2.76-2.823-4.523-2.22-.507.588.216-.073%200%200%27%20fill%3D%27%2379ad3e%27%20fill-rule%3D%27evenodd%27%2F%3E%3C%2Fsvg%3E");
+                opacity: 1;
+            }
+        }
+        &--primary {
+            color: $color-primary;
+        }
+        &--ok {
+            color: $color-ok;
+        }
+        &--error {
+            color: $color-error;
+        }
+        &--warning {
+            color: $color-warning;
+        }
+        .List--gutters-sm & {
+            margin: 0.5em 0;
+        }
+        .List--gutters-xs & {
+            margin: 0;
+        }
+    }
+}

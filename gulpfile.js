@@ -78,11 +78,11 @@ gulp.task('prod', function() {
 gulp.task('watchAll', function() {
     gulp.watch(['src/*/**/*.scss'], ['styles']);
     gulp.watch(['src/**/*.js'], ['jshint']); // note: we use watchify for the js
-    gulp.watch(['src/shared/static/**/*'], ['copyStatic']);
-    gulp.watch(['src/shared/modules/**/static/**/*'], ['copyModuleStatic']);
-    //gulp.watch(['src/shared/static/js-es6/sw.js'], ['copySW']);
-    gulp.watch(['src/shared/static/js/**/*.js'], ['scriptsStatic', 'pages']);
-    gulp.watch(['src/shared/static/**/*.svg'], ['svgstore', 'pages']);
+    gulp.watch(['src/static/**/*'], ['copyStatic']);
+    gulp.watch(['src/modules/**/static/**/*'], ['copyModuleStatic']);
+    //gulp.watch(['src/static/js-es6/sw.js'], ['copySW']);
+    gulp.watch(['src/static/js/**/*.js'], ['scriptsStatic', 'pages']);
+    gulp.watch(['src/static/**/*.svg'], ['svgstore', 'pages']);
     gulp.watch(['src/**/*.mustache', 'src-pages/**/*.mustache', 'src/**/*.json', 'src-pages/**/*.json'], ['pages']);
     gulp.watch(['src/*.html'], ['copyRoot']);
 });
@@ -121,7 +121,7 @@ gulp.task('build', function() {
 });
 
 gulp.task('copyStatic', () => gulp
-    .src('src/shared/static/**/*')
+    .src('src/static/**/*')
     .pipe(gulp.dest(options.root + '/static')));
 
 gulp.task('copyRoot', () => gulp
@@ -138,11 +138,11 @@ gulp.task('copyFlickity', () => gulp
  * builds the pages to the output folder
  */
 gulp.task('pages', function() {
-    let streams = ['shared'].map((site) => {
+    let streams = [''].map((site) => {
         // for now, we just use one json file for all the data,
         // if we need something smarter like reading a file matching the template name
         // we can create that later.
-        var dataPath = require.resolve(`./src-pages/shared/data.json`);
+        var dataPath = require.resolve(`./src-pages/data.json`);
         // delete the cache, since we don't want to restart gulp whenever
         // we change the data.
         delete require.cache[dataPath];
@@ -210,7 +210,7 @@ gulp.task('pages', function() {
 gulp.task('scripts', ['verify-static', 'jshint'], function() {
 
     let bundles = [
-        'src/shared/index.js'
+        'src/index.js'
     ];
 
     // define our bundle
@@ -264,7 +264,7 @@ gulp.task('scripts', ['verify-static', 'jshint'], function() {
  */
 gulp.task('scriptsStatic', ['copyStatic'], function (cb) {
     pump([
-            gulp.src( ['src/shared/static/js/**/*.js', '!src/shared/shared.js']),
+            gulp.src( ['src/static/js/**/*.js', '!src/shared.js']),
             uglify(),
             gulp.dest(options.root + '/static/js')
         ],
@@ -305,7 +305,7 @@ gulp.task('jshint', function() {
 gulp.task('styles', function() {
     gulp
         .src([
-            'src/shared/shared.scss',
+            'src/shared.scss',
             'src/**/*.output.scss'
         ])
         .pipe(plumber({ errorHandler }))
@@ -332,7 +332,7 @@ gulp.task('svgstore', function () {
     }
 
     var svgs = gulp
-        .src('./src/shared/static/icons/sprites/*.svg')
+        .src('./src/static/icons/sprites/*.svg')
         .pipe(svgmin(function (file) {
             var prefix = path.basename(file.relative, path.extname(file.relative));
             return {
@@ -347,12 +347,12 @@ gulp.task('svgstore', function () {
         .pipe(svgstore({ inlineSvg: true }));
 
     return gulp
-        .src('./src/shared/partials/svg-icons.mustache')
+        .src('./src/partials/svg-icons.mustache')
         .pipe(inject(svgs, { transform: fileContents }))
         .pipe(rename({
             suffix: "-ready"
         }))
-        .pipe(gulp.dest('./src/shared/partials'));
+        .pipe(gulp.dest('./src/partials'));
 });
 
 
@@ -390,8 +390,8 @@ gulp.task('serve', function() {
     });
     //app.use(function(req, res, next) {
     //    if(req.accepts('html') && res.status(404)) {
-    //        //res.render('shared/404.html');
-    //        //res.redirect('/shared/404.html')
+    //        //res.render('404.html');
+    //        //res.redirect('404.html')
     //        return;
     //    }
     //});

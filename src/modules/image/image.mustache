@@ -1,0 +1,34 @@
+{{#content}}
+
+        <!-- IMAGE BLOCK -->
+        <link rel="stylesheet" href="/static/modules/image/image.css" /> <script> </script>
+        <div class="Section Image{{#color}} Section--{{.}}{{/color}}{{#margin}} Section--{{.}}{{/margin}}">
+
+            <figure class="Section-Inner{{#width}} Section-Inner--{{.}}{{/width}} ImaInner">
+
+                {{#src}}
+                <div class="ImaFrame{{#ratio}} ImaFrame--crop{{ratio}}{{/ratio}}{{^ratio}} lazyload-strut{{/ratio}}"{{#ratio}} data-js-poly-object-fit{{/ratio}}>
+                    <img data-src="{{#src.md}}{{.}}.md}}{{^src.md}}{{src.lg}}.md}}" 
+                        data-srcset="{{#src.lg}} {{.}} 1600w,.lg}}{{#src.md}} {{.}} 1100w,.md}}{{#src.sm}} {{.}} 600w.sm}}" 
+                        width="1100" {{! IF CMS CAN ENTER ORIG WIDTH HERE (EVEN IF WAY TOO BIG) - DO SO, CSS WILL TAKE OVER THE SIZE, BUT THE ASPECT RATIO INFO MEANS A MUCH BETTER PAGE LOADING EXPERIENCE!! }}
+                        height="743" {{! AS WITH WIDTH!! }}
+                        alt="{{alt}}"
+                        class="lazyload ImaImg" />
+                    <noscript>
+                        <img src="{{src.md}}"
+                             alt="{{src.alt}}" 
+                             class="ImaImg ImaFallback" />
+                    </noscript>
+                </div>
+                }}
+                {{#caption}}
+                <figcaption class="ImaCaption{{#position}} ImaCaption--{{position}}{{/position}}{{#pullUp}} ImaCaption--pullup{{/pullUp}}">
+                    {{#title}}<h3 class="ImaCaption-Title">{{title}}</h3>{{/title}}
+                    {{text}}
+                </figcaption>
+                {{/caption}}
+            
+            </figure>
+
+        </div>
+{{/content}}
