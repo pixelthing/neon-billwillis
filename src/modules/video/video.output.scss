@@ -180,6 +180,9 @@ $duration: 300ms;
         height: calc(100% + 4px);
         opacity: 0.7;
         transition: opacity $duration;
+        @media print {
+            opacity: 1;
+        }
         &:after {
             content: '';
             pointer-events: none;
