@@ -30,11 +30,14 @@
       display: none !important; } }
 
 body {
+  position: relative;
+  max-width: 100%;
   margin: 0;
   padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
   color: #fff;
   background-color: #2e2a24;
-  -webkit-text-size-adjust: none; }
+  -webkit-text-size-adjust: none;
+  overflow-x: hidden; }
   @media print {
     body {
       color: #000;
@@ -62,7 +65,7 @@ fieldset {
 
 html, body {
   font-size: 18px;
-  font-family: -apple-system, BlinkMacSystemFont,  "Segoe UI", "Roboto", "Oxygen",  "Ubuntu", "Cantarell", "Fira Sans",  "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   line-height: 1.64; }
 
 /* stacks */
@@ -110,7 +113,7 @@ h1 b, h1 strong, h2 b, h2 strong, h3 b, h3 strong, h4 b, h4 strong {
 
 h5,
 h6 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-weight: 550; }
 
 /* sizes */
@@ -277,7 +280,7 @@ h1 {
     background-color: transparent;
     border-width: 0;
     border-radius: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     font-weight: normal;
     font-size: 1em;
     line-height: inherit;
@@ -479,7 +482,7 @@ h1 {
   background-color: transparent;
   border-width: 0;
   border-radius: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-weight: normal;
   font-size: 1em;
   line-height: inherit;
@@ -519,7 +522,7 @@ h1 {
     color: #fffae6;
     transition-duration: 0ms; }
   .Link--strong {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     font-weight: 550; }
   .Link--lined {
     display: inline-block;
@@ -619,7 +622,7 @@ svg {
   background-color: transparent;
   border-width: 0;
   border-radius: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-weight: normal;
   font-size: 1em;
   line-height: inherit;
@@ -1507,11 +1510,11 @@ picture.lazyload {
       line-height: 1.3; } }
 
 .Typo--regular {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-weight: normal; }
 
 .Typo--emphasis {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-weight: 550; }
 
 .Typo--serif {

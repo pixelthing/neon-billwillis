@@ -103,4 +103,54 @@
     .Social {
       display: none; } }
 
+.Bg-Bottom-Left {
+  display: none;
+  position: absolute;
+  left: 0;
+  bottom: -80px;
+  z-index: -1;
+  width: 469px;
+  height: 644px;
+  opacity: 0.6; }
+  @media (min-width: 980px) {
+    .Bg-Bottom-Left {
+      display: block; } }
+
+.Bg-Bottom-Right1 {
+  display: none;
+  position: absolute;
+  right: -10px;
+  bottom: 310px;
+  z-index: -1;
+  width: 127px;
+  height: 209px; }
+  @media (min-width: 980px) {
+    .Bg-Bottom-Right1 {
+      display: block; } }
+
+.Bg-Bottom-Right2 {
+  display: none;
+  position: absolute;
+  right: -10px;
+  bottom: 60px;
+  z-index: -1;
+  width: 188px;
+  height: 283px; }
+  @media (min-width: 980px) {
+    .Bg-Bottom-Right2 {
+      display: block; } }
+
+.Bg-Bottom-Right3 {
+  display: none;
+  position: absolute;
+  right: -73px;
+  bottom: -80px;
+  z-index: -1;
+  width: 388px;
+  height: 240px;
+  overflow: hidden; }
+  @media (min-width: 980px) {
+    .Bg-Bottom-Right3 {
+      display: block; } }
+
 /*# sourceMappingURL=footer.css.map */
