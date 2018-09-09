@@ -1,0 +1,25 @@
+{{#content}}
+
+        <!-- GALLERY BLOCK -->
+        <link rel="stylesheet" href="static/modules/gallery/gallery.css" /> <script> </script>
+        <div class="Section Gallery{{#color}} Section--{{.}}{{/color}}{{#margin}} Section--{{.}}{{/margin}}">
+            <div class="Section-Inner Gallery-Inner{{#width}} Awards-Inner--{{.}}{{/width}}">
+
+                {{ #items }}
+                <span class="Gallery-Item">
+                    <picture class="Gallery-Thumb lazyload">
+                        {{#srcJp2}}
+                            <source data-srcset="{{srcJp2}}" type="image/jp2" />
+                        {{/srcJp2}}
+                        {{#srcWebP}}
+                            <source data-srcset="{{srcWebP}}" type="image/webp" />
+                        {{/srcWebP}}
+                        <source data-srcset="{{src}}" type="image/jpeg" />
+                        <img data-src="{{src}}" alt="" width="300" height="300" class="Gallery-Thumb-Fallback" />
+                    </picture>
+                </span>
+                {{ /items }}
+            
+            </div>
+        </div>
+{{/content}}

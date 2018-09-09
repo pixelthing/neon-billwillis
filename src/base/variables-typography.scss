@@ -7,7 +7,7 @@ $font-fallback: -apple-system,
                 Cantarell, 
                 'Helvetica Neue', 
                 sans-serif;
-$font-default: $font-fallback;
+$font-default: 'proxima-nova',$font-fallback;
 $font-serif: 'mrs-eaves-roman-lining', baskerville, georgia, serif;
 $font-smallcaps: 'mrs-eaves-roman-small-caps', "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
 $font-color: #000;

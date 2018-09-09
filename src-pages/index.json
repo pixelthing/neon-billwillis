@@ -55,6 +55,54 @@
             }
         },
         {
+            "gallery": {
+                "content": {
+                    "items" : [
+                        {
+                            "src": "static/imgs/gallery-1.jpg",
+                            "srcJp2": "static/imgs/gallery-1.jp2",
+                            "srcWebP": "static/imgs/gallery-1.webp"
+                        },
+                        {
+                            "src": "static/imgs/gallery-2.jpg",
+                            "srcJp2": "static/imgs/gallery-2.jp2",
+                            "srcWebP": "static/imgs/gallery-2.webp"
+                        },
+                        {
+                            "src": "static/imgs/gallery-3.jpg",
+                            "srcJp2": "static/imgs/gallery-3.jp2",
+                            "srcWebP": "static/imgs/gallery-3.webp"
+                        },
+                        {
+                            "src": "static/imgs/gallery-4.jpg",
+                            "srcJp2": "static/imgs/gallery-4.jp2",
+                            "srcWebP": "static/imgs/gallery-4.webp"
+                        },
+                        {
+                            "src": "static/imgs/gallery-5.jpg",
+                            "srcJp2": "static/imgs/gallery-5.jp2",
+                            "srcWebP": "static/imgs/gallery-5.webp"
+                        },
+                        {
+                            "src": "static/imgs/gallery-6.jpg",
+                            "srcJp2": "static/imgs/gallery-6.jp2",
+                            "srcWebP": "static/imgs/gallery-6.webp"
+                        },
+                        {
+                            "src": "static/imgs/gallery-7.jpg",
+                            "srcJp2": "static/imgs/gallery-7.jp2",
+                            "srcWebP": "static/imgs/gallery-7.webp"
+                        },
+                        {
+                            "src": "static/imgs/gallery-8.jpg",
+                            "srcJp2": "static/imgs/gallery-8.jp2",
+                            "srcWebP": "static/imgs/gallery-8.webp"
+                        }
+                    ]
+                }
+            }
+        },
+        {
             "text": {
                 "primary": true,
                 "center": true,
@@ -64,16 +112,53 @@
             }
         },
         {
+            "quoteCarousel": {
+                "width": "sm",
+                "content": {
+                    "quotes": [
+                        {
+                            "text": "He looks for perfection, and I believe he was a genius",
+                            "source": "Mohamed Zkhiri",
+                            "sourceMore": "Yacout Restaurant"
+                        },
+                        {
+                            "text": "I was astonished by his capacity for artificial fuelling. He liked quivering with sensations all the time",
+                            "source": "Christopher Gibbs",
+                            "sourceMore": "Antique Dealer & Collector"
+                        },
+                        {
+                            "text": "He could be ruthless with people he either felt were tacky, dumb or not conscious enough.",
+                            "source": "Marian McEvoy",
+                            "sourceMore": "Journalist & Author"
+                        },
+                        {
+                            "text": "He could be outrageous at points but he also had very strong principles, that he often couldn’t live up to.",
+                            "source": "Madison Cox",
+                            "sourceMore": "Director of Fondation YSL - Pierre Berge"
+                        },
+                        {
+                            "text": "He was in touch with himself and creation, a confidence in what he thought was right, good and beautiful.",
+                            "source": "Nicolette Meeres",
+                            "sourceMore": "Painter"
+                        }
+                    ]
+                }
+            }
+        },
+        {
             "awards": {
-                "content": [
-                    {
-                        "text": "Morocco’s Finest Aesthete"
-                    }
-                ]
+                "content": {
+                    "items" : [
+                        {
+                            "text": "Morocco’s Finest Aesthete"
+                        }
+                    ]
+                }
             }
         },
         {
             "video": {
+                "margin": "xs",
                 "width": "lg",
                 "title": "Watch the film",
                 "titleLogo": "<svg width='300' height='29' viewBox='0 0 1049 101' xmlns='htt../www.w3.org/2000/svg'><title>watch-the-film</title><path d='M93.64 99.72H78.808L59.944 28.296 40.936 99.72H26.392L.184 1.944H5.8l24.768 92.592h5.904L60.088 11.16l23.04 83.376h6.192l24.768-92.592h5.904L93.64 99.72zm-7.488-9.504L63.256 7.128h-6.048l-23.76 83.088L10.984 1.944H16.6L33.88 74.52 53.176 1.944h14.4l18.288 72.432 18.144-72.432h5.616L86.152 90.216zM202.008 99h-6.048L159.24 6.408h-5.616L116.616 99h-6.048l39.168-97.776h13.248L202.008 99zm-10.8 0h-5.904l-10.368-26.928h-37.728L126.84 99h-5.904l12.816-32.112h44.928L191.208 99zm-13.824-35.28h-42.336l21.312-53.424 21.024 53.424zm-7.488-5.04l-13.68-35.568-13.68 35.568h27.36zM228.712 99h-5.328V16.056h-33.696v-5.184h39.024V99zm9.36 0h-5.328V10.872h39.024v5.184h-33.696V99zm33.696-91.872h-82.08V1.944h82.08v5.184zm74.208 73.584l3.888 3.456c-8.928 10.8-20.304 16.704-36.288 16.704-30.672 0-44.928-24.768-44.928-50.256 0-25.776 14.256-50.544 44.928-50.544 16.848 0 28.368 6.48 36.288 16.848l-3.888 3.456c-9.504-10.944-17.424-15.12-32.4-15.12-26.928 0-39.456 22.176-39.456 45.36 0 22.896 12.816 45.072 39.744 45.072 12.816 0 22.608-4.032 32.112-14.976zm-7.2-6.48l4.176 3.888c-8.928 10.8-17.424 13.968-28.8 13.968-24.048 0-35.568-20.736-35.568-41.616 0-20.736 10.944-41.616 35.28-41.616 11.952 0 20.88 3.6 29.088 14.112l-4.176 3.744c-5.904-8.208-14.112-12.672-24.912-12.672-20.592 0-29.808 18.288-29.808 36.432 0 18.144 9.216 36.432 29.808 36.432 10.224 0 17.568-3.168 24.912-12.672zm97.296-27.36h-63.216V1.944h5.328v39.888h52.56V1.944h5.328v44.928zM445.432 99h-5.328V1.944h5.328V99zm-9.36 0h-5.328V55.944h-52.56V99h-5.328V50.76h63.216V99zm-67.248 0h-5.328V1.944h5.328V99zm147.072 0h-5.328V16.056h-33.696v-5.184h39.024V99zm9.36 0h-5.328V10.872h39.024v5.184h-33.696V99zm33.696-91.872h-82.08V1.944h82.08v5.184zm84.016 39.744h-63.216V1.944h5.328v39.888h52.56V1.944h5.328v44.928zM652.328 99H647V1.944h5.328V99zm-9.36 0h-5.328V55.944h-52.56V99h-5.328V50.76h63.216V99zm-67.248 0h-5.328V1.944h5.328V99zm157.776 0h-63.072V1.944h60.192v5.184h-54.864v86.688h57.744V99zm0-8.928h-53.712V50.616h46.512v5.04h-41.184v29.232h48.384v5.184zm-7.2-43.056h-46.512V10.872h50.832v5.184h-45.504v25.92h41.184v5.04zm105.312 3.888h-49.536V10.872h53.856v5.184H787.4v29.808h44.208v5.04zm0 8.64H787.4V99h-5.328V54.504h49.536v5.04zM778.04 99h-5.328V1.944h63.216v5.184H778.04V99zm85.2 0h-5.328V1.944h5.328V99zm-9.216 0h-5.328V1.944h5.328V99zm91.68-8.928H890.84V1.944h5.328v82.944h49.536v5.184zm0 8.928H881.48V1.944h5.328v91.872h58.896V99zm93.408 0h-5.328V30.6l-26.208 40.608h-10.368L970.856 30.6V99h-5.184V12.456l34.56 53.28h4.896l33.984-52.992V99zm9.36 0h-5.328V7.128h-5.184l-35.28 55.296-35.856-55.296h-4.896V99h-5.184V1.944h12.96l32.976 51.408 32.688-51.408h13.104V99z' fill='#fff' fill-rule='evenodd'/></svg>",

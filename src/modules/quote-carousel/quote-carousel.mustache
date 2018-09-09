@@ -1,0 +1,54 @@
+{{#content}}
+
+        <!-- QUOTE CAROUSEL BLOCK -->
+        <link rel="stylesheet" href="static/modules/quote-carousel/quote-carousel.css" /> 
+        <script src="static/js/flickity.pkgd.min.js"> </script>
+        <div class="Section Quote-Carousel{{#color}} Section--{{.}}{{/color}}{{#margin}} Section--{{.}}{{/margin}}">
+            <div class="Section-Inner Quote-Carousel-Inner{{#width}} Quote-Carousel-Inner--{{.}}{{/width}}">
+
+            {{ #quotes }}
+                <blockquote class="Quote-Carousel-Item">
+
+                    <p class="Quote-Text">
+                        <span class="Quote-Text-Inner">
+                            {{text}}
+                        </span>
+                    </p>
+                    {{#source}}
+                    <footer class="Quote-Source">
+                        {{source}}
+                        {{#sourceMore}}
+                            <div class="Quote-Source-More">{{.}}</div>
+                        {{/sourceMore}}
+                    </footer>
+                    {{/source}}
+                
+                </blockquote>
+            {{ /quotes }}
+
+            </div>
+        </div>
+        <script>
+        var elem = document.querySelector('.Quote-Carousel-Inner');
+        var flkty = new Flickity( elem, {
+            // options
+            cellAlign: 'left',
+            contain: true,
+            prevNextButtons: false,
+            autoPlay: 5000,
+            pauseAutoPlayOnHover: false
+        });
+        </script>
+
+        <div style="position:relative;">
+            <div class="Bg-Mid-Left1"><img data-src="static/imgs/bg-mid-left1.png" class="lazyload" alt="" /></div>
+            <div class="Bg-Mid-Left2"><img data-src="static/imgs/bg-mid-left2.png" class="lazyload" alt="" /></div>
+            
+            <div class="Bg-Mid-Right0"><img data-src="static/imgs/bg-mid-right0.png" class="lazyload" alt="" /></div>
+            <div class="Bg-Mid-Right2"><img data-src="static/imgs/bg-mid-right2.png" class="lazyload" alt="" /></div>
+            <div class="Bg-Mid-Right1"><img data-src="static/imgs/bg-mid-right1.png" class="lazyload" alt="" /></div>
+            <div class="Bg-Mid-Right3"><img data-src="static/imgs/bg-mid-right3.png" class="lazyload" alt="" /></div>
+        </div>
+    
+
+{{/content}}

@@ -1,0 +1,16 @@
+{{#content}}
+
+        <!-- AWARDS BLOCK -->
+        <link rel="stylesheet" href="static/modules/awards/awards.css" /> <script> </script>
+        <div class="Section Awards{{#color}} Section--{{.}}{{/color}}{{#margin}} Section--{{.}}{{/margin}}">
+            <div class="Section-Inner Awards-Inner{{#width}} Awards-Inner--{{.}}{{/width}}">
+
+                {{ #items }}
+                <p class="Awards-Item">
+                    <span class="Awards-Item-Inner">{{text}}</span>
+                </p>
+                {{ /items }}
+            
+            </div>
+        </div>
+{{/content}}

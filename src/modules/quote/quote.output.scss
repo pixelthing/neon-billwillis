@@ -92,7 +92,7 @@
         padding: $gutter 0;
         @include typo-serif();
         font-style: normal;
-        font-size: $font-size-xl;
+        font-size: 2em;
         line-height: 1.2;
         @supports ( animation:none ) {
             opacity: 0;
@@ -106,15 +106,15 @@
         &-Inner {
             position: relative;
             display: inline-block;
-            padding-left: 1.1em;
-            padding-right: 0.9em;
+            padding-left: 1.3em;
+            padding-right: 1.1em;
             &:before,
             &:after {
                 content: '“';
                 position: absolute;
                 top: -0.25em;
                 left: 0;
-                font-size: 4rem;
+                font-size: 2em;
             }
             &:after {
                 content: '”';
@@ -126,7 +126,7 @@
     &-Source {
         @include typo-smallcaps();
         margin: 0;
-        font-size: $font-size-md;
+        font-size: 1rem;
         line-height: 1.2;
         text-transform: lowercase;
         @supports ( animation:none ) {
