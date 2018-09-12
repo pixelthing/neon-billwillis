@@ -44,8 +44,7 @@ const helperAnalytics = function(app,noInit) {
             app.analyticsReady = true;
             registerEvents();
             triggerLoaders();
-            landingPage();
-            sendNavigationTimingMetrics();
+            landingPage()
         }
         
     };
@@ -84,43 +83,6 @@ const helperAnalytics = function(app,noInit) {
         //app.addEventListener('addToBucket', function(ev) {
         //    addToBucket(ev[0], ev[1]);
         //});
-    };
-
-    const sendNavigationTimingMetrics = () => {
-        // Only track performance in supporting browsers.
-        if (!(window.performance && window.performance.timing)) return;
-      
-        // If the window hasn't loaded, run this function after the `load` event.
-        if (document.readyState != 'complete') {
-            window.addEventListener('load', sendNavigationTimingMetrics);
-            return;
-        }
-      
-        const nt = performance.timing;
-        const navStart = nt.navigationStart;
-      
-        const responseStart     = Math.round(nt.responseStart - navStart);
-        const responseEnd       = Math.round(nt.responseEnd - navStart);
-        const domLoaded         = Math.round(nt.domContentLoadedEventStart - navStart);
-        const windowLoaded      = Math.round(nt.loadEventStart - navStart);
-      
-        // In some edge cases browsers return very obviously incorrect NT values,
-        // e.g. 0, negative, or future times. This validates values before sending.
-        const allValuesAreValid = (...values) => {
-            return values.every((value) => value > 0 && value < 1e6);
-        };
-      
-        if (allValuesAreValid(responseStart, responseEnd, domLoaded, windowLoaded)) {
-
-            beacon(false,{
-                eventAction: 'track',
-                nonInteraction: true,
-                [metrics.RESPONSE_START_TIME]   : responseEnd,
-                [metrics.RESPONSE_END_TIME]     : responseEnd,
-                [metrics.DOM_LOAD_TIME]         : domLoaded,
-                [metrics.WINDOW_LOAD_TIME]      : windowLoaded
-            },'Navigation Timing');
-        }
     };
 
     // on landing within the site, set a cookie that records the time the user arrived, and in what section (on-idle/deferred)

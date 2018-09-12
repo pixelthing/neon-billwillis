@@ -56,12 +56,24 @@ const videoFrame = function(el, app) {
         $play.addEventListener('click', playStop);
     };
 
+    let   timeStarted = 0;
     const playStop = function(ev) {
         ev.preventDefault();
         if (!status) {
             play();
+            if ( typeof(performance) !== 'undefined')
+                timeStarted = performance.now();
+            // log it
+            if ( typeof(ga) !== 'undefined')
+                ga('send', 'event', 'video', 'open');
         } else {
             stop();
+            if ( typeof(performance) !== 'undefined') {
+                const timePlayed = performance.now() - timeStarted;
+            }
+            // log it
+            if ( typeof(ga) !== 'undefined')
+                ga('send', 'event', 'video', 'close', false, timePlayed);
         }
     };
 

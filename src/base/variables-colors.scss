@@ -18,11 +18,11 @@
 
 $color-fg: #fff;
 $color-bg: #2e2a24;
-$color-bg-hi: #312c26;
-$color-bg-hi2: #9a8a76;
-$color-bg-lo: #2b2722;
+$color-bg-hi: lighten($color-bg,1%);
+$color-bg-hi2: lighten($color-bg,30%);
+$color-bg-lo: darken($color-bg,1%);
  
-$color-primary: #ffcc00;
+$color-primary: #c29c0e;
 $color-primary-hi: lighten($color-primary,45%);
 $color-primary-light: darken($color-primary,8%);
 $color-primary-lo: darken($color-primary,16%);

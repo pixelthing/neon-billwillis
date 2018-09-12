@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({11:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({9:[function(require,module,exports){
 'use strict';
 
 var _shared = require('./shared');
@@ -7,7 +7,7 @@ var _shared2 = _interopRequireDefault(_shared);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-},{"./shared":21}],21:[function(require,module,exports){
+},{"./shared":16}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -18,10 +18,6 @@ var _app = require('./modules/app');
 
 var _app2 = _interopRequireDefault(_app);
 
-var _helperAnalytics = require('./mixins/helper-analytics');
-
-var _helperAnalytics2 = _interopRequireDefault(_helperAnalytics);
-
 var _helperLazyload = require('./mixins/helper-lazyload');
 
 var _helperLazyload2 = _interopRequireDefault(_helperLazyload);
@@ -29,10 +25,6 @@ var _helperLazyload2 = _interopRequireDefault(_helperLazyload);
 var _helperObjectfit = require('./mixins/helper-objectfit');
 
 var _helperObjectfit2 = _interopRequireDefault(_helperObjectfit);
-
-var _toggle = require('./elements/toggle/toggle');
-
-var _toggle2 = _interopRequireDefault(_toggle);
 
 var _video = require('./modules/video/video');
 
@@ -47,17 +39,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // create a shared instance.
 var instance = (0, _app2.default)();
 
-// register module not associated with dom
+// register the shared modules
 // INDEX.JS
 
-(0, _helperAnalytics2.default)(instance);
-
-// register the shared modules
-instance.registerModules([_toggle2.default, _helperLazyload2.default, _helperObjectfit2.default, _video2.default, _heroFull2.default]);
+instance.registerModules([_helperLazyload2.default, _helperObjectfit2.default, _video2.default, _heroFull2.default]);
 
 exports.default = instance;
 
-},{"./elements/toggle/toggle":10,"./mixins/helper-analytics":13,"./mixins/helper-lazyload":15,"./mixins/helper-objectfit":16,"./modules/app":18,"./modules/hero-full/hero-full":19,"./modules/video/video":20}],20:[function(require,module,exports){
+},{"./mixins/helper-lazyload":11,"./mixins/helper-objectfit":12,"./modules/app":13,"./modules/hero-full/hero-full":14,"./modules/video/video":15}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -129,12 +118,21 @@ var videoFrame = function videoFrame(el, app) {
         $play.addEventListener('click', playStop);
     };
 
+    var timeStarted = 0;
     var playStop = function playStop(ev) {
         ev.preventDefault();
         if (!status) {
             play();
+            if (typeof performance !== 'undefined') timeStarted = performance.now();
+            // log it
+            if (typeof ga !== 'undefined') ga('send', 'event', 'video', 'open');
         } else {
             stop();
+            if (typeof performance !== 'undefined') {
+                var _timePlayed = performance.now() - timeStarted;
+            }
+            // log it
+            if (typeof ga !== 'undefined') ga('send', 'event', 'video', 'close', false, timePlayed);
         }
     };
 
@@ -235,7 +233,7 @@ videoFrame.selector = selector;
 
 exports.default = videoFrame;
 
-},{"lodash.debounce":4,"promise-polyfill":7}],19:[function(require,module,exports){
+},{"lodash.debounce":3,"promise-polyfill":6}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -379,7 +377,7 @@ heroFull.selector = selector;
 
 exports.default = heroFull;
 
-},{"lodash.debounce":4}],18:[function(require,module,exports){
+},{"lodash.debounce":3}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -498,7 +496,7 @@ var app = function app() {
 
 exports.default = app;
 
-},{"../../mixins/helper-debug":14,"lodash.assign":3}],14:[function(require,module,exports){
+},{"../../mixins/helper-debug":10,"lodash.assign":2}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -558,7 +556,7 @@ var helperDebug = function helperDebug(app) {
 
 exports.default = helperDebug;
 
-},{}],16:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -653,7 +651,7 @@ helperObjectFit.selector = selector;
 
 exports.default = helperObjectFit;
 
-},{}],15:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -843,1127 +841,7 @@ helperLazyload.selector = selector;
 
 exports.default = helperLazyload;
 
-},{"intersection-observer":1,"raf":8}],13:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _lodash = require('lodash.assign');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _helperUtilities = require('mixins/helper-utilities');
-
-var _helperUtilities2 = _interopRequireDefault(_helperUtilities);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var helperAnalytics = function helperAnalytics(app, noInit) {
-
-    var utilities = (0, _helperUtilities2.default)(app);
-
-    // previously, we could specify the GA eventCategory in the the data, eg data-js-beacon-blur="Basket,open,from list page,12" or  data-js-beacon-blur="false,open"
-    // hmm, well now we've hijacked the GA eventCategory (it's calculated below in getCategory(), so it's more consistent across the site), so we don't need that first argument, eg we now use data-js-beacon-blur="open,from list page,12" or  data-js-beacon-blur="open"
-    // So we face a question. Do we fix all the old markup with the old datatypes, or deal with the old and new markup side-by-side.
-    var datatypes = {
-        clickers: 'data-js-beacon-click',
-        changers: 'data-js-beacon-change',
-        blurrers: 'data-js-beacon-blur',
-        loaders: 'data-js-beacon-load',
-        submitters: 'data-js-beacon-submit'
-    };
-
-    var defaults = {
-        landingArea: 'GeLandingArea',
-        landingTime: 'GeLandingTime'
-    };
-
-    var metrics = {
-        RESPONSE_START_TIME: 'metric1',
-        RESPONSE_END_TIME: 'metric2',
-        DOM_LOAD_TIME: 'metric3',
-        WINDOW_LOAD_TIME: 'metric4'
-    };
-
-    var pageStart = 0;
-    var formStart = 0;
-    var formTime = 0;
-
-    var init = function init() {
-
-        // choose to run init or not by including app or not
-        if (noInit) {
-            return;
-        }
-
-        // don't risk registering analytics events more than once a page
-        if (!app.analyticsReady) {
-            app.analyticsReady = true;
-            registerEvents();
-            triggerLoaders();
-            landingPage();
-            sendNavigationTimingMetrics();
-        }
-    };
-
-    // register the internal and shorthand events
-    var registerEvents = function registerEvents() {
-
-        //app.addEventListener('beacon', function registerEventsMethod1 (data){
-        //    beacon(false, data);
-        //});
-        //app.addEventListener('beaconLoaders', function registerEventsMethod2 (data){
-        //    triggerLoaders();
-        //});
-        // new
-        document.addEventListener('click', function () {
-            if (event.target.matches('[' + datatypes.clickers + ']')) {
-                beacon();
-            }
-        });
-        document.addEventListener('change', function () {
-            if (event.target.matches('[' + datatypes.changers + ']')) {
-                beacon();
-            }
-        });
-        document.addEventListener('blur', function () {
-            if (event.target.matches('[' + datatypes.blurrers + ']')) {
-                beacon();
-            }
-        });
-        document.addEventListener('submit', function () {
-            if (event.target.matches('[' + datatypes.submitters + ']')) {
-                beacon();
-            }
-        });
-        // any module could put this user into a populaton bucket, eg in the företag-gas-teckna area, put this user in the "engaged" bucket this session
-        //app.addEventListener('addToBucket', function(ev) {
-        //    addToBucket(ev[0], ev[1]);
-        //});
-    };
-
-    var sendNavigationTimingMetrics = function sendNavigationTimingMetrics() {
-        // Only track performance in supporting browsers.
-        if (!(window.performance && window.performance.timing)) return;
-
-        // If the window hasn't loaded, run this function after the `load` event.
-        if (document.readyState != 'complete') {
-            window.addEventListener('load', sendNavigationTimingMetrics);
-            return;
-        }
-
-        var nt = performance.timing;
-        var navStart = nt.navigationStart;
-
-        var responseStart = Math.round(nt.responseStart - navStart);
-        var responseEnd = Math.round(nt.responseEnd - navStart);
-        var domLoaded = Math.round(nt.domContentLoadedEventStart - navStart);
-        var windowLoaded = Math.round(nt.loadEventStart - navStart);
-
-        // In some edge cases browsers return very obviously incorrect NT values,
-        // e.g. 0, negative, or future times. This validates values before sending.
-        var allValuesAreValid = function allValuesAreValid() {
-            for (var _len = arguments.length, values = Array(_len), _key = 0; _key < _len; _key++) {
-                values[_key] = arguments[_key];
-            }
-
-            return values.every(function (value) {
-                return value > 0 && value < 1e6;
-            });
-        };
-
-        if (allValuesAreValid(responseStart, responseEnd, domLoaded, windowLoaded)) {
-            var _beacon;
-
-            beacon(false, (_beacon = {
-                eventAction: 'track',
-                nonInteraction: true
-            }, _defineProperty(_beacon, metrics.RESPONSE_START_TIME, responseEnd), _defineProperty(_beacon, metrics.RESPONSE_END_TIME, responseEnd), _defineProperty(_beacon, metrics.DOM_LOAD_TIME, domLoaded), _defineProperty(_beacon, metrics.WINDOW_LOAD_TIME, windowLoaded), _beacon), 'Navigation Timing');
-        }
-    };
-
-    // on landing within the site, set a cookie that records the time the user arrived, and in what section (on-idle/deferred)
-    var landingPage = function landingPage() {
-
-        var landingPageDoIt = function landingPageDoIt() {
-
-            var cookieTimeName = defaults.landingTime;
-            var cookieTimeValue = sessionStorage[cookieTimeName];
-            // check to see if a cookie for this  exists
-            if (!cookieTimeValue) {
-                var cookieAreaName = defaults.landingArea;
-                var cookieCategory = getCategory();
-                sessionStorage.setItem(cookieTimeName, Date.now());
-                sessionStorage.setItem(cookieAreaName, cookieCategory);
-            }
-        };
-
-        // do this on idlecallback if possible
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(landingPageDoIt);
-            // otherwise, just push it out.
-        } else {
-            setTimeout(landingPageDoIt, 500);
-        }
-    };
-
-    // on page load events triggers
-    var triggerLoaders = function triggerLoaders() {
-
-        var $loaders = document.querySelectorAll('[ ' + datatypes.loaders + ']');
-        $loaders.forEach(function (index, el) {
-            // send the event
-            beacon(false, el.getAttribute(datatypes.loaders));
-            // remove the attribute so it's not triggered again
-            el.removeAttr(datatypes.loaders);
-        });
-    };
-
-    // in a GA event, the first parameter is "eventCategory", and this method attempts to normalise that so that it's 
-    // relation to an area of the site is consistent and usable.
-    var getCategory = function getCategory(beaconBucket, extraLabel) {
-
-        var $body = document.querySelector('body');
-        var category = '';
-        var dataLvl1 = $body.getAttribute('data-lvl1') || '';
-        var dataLvl2 = $body.getAttribute('data-lvl2') || '';
-        var dataLvl3 = $body.getAttribute('data-lvl3') || '';
-
-        // is this page part of an "app", eg if you're in the Privat/El/Teckna workflow, you're inside a backend app
-        // called "GeElPrivat" and that will be revealed in a datatype on the <BODY> tag.
-        var appName = $body.getAttribute('data-cookie-app');
-        if (appName) {
-            category = appName + (beaconBucket && beaconBucket.toLowerCase() !== 'bucket' ? dataLvl3 : '');
-            // Otherwise, if we're not in an app, most pages will have other data attributes attached to the <BODY>
-        } else if (dataLvl1) {
-            category = dataLvl1 + dataLvl2 + dataLvl3;
-            // lastly, there's a fallback in case the body has no data attributes, use the first two levels of the path
-        } else {
-            category = 'Ge';
-            var pathArray = self.location.pathname.split('/');
-            for (var i = 0; i < pathArray.length; i++) {
-                if (i == 0 || i > 2 || pathArray[i].indexOf('.') >= 0) {
-                    continue;
-                }
-                category += utilities.capitalizeFirstLetter(pathArray[i]);
-            }
-        }
-
-        // add any extraLabel
-        if (extraLabel) {
-            category += utilities.capitalizeFirstLetter(extraLabel.toLowerCase());
-        }
-
-        // add Beacon or Bucket, just so we can distinguish it from other events
-        if (beaconBucket) {
-            category += utilities.capitalizeFirstLetter(beaconBucket.toLowerCase());
-        }
-
-        return category;
-    };
-
-    // beacon supporting helper function
-    // take a string that represents the action/label/value (not category) (eg "click,from list page,12"), 
-    // and parse it to an object (eg {eventAction:"click",eventLabel:"from list page",eventValue:"12"}).
-    var parseData = function parseData(data, $el) {
-
-        // if the data is not an object, we need to do some string parsing
-        if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) !== 'object') {
-
-            // we need something - **anything** - to base the data on!
-            if (!data.length) {
-                console.warn('helperAnalytics: data sent was an empty string', $el);
-                return false;
-            }
-
-            var dataArray = data.split(',');
-
-            // *** the data should now be an array with between 1 and 3 items, eg [eventAction,eventLabel,eventValue]
-
-            // eventAction is easy (also not that eventAction is mandatory, the )
-            var dataAction = dataArray[0].trim();
-            if (['false', 'undefined', 'null', ''].indexOf(dataAction) >= 0) {
-                dataAction = false;
-            }
-            // eventValue is easy
-            var dataValue = dataArray[2] ? dataArray[2].trim() : false;
-            if (['false', 'undefined', 'null', ''].indexOf(dataValue) >= 0) {
-                dataValue = false;
-            }
-            // eventLabel has some custom markup options 
-            var dataLabel = dataArray[1] ? dataArray[1].trim() : false;
-            if (['false', 'undefined', 'null', ''].indexOf(dataLabel) >= 0) {
-                dataLabel = false;
-            }
-            // custom markup - ":value" means "report the value attribute". Works with all attribute names.
-            if (dataLabel && $el && dataLabel.substring(0, 1) === ':') {
-                var attr = dataLabel.substring(1);
-                // don't report of radio buttons that have been switched to null
-                if (attr && $el.getAttribute('type') === 'radio' && $el.checked !== true) {
-                    return;
-                    // if this is a checkbox that has been unchecked, report the value as null (not the $el.val())
-                } else if (attr && $el.getAttribute('type') === 'checkbox' && $el.checked !== true) {
-                    dataLabel = 'null';
-                    // otherwise report on the vaue of the attribute
-                } else {
-                    dataLabel = $el.getAttribute(dataLabel.substring(1));
-                }
-            }
-            data = {
-                'eventAction': dataAction,
-                'eventLabel': dataLabel,
-                'eventValue': dataValue
-            };
-            // if the data is passed as an object, just do some minimal error checking
-        } else {
-            // minimum requirement to send a GA event is the Category (which - if it's missing - we'll reset later) and Action
-            if (!(data.eventAction && data.eventAction.length)) {
-                console.warn('helperAnalytics: data sent was an object, but didn\'t have a valid eventAction', $el, data);
-                return false;
-            }
-        }
-
-        return data;
-    };
-
-    // send a GA event
-    var lastBeacon = null;
-    var lastBeaconTime = null;
-    var beacon = function beacon(ev, data, categoryOverride) {
-
-        // two ways of triggering this method:
-        // - via an HTML API, eg something like this on a DOM element: data-js-beacon-blur="Basket,open,from list page,12". This will have and event "ev", but no "data"
-        // - via JS, eg helperAnalytics.beacon({category:'Basket',action:'open',label:'from list page',value:12}). This will have no event "ev", but *will* have the object passed in as "data"
-
-        var $el = ev ? $(this) : false;
-
-        // HTML API METHOD (data defined as a datatype), eg <a data-js-beacon-click="open,from list page,12" />
-        if ($el && typeof data === 'undefined') {
-            data = $el.getAttribute(datatypes.clickers) || $el.getAttribute(datatypes.changers) || $el.getAttribute(datatypes.blurrers) || $el.getAttribute(datatypes.submitters);
-        }
-        // ERROR - NO DATA TO BEACON??
-        if (typeof data === 'undefined') {
-            console.warn('helperAnalytics: NO DATA!', ev, data);
-            return;
-        }
-        // REFINE THE DATA INTO DATA READY TO SEND (normalise as an object)
-        data = parseData(data, $el);
-
-        // if the data isn't good in some way, exit now before we cause a JS error 
-        // (don't panic, console error was already done in parseData())
-        if (data === false) {
-            return;
-        }
-        // GET THE CATEGORY
-        var eventCategory = categoryOverride || getCategory('Beacon', data.eventCategory);
-
-        // FINAL ASSEMBLY OF GA EVENT OBJECT
-        var dataToSend = {
-            hitType: 'event',
-            eventCategory: eventCategory,
-            eventAction: data.eventAction,
-            eventLabel: data.eventLabel,
-            eventValue: data.eventValue ? parseFloat(data.eventValue) : false
-        };
-
-        // EXTRA DATA FIELDS??
-        var dataKeys = Object.keys(data);
-        var dataExists = Object.keys(dataToSend);
-        var dataExtra = {};
-        dataKeys.map(function (key, index) {
-            if (dataExists.indexOf(key) < 0) {
-                dataExtra[key] = data[key];
-            }
-        });
-        dataToSend = (0, _lodash2.default)(dataExtra, dataToSend);
-
-        // BEACON MULTI_POSTING CHECK (checke the same beacon wasn't set less that 0.5s ago)
-        var dataToSendString = JSON.stringify(dataToSend);
-        var now = new Date();
-        if (lastBeacon === dataToSendString && now - lastBeaconTime < 500) {
-            return;
-        }
-        lastBeacon = JSON.stringify(dataToSend);
-        lastBeaconTime = new Date();
-
-        // does ga exist in the page (don't error out)
-        if (typeof ga !== 'function') {
-            // console and exit.
-            console.warn('helperAnalytics: NO GA!', dataToSend);
-            return;
-        }
-
-        // attempt to beacon the event
-        try {
-            ga('send', dataToSend);
-        } catch (error) {
-            console.warn('helperAnalytics: error sending beacon', error, ev, data, dataToSend);
-        }
-    };
-
-    // method so any module could put this user into a population bucket.
-    // eg in the företag-gas-teckna area, put this user in the "engaged" bucket this session
-    // option: the "ab" parameter can add a suffix to the bucket label, to discriminate in multi-testing environments (eg, setting an "engaged" bucket to "2018JanTest" results in a GA label of "engaged-2018JanTest")
-    // option: GA label can also be communicated through a bucket.
-    var addToBucket = function addToBucket(bucket, ab) {
-        var category = getCategory('Bucket');
-        // check to see if a cookie for this bucket exists (remove any '-late' suffixes, or we'll be testing against the wrong indicator)
-        var cookieName = category + utilities.capitalizeFirstLetter(bucket.replace('-late', '').toLowerCase());
-        var cookieValue = sessionStorage[cookieName];
-        if (!cookieValue) {
-            // Calc timings since landing page (in whole secs)
-            var cookieTimeName = defaults.landingTime;
-            var cookieTimeValue = sessionStorage[cookieTimeName];
-            var secSince = 0;
-            if (cookieTimeValue) {
-                var timeNow = Date.now();
-                secSince = parseInt((timeNow - parseInt(cookieTimeValue)) / 1000);
-            }
-            // drop a cookie, so this user isn't entered into this bucket again this session
-            sessionStorage.setItem(cookieName, secSince);
-            // beacon
-            beacon(false, {
-                'eventAction': 'bucket',
-                'eventLabel': bucket + (ab ? '-' + ab : ''),
-                'eventValue': secSince
-            });
-        }
-        // if the cookie bucket is a decision, remove any conversion buckets, because the user might be doing a second pass!
-        var cookieConversionName = category + 'Conversion';
-        var cookieConversion = sessionStorage[cookieConversionName];
-        if (bucket.toLowerCase().indexOf('decision') >= 0 && typeof cookieConversion !== 'undefined') {
-            sessionStorage.removeItem(cookieConversionName);
-        }
-    };
-
-    var getDefaults = function getDefaults() {
-        return defaults;
-    };
-
-    return {
-        init: init(),
-        beacon: beacon,
-        triggerLoaders: triggerLoaders,
-        getDefaults: getDefaults,
-        getCategory: getCategory
-    };
-};
-
-exports.default = helperAnalytics;
-
-},{"lodash.assign":3,"mixins/helper-utilities":17}],10:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _raf = require('raf');
-
-var _raf2 = _interopRequireDefault(_raf);
-
-var _helperA11y = require('mixins/helper-a11y');
-
-var _helperA11y2 = _interopRequireDefault(_helperA11y);
-
-var _helperUtilities = require('mixins/helper-utilities');
-
-var _helperUtilities2 = _interopRequireDefault(_helperUtilities);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * @module
- * 
- */
-
-var selector = '[data-js-toggle]';
-var toggleContent = function toggleContent(el, app) {
-
-    var a11yHelper = (0, _helperA11y2.default)(app);
-    var utilities = (0, _helperUtilities2.default)(app);
-
-    var acceptingClicks = false; // true during the toggling transition, when no further action can be started
-    var status = false; // current status of toggle: TRUE: content hidden (opposite visible) : FALSE: content visible (opposite hidden)
-    var initStatus = false; // the initial state of the toggle (TRUE: content hidden (opposite visible) : FALSE: content visible (opposite hidden))
-    var keyboardDriven = false; // lets us know if the opening action was keyboard or mouseclick/tap driven (helps with determining what UI focus and hints to use)
-
-    var $window = $(window);
-    var content = el;
-    var $content = $(content); // the $ obj of primary content content container that will be toggled off and one
-    var $opposite = $($content.attr('data-toggle-opposite')); // the optional $ obj of any secondary container that needs to be toggled in the opposite direction at the same time.
-    var $buttons = $($content.attr('data-toggle-button')); // the $ obj of any buttons/inputs that will carry out the toggling
-    var requiredVal = $content.attr('data-toggle-button-value'); // if the elements that trigger the toggling are an input/select, what is the required value that triggers the toggle?
-
-    var contentHeight = 2000; // default content height
-    var contentTop = 0; // default content top
-    var oppositeHeight = 2000; // default opposite content height
-    var oppositeTop = 0; // default opposite content top
-    var buttonTop = 0; // button top position
-    var duration = 300; // transition duration
-
-    /* classes */
-
-    var classContentReady = 'Toggle-Content--ready';
-    var classContentStateVisible = 'Toggle-Content--visible';
-    var classContentStateHidden = 'Toggle-Content--hidden';
-    var classContentSection = 'Toggle-Content--section';
-    var classContentHeight = 'Toggle-Content--height';
-    var classContentAnimate = 'Toggle-Content--animate';
-
-    var classButtonReady = 'Toggle-Btn--ready';
-    var classButtonStateUnToggled = 'Toggle-Btn--off';
-    var classButtonStateToggled = 'Toggle-Btn--on';
-
-    var classOppositeReady = 'Toggle-Opposite--ready';
-    var classOppositeStateHidden = 'Toggle-Opposite--hidden';
-    var classOppositeStateVisible = 'Toggle-Opposite--visible';
-    var classOppositeSection = 'Toggle-Opposite--section';
-    var classOppositeHeight = 'Toggle-Opposite--height';
-    var classOppositeAnimate = 'Toggle-Opposite--animate';
-
-    var init = function init() {
-        // don't init if inside a popup - it will be initialised when the popup is initialised
-        if ($content.closest('[data-js-popup]').length) {
-            return;
-        }
-        // determine if components need to transition heights as well as opacity
-        if ($content.attr('data-toggle-height') !== undefined) {
-            $content.addClass(classContentHeight);
-        }
-        if ($content.attr('data-toggle-opposite-height') !== undefined) {
-            $opposite.addClass(classOppositeHeight);
-        }
-        // measure content before it is set and set the css 
-        measureAndSet();
-        // what is the initial state (which we then say if the current state - at this point)
-        initStatus = getInitState();
-        status = initStatus;
-        // initialise the paload state
-        initState();
-        // initialise the buttons
-        registerEvents();
-        // start accepting clicks
-        acceptingClicks = true;
-        // notify other methods that the toggle is ready
-        (0, _raf2.default)(function tick1() {
-            (0, _raf2.default)(function tick2() {
-                app.trigger('toggleReady', [$content]);
-            });
-        });
-        setTimeout(function () {
-            measureAfterInit();
-        }, 800);
-    };
-
-    // measure content before it is set and THEN set the css to create the initial state
-    var measureAndSet = function measureAndSet() {
-        // content height
-        var contentRect = content.getBoundingClientRect();
-        contentTop = contentRect.top + $window.scrollTop();
-        contentHeight = contentRect.height;
-        content.style.setProperty('--maxHeight', contentHeight + 'px');
-        // opposite height
-        if ($opposite && $opposite.length) {
-            oppositeHeight = $opposite[0].offsetHeight;
-            $opposite[0].style.setProperty('--maxHeight', contentHeight + 'px');
-        }
-    };
-
-    // measure after the initial state is set (to find the "initial" position of the buttons)
-    var measureAfterInit = function measureAfterInit() {
-        // button initial positions (only complicated by potentially being multiple buttons to the same content)
-        $.each($buttons, function (index, button) {
-            var $button = $(button);
-            var buttonRect = button.getBoundingClientRect();
-            $button.data('toggleTop', buttonRect.top + $window.scrollTop());
-        });
-    };
-
-    // on initialisation, get the initial state of this toggle
-    var getInitState = function getInitState() {
-        // what is the default initial state
-        var output = $content.attr('data-toggle-init-closed') !== undefined ? true : false;
-        // override it if we're basing the staus on a radio/checkbox (could be set by form being prefilled by JS)
-        if (typeof requiredVal !== 'undefined') {
-            var buttonVal = $buttons.filter(':checked').val();
-            output = requiredVal.localeCompare(buttonVal) === 0 ? false : true;
-            // otherwise, override it by reading the class of the content
-        } else if ($content.hasClass(classContentStateVisible)) {
-            output = $content.hasClass(classContentStateVisible) ? false : true;
-        }
-        return output;
-    };
-
-    // on inirtialisation, set the pieces up as it should be.
-    var initState = function initState() {
-        // set-up the initial state (before animations are set)
-        toggleAll(status);
-        // only add the animation classes after the state is set-up (stops initial animate-in)
-        (0, _raf2.default)(function tick1() {
-            (0, _raf2.default)(function tick2() {
-                $content.addClass(classContentReady).addClass(classContentAnimate);
-                $opposite.addClass(classOppositeReady).addClass(classOppositeAnimate);
-                $buttons.addClass(classButtonReady);
-            });
-        });
-    };
-
-    // register events
-    var registerEvents = function registerEvents() {
-        var action = 'click';
-        if ($buttons.is('input[type="checkbox"]') || $buttons.is('input[type="radio"]')) {
-            action = 'change';
-        }
-        $buttons.on(action, function (ev) {
-            var $button = $(this);
-            // if the button is a checkbox/radio and requires a specific value
-            if (typeof requiredVal !== 'undefined') {
-                var buttonVal = $buttons.filter(':checked').val();
-                status = requiredVal.localeCompare(buttonVal) === 0 ? false : true;
-                // if no value is required, toggle the status on each click
-            } else {
-                status = !status;
-            }
-            keyboardDriven = utilities.keyboardClick(ev);
-            checkNeedForScrollThenToggle(status, ev, $button);
-        });
-        // trigger event from outside.
-        $content.on('toggleAll', function () {
-            toggleAll();
-        });
-    };
-
-    var checkNeedForScrollThenToggle = function checkNeedForScrollThenToggle(changeTo, ev, $button) {
-        var buttonTop = $button.data('toggleTop'); // what is the "original" (eg, closed) position of this button?
-        var scrollTop = $window.scrollTop();
-        var outOfViewPort = buttonTop < scrollTop ? true : false;
-        //console.log(buttonTop, scrollTop, outOfViewPort);
-        if (outOfViewPort) {
-            setTimeout(function () {
-                toggleAll(status, ev, $button);
-            }, duration + 50);
-            scrollToStart(buttonTop, scrollTop, $button);
-        } else {
-            (0, _raf2.default)(function tick1() {
-                (0, _raf2.default)(function tick2() {
-                    toggleAll(status, ev, $button);
-                });
-            });
-        }
-    };
-
-    var scrollToStart = function scrollToStart(buttonTop, scrollTop, $button) {
-        // Is there a sticky menu that is in the sticky point? This will effect scrolling point.
-        var stickyActive = app.navStickyStatus;
-        var newTop = buttonTop - (stickyActive ? 70 : 0) - 100 + 'px';
-        $content.css('transition-timing-function', 'linear');
-        // scroll for a period of time equal to the distance in px needed to scroll (so a small amount doesn't look horribly slow), up to a maximum amount of time (800ms)
-        $('html,body').animate({ scrollTop: newTop }, { 'duration': duration, 'easing': 'swing' }); // same duration as the max-height transition
-    };
-
-    // trigger the toggle transition
-    var toggleAll = function toggleAll(changeTo, ev, $button) {
-        // if no state decided, toggle to the oppisite of the existing status
-        if (typeof changeTo === 'undefined') {
-            changeTo = !status;
-        }
-        // do it!
-        toggleContent(changeTo, ev);
-        toggleOpposite(changeTo, ev);
-        toggleButton(changeTo, ev, $button);
-        // notify other methods that the toggle has finished
-        setTimeout(function () {
-            app.trigger('toggleToggled', [$content, changeTo]);
-        }, duration);
-        // update internal status
-        status = changeTo;
-    };
-
-    // toggle the content area
-    var toggleContent = function toggleContent(state, ev) {
-        if (state === true) {
-            $content.removeClass(classContentStateVisible);
-            // hide all aria and hidden fields
-            a11yHelper.hide($content);
-        } else {
-            $content.addClass(classContentStateVisible);
-            // enable all aria and hidden fields
-            a11yHelper.show($content);
-            // if we're keyboard navigating, focus on the first item in the content
-            a11yHelper.reFocus(ev, $content.find('a,button,input,select').first());
-        }
-    };
-
-    // toggle the button
-    var toggleButton = function toggleButton(state, ev, $button) {
-        if (!$buttons.length) {
-            return;
-        }
-        if (state === true) {
-            $buttons.addClass(classButtonStateUnToggled).removeClass(classButtonStateToggled);
-        } else {
-            $buttons.addClass(classButtonStateToggled).removeClass(classButtonStateUnToggled);
-        }
-    };
-
-    // toggle the optional opposite area
-    var toggleOpposite = function toggleOpposite(state, ev) {
-        if (!$opposite.length) {
-            return;
-        }
-        if (state) {
-            $opposite.addClass(classOppositeStateVisible);
-        } else {
-            $opposite.removeClass(classOppositeStateVisible);
-        }
-    };
-
-    return {
-        init: init()
-    };
-};
-
-toggleContent.selector = selector;
-
-exports.default = toggleContent;
-
-},{"mixins/helper-a11y":12,"mixins/helper-utilities":17,"raf":8}],17:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _localeComparePolyfill = require('locale-compare-polyfill');
-
-var _localeComparePolyfill2 = _interopRequireDefault(_localeComparePolyfill);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * @method
- */
-var helperUtilities = function helperUtilities(app) {
-
-    var init = function init() {
-        // only init this stuff once please!
-        if (!app.utilitesInit) {
-            detectIos();
-            detectAndroid();
-            detectIE();
-            detectEdge();
-            detectTouch();
-            polyfills();
-            detectCachedPage();
-        }
-        app.utilitesInit = true;
-    };
-
-    var detectIos = function detectIos() {
-        var userAgentTest = navigator.userAgent.toLowerCase();
-        if (typeof document.querySelectorAll != 'undefined' && !document.querySelector('html').classList.contains('ios') && /iphone|ipad|ipod/i.test(userAgentTest)) {
-            window.PLATFORM_IOS = true;
-
-            if (/iphone|ipod|ipad/i.test(userAgentTest)) {
-                document.querySelector('html').classList.add('ios');
-                if (/iphone|ipod/i.test(userAgentTest)) {
-                    document.querySelector('html').classList.add('iphone');
-                } else if (/ipad/i.test(userAgentTest)) {
-                    document.querySelector('html').classList.add('ipad');
-                }
-                if (document.querySelector('body')) {
-                    // testing just because of a bug in the SC5 pattern library
-                    document.querySelector('body').setAttribute('ontouchstart', ''); // this is an old iOS hack to get :hover and :active states working. Not needed for Android.
-                }
-                var safariVersMaj = /version\/([0-9]*)./.exec(userAgentTest);
-                if (safariVersMaj) {
-                    safariVersMaj = parseInt(safariVersMaj[1]);
-                    document.querySelector('html').classList.add('ios' + safariVersMaj);
-                }
-            }
-        }
-    };
-
-    var detectAndroid = function detectAndroid() {
-        var userAgentTest = navigator.userAgent.toLowerCase();
-        if (typeof document.querySelectorAll != 'undefined' && !document.querySelector('html').classList.contains('android') && /android/i.test(userAgentTest)) {
-            window.PLATFORM_ANDROID = true;
-
-            if (/android/i.test(userAgentTest) && /mobile/i.test(userAgentTest)) {
-                document.querySelector('html').classList.add('android', 'android-mobile');
-            } else if (/android/i.test(userAgentTest)) {
-                document.querySelector('html').classList.add('android', 'android-tablet');
-            }
-            // detect samsung browser variation of Chromium (it's a big enough segment that it's worth flagging)
-            if (/samsungbrowser/i.test(userAgentTest)) {
-                document.querySelector('html').classList.add('samsung-browser');
-            }
-            // detect if this version of Android Chrome supports 100%VH as the minimum vertical space (on page load, with url bar/tabs) or maximum vertical space (after scrolling down). 
-            // The behaviour changed in 56, and it has a profound effect if we're trying to guess the vertical size of the screen in CSS! This effects Samsung Browser too, as it normally lags about 8 versions behind in chromium.
-            var chromeVersMaj = /chrome\/([0-9]*)./.exec(userAgentTest);
-            if (chromeVersMaj) {
-                chromeVersMaj = parseInt(chromeVersMaj[1]);
-                if (chromeVersMaj < 56) {
-                    document.querySelector('html').classList.add('android-vh-old');
-                }
-                // else mark that this is a non chrome browsers (probably the old webkit one or possibly Opera mini)
-            } else {
-                window.PLATFORM_ANDROID_PRECHROME = true;
-                document.querySelector('html').classList.add('android-nochrome');
-            }
-        }
-    };
-
-    var detectIE = function detectIE() {
-        var userAgentTest = navigator.userAgent.toLowerCase();
-        if (typeof document.querySelectorAll != 'undefined' && !document.querySelector('html').classList.contains('ie') && /trident/i.test(userAgentTest)) {
-            if (/trident/i.test(userAgentTest)) {
-                window.BROWSER_IE = true;
-                document.querySelector('html').classList.add('ie');
-                var ieVersMaj = /rv:([0-9]*)./.exec(userAgentTest);
-                if (ieVersMaj) {
-                    ieVersMaj = parseInt(ieVersMaj[1]);
-                    document.querySelector('html').classList.add('ie' + ieVersMaj);
-                }
-            }
-        }
-    };
-
-    var detectEdge = function detectEdge() {
-        var userAgentTest = navigator.userAgent.toLowerCase();
-        if (typeof document.querySelectorAll != 'undefined' && !document.querySelector('html').classList.contains('edge') && / Edge/i.test(userAgentTest)) {
-            if (/edge/i.test(userAgentTest)) {
-                window.BROWSER_EDGE = true;
-                document.querySelector('html').classList.add('edge');
-                var EdgeVersMaj = /edge\/([0-9]*)./.exec(userAgentTest);
-                if (EdgeVersMaj) {
-                    EdgeVersMaj = parseInt(EdgeVersMaj[1]);
-                    document.querySelector('html').classList.add('edge' + EdgeVersMaj);
-                }
-            }
-        }
-    };
-
-    // detect touch screens on first countact with a big squidgy finger
-    var detectTouch = function detectTouch(obj) {
-        window.addEventListener('touchstart', function onFirstTouch() {
-            document.querySelector('html').classList.add('touch');
-            window.TOUCH_ENABLED = true;
-            window.removeEventListener('touchstart', onFirstTouch, false);
-        }, supportsPassive ? { passive: true } : false);
-    };
-
-    // remove unwanted selected text (often a byproduct of accidently double clicking on a button, link, etc)
-    var unselectAllText = function unselectAllText() {
-        if (document.selection) {
-            document.selection.empty();
-        } else if (window.getSelection) {
-            window.getSelection().removeAllRanges();
-        }
-    };
-
-    // Test via a getter in the options object to see if the passive property is accessed
-    var supportsPassive = false;
-    try {
-        var opts = Object.defineProperty({}, 'passive', {
-            get: function get() {
-                supportsPassive = true;
-            }
-        });
-        window.addEventListener("test", null, opts);
-    } catch (e) {}
-
-    // our own clone
-    var clone = function clone(obj) {
-
-        var copy;
-
-        // Handle the 3 simple types, and null or undefined
-        if (null === obj || "object" != (typeof obj === 'undefined' ? 'undefined' : _typeof(obj))) return obj;
-
-        // Handle Date
-        if (obj instanceof Date) {
-            copy = new Date();
-            copy.setTime(obj.getTime());
-            return copy;
-        }
-
-        // Handle Array
-        if (obj instanceof Array) {
-            copy = [];
-            for (var i = 0, len = obj.length; i < len; i++) {
-                copy[i] = clone(obj[i]);
-            }
-            return copy;
-        }
-
-        // Handle Object
-        if (obj instanceof Object) {
-            copy = {};
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
-            }
-            return copy;
-        }
-
-        throw new Error("Unable to copy obj! Its type isn't supported.");
-    };
-
-    // array intersection method: http://stackoverflow.com/posts/1885766/revisions
-    var intersect = function intersect(a, b) {
-        var d = {};
-        var results = [];
-        for (var i = 0; i < b.length; i++) {
-            d[b[i]] = true;
-        }
-        for (var j = 0; j < a.length; j++) {
-            if (d[a[j]]) results.push(a[j]);
-        }
-        return results;
-    };
-
-    // scroll the page to the top of an element
-    var scrollToEl = function scrollToEl(selector, duration) {
-        if (duration < 0) duration = 600;
-        $("html, body").animate({ scrollTop: $(selector).offset().top }, duration);
-    };
-
-    // from http://www.albertogasparin.it/articles/2014/04/detect-css-support-of-property-value/
-    var featureTestEl = {};
-    var featureTest = function featureTest(property, value, noPrefixes) {
-        // Thanks Modernizr!
-        var prop = property + ':';
-        // only mess with DOM one time if we're going to use this again and again
-        if (typeof featureTestEl.style === 'undefined') {
-            featureTestEl = document.createElement('test');
-        }
-        var featureTestStyle = featureTestEl.style;
-        if (!noPrefixes) {
-            featureTestStyle.cssText = prop + ['-webkit-', '-moz-', '-ms-', '-o-', ''].join(value + ';' + prop) + value + ';';
-        } else {
-            featureTestStyle.cssText = prop + value;
-        }
-        return featureTestStyle[property];
-    };
-
-    var polyfills = function polyfills() {
-
-        // isInteger polyfill (not in IE)
-        Number.isInteger = Number.isInteger || function (value) {
-            return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
-        };
-
-        // custom event polyfill
-        (function () {
-            if (typeof window.CustomEvent === "function") return false;
-            function CustomEvent(event, params) {
-                params = params || { bubbles: false, cancelable: false, detail: undefined };
-                var evt = document.createEvent('CustomEvent');
-                evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-                return evt;
-            }
-            CustomEvent.prototype = window.Event.prototype;
-            window.CustomEvent = CustomEvent;
-        })();
-
-        // padLeft (polyfilling the native padStart() method)
-        // https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
-        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
-        if (!String.prototype.padStart) {
-            String.prototype.padStart = function padStart(targetLength, padString) {
-                targetLength = targetLength >> 0; //truncate if number or convert non-number to 0;
-                padString = String(typeof padString !== 'undefined' ? padString : ' ');
-                if (this.length > targetLength) {
-                    return String(this);
-                } else {
-                    targetLength = targetLength - this.length;
-                    if (targetLength > padString.length) {
-                        padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
-                    }
-                    return padString.slice(0, targetLength) + String(this);
-                }
-            };
-        }
-    };
-
-    var getAppName = function getAppName() {
-        return $('[data-cookie-app]').data('cookie-app');
-    };
-
-    var detectCachedPage = function detectCachedPage() {
-        //window.addEventListener( 'pageshow', function( ev ){
-        //    if (window.performance && window.performance.navigation.type=='2') {
-        //        alert('CACHED')
-        //       console.log('CACHED!!')
-        //    }
-        //});
-    };
-
-    // URL LOCATION/SEARCH MANIPULATION
-
-    var searchToHash = function searchToHash() {
-        var h = {};
-        if (window.location.search == undefined || window.location.search.length < 1) {
-            return h;
-        }
-        var q = window.location.search.slice(1).split('&');
-        for (var i = 0; i < q.length; i++) {
-            var key_val = q[i].split('=');
-            // replace '+' (alt space) char explicitly since decode does not
-            var hkey = decodeURIComponent(key_val[0]).replace(/\+/g, ' ');
-            var hval = decodeURIComponent(key_val[1]).replace(/\+/g, ' ');
-            if (h[hkey] == undefined) {
-                h[hkey] = [];
-            }
-            h[hkey].push(hval);
-        }
-        return h;
-    };
-
-    var hashToSearch = function hashToSearch(h) {
-        var search = "?";
-        for (var k in h) {
-            for (var i = 0; i < h[k].length; i++) {
-                search += search == "?" ? "" : "&";
-                search += encodeURIComponent(k) + "=" + encodeURIComponent(h[k][i]);
-            }
-        }
-        if (search && search.trim() === '?') {
-            search = '';
-        }
-        return search;
-    };
-
-    var getQueryVariable = function getQueryVariable(variable) {
-        var query = window.location.search.substring(1);
-        var vars = query.split('&');
-        for (var i = 0; i < vars.length; i++) {
-            var pair = vars[i].split('=');
-            if (decodeURIComponent(pair[0]) == variable) {
-                return decodeURIComponent(pair[1]);
-            }
-        }
-        //console.log('Query variable %s not found', variable);
-    };
-
-    var addQueryVariable = function addQueryVariable(name, value) {
-        var newSearchHash = hashToSearch();
-        newSearchHash[decodeURIComponent(name)] = decodeURIComponent(value);
-        return hashToSearch(newSearchHash);
-    };
-
-    var removeQueryVariable = function removeQueryVariable(name) {
-        var newSearchHash = searchToHash();
-        if (newSearchHash[name]) {
-            delete newSearchHash[name];
-        }
-        return hashToSearch(newSearchHash);
-    };
-
-    // use an event to detect if a click event is a keyboard enter (ie, a keyboard navigation event), or a mouse click event.
-    // This helps use change the UI like using keyboard highlights where appropriate.
-    // returns true for keyboard events, false for mouseclick events, and optionally runs a callback if it's a keyboard event
-    var keyboardClick = function keyboardClick(ev, callback) {
-
-        if (ev && ev.clientX === 0 && ev.clientY === 0) {
-            // act on results
-            if (typeof callback === 'function') {
-                callback();
-            }
-            return true;
-        } else {
-            return false;
-        }
-    };
-
-    // turn a string into a hash (useful for creating DOM element IDs from a text phrase, eg, "Vasagatan 1, London" to "-9616235")
-    var hashCode = function hashCode(s) {
-        return s.split("").reduce(function (a, b) {
-            a = (a << 5) - a + b.charCodeAt(0);return a & a;
-        }, 0);
-    };
-
-    // purpose clear
-    var capitalizeFirstLetter = function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    };
-
-    return {
-        init: init(),
-        unselectAllText: unselectAllText,
-        clone: clone,
-        intersect: intersect,
-        scrollToEl: scrollToEl,
-        featureTest: featureTest,
-        supportsPassive: supportsPassive,
-        getAppName: getAppName,
-        getQueryVariable: getQueryVariable,
-        removeQueryVariable: removeQueryVariable,
-        keyboardClick: keyboardClick,
-        hashCode: hashCode,
-        capitalizeFirstLetter: capitalizeFirstLetter
-    };
-};
-
-exports.default = helperUtilities;
-
-},{"locale-compare-polyfill":2}],12:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-/**
- * @method
- */
-var helperA11y = function helperA11y() {
-
-    // on opening dialogs/closing, popups, etc, it's best to focus on a particular element so the tab/screenreader navigation options are clear
-    var reFocus = function reFocus(ev, $firstFocusable) {
-        // listen for the popover to be completed
-        setTimeout(function popButtonTimeout() {
-            // detect the tab being hit by keyboard (the clientX/Y will be 0)
-            if (ev && ev.clientX === 0 && ev.clientY === 0) {
-                // move focus
-                if ($firstFocusable.length) {
-                    $firstFocusable.focus();
-                    $firstFocusable.classList.add('focus-visible');
-                }
-            }
-        }, 200);
-    };
-
-    // hide this element and all enclosed tab accessible elements from keyboard/screenreader navigation
-    var hide = function hide($el) {
-        $el.setAttribute('aria-hidden', 'true');
-        $el.find('a,button,input,textarea,select,label[tabindex=0]').attr('tabindex', -1).attr('aria-hidden', 'true');
-    };
-
-    // reveal this element and all enclosed tab accessible elements to keyboard/screenreader navigation
-    var show = function show($el) {
-        $el.setAttribute('aria-hidden', 'false');
-        $el.find('a,button,input,textarea,select,label[tabindex=-1]').attr('tabindex', 0).attr('aria-hidden', 'false');
-    };
-
-    return {
-        reFocus: reFocus,
-        hide: hide,
-        show: show
-    };
-};
-
-exports.default = helperA11y;
-
-},{}],8:[function(require,module,exports){
+},{"intersection-observer":1,"raf":7}],7:[function(require,module,exports){
 (function (global){
 var now = require('performance-now')
   , root = typeof window === 'undefined' ? global : window
@@ -2042,7 +920,7 @@ module.exports.polyfill = function(object) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"performance-now":5}],7:[function(require,module,exports){
+},{"performance-now":4}],6:[function(require,module,exports){
 (function (setImmediate){
 (function (root) {
 
@@ -2279,7 +1157,7 @@ module.exports.polyfill = function(object) {
 })(this);
 
 }).call(this,require("timers").setImmediate)
-},{"timers":9}],9:[function(require,module,exports){
+},{"timers":8}],8:[function(require,module,exports){
 (function (setImmediate,clearImmediate){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -2358,7 +1236,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":6,"timers":9}],5:[function(require,module,exports){
+},{"process/browser.js":5,"timers":8}],4:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.12.2
 (function() {
@@ -2398,7 +1276,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
 
 }).call(this,require('_process'))
-},{"_process":6}],6:[function(require,module,exports){
+},{"_process":5}],5:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -2584,7 +1462,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -2965,7 +1843,7 @@ function toNumber(value) {
 module.exports = debounce;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],3:[function(require,module,exports){
+},{}],2:[function(require,module,exports){
 /**
  * lodash (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -3603,41 +2481,6 @@ function keys(object) {
 }
 
 module.exports = assign;
-
-},{}],2:[function(require,module,exports){
-(function() {
-  'use strict';
-
-  var localeCompareSupport = 'ø'.localeCompare('p', 'da-DK') > 0;
-
-  if (!localeCompareSupport) {
-
-    var characterMaps = {
-      'da': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789AaªÁáÀàÂâÃãBbCcÇçDdÐðEeÉéÈèÊêËëFfGgHhIiÍíÌìÎîÏïJjKkLlMmNnÑñOoºÓóÒòÔôÕõPpQqRrSsßTtÞþUuÚúÙùÛûVvWwXxYyÝýÿÜüZzÆæÄäØøÖöÅåµ',
-      'nb': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789aAªáÁàÀâÂãÃbBcCçÇdDðÐeEéÉèÈêÊëËfFgGhHiIíÍìÌîÎïÏjJkKlLmMnNñÑoOºóÓòÒôÔõÕpPqQrRsSßtTþÞuUúÚùÙûÛvVwWxXyYýÝÿüÜzZæÆäÄøØöÖåÅµ',
-      'se': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789aAªáÁàÀâÂåÅäÄãÃæÆbBcCçÇdDðÐeEéÉèÈêÊëËfFgGhHiIíÍìÌîÎïÏjJkKlLmMnNñÑoOºóÓòÒôÔöÖõÕøØpPqQrRsSßtTuUúÚùÙûÛüÜvVwWxXyYýÝÿzZþÞµ',
-      'fi': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789aAªáÁàÀâÂãÃbBcCçÇdDðÐeEéÉèÈêÊëËfFgGhHiIíÍìÌîÎïÏjJkKlLmMnNñÑoOºóÓòÒôÔõÕpPqQrRsSßtTuUúÚùÙûÛvVwWxXyYýÝÿüÜzZþÞåÅäÄæÆöÖøØµ',
-      'de': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789aAªáÁàÀâÂåÅäÄãÃæÆbBcCçÇdDðÐeEéÉèÈêÊëËfFgGhHiIíÍìÌîÎïÏjJkKlLmMnNñÑoOºóÓòÒôÔöÖõÕøØpPqQrRsSßtTuUúÚùÙûÛüÜvVwWxXyYýÝÿzZþÞµ',
-      'en': ' _-,;:!?.\'"()[]{}@*/\&#%`^+<=>|~$0123456789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ'
-    };
-
-    var original = String.prototype.localeCompare;
-
-    String.prototype.localeCompare = function(other, locale) {
-      if (!locale) { return original.apply(this, arguments); }
-      var lang = locale.split('-')[0];
-      var map = characterMaps[lang];
-
-      var charA = null, charB = null, index = 0;
-      while (charA === charB && index < 100) {
-        charA = this.toString()[index];
-        charB = other[index];
-        index++;
-      }
-      return Math.max(-1, Math.min(1, map.indexOf(charA) - map.indexOf(charB)));
-    }
-  }
-})();
 
 },{}],1:[function(require,module,exports){
 /**
@@ -4365,4 +3208,4 @@ window.IntersectionObserverEntry = IntersectionObserverEntry;
 
 }(window, document));
 
-},{}]},{},[11]);
+},{}]},{},[9]);

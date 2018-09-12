@@ -59,42 +59,6 @@
 //
 // Styleguide 4.2.2.
 
-// Section keylines
-// 
-// You can add keylines to the top of bottom of a section nice a quickly. The keyline stretches to the full width if a section (the easiest way to make sure they were always the same width al the way down). When you add a keyline, it adds padding in addition to the margin, so you get a good consistent space between everything. Don't be tempted to add keylines everywhere, you'll find them doubling up and spreading your content out too much. Use them sparingly to make a clear demarkation between types of content, eg a text block and a promo.
-//
-// .Section.Section--line-top - keyline
-// .Section.Section--line-bottom - keyline
-// 
-// markup:
-// <div class="{$modifiers}">
-//     <div class="Section-Inner">
-//         <h2>This is a section container</h2>
-//         Eiusmod eu id commodo labore incididunt anim consectetur deserunt amet minim labore non nostrud irure enim consectetur. Ad nisi laborum laborum nulla aute consectetur sunt ut aute mollit deserunt aute ullamco nostrud. Est tempor irure Lorem exercitation id ullamco nulla. Excepteur do enim in et occaecat veniam exercitation ea.
-//     </div>
-// </div>
-//
-// Styleguide 4.2.3.
-
-// Section background-colours
-//
-// full-width background colours in sections! There are only a couple of options at the moment so no-one is tempted to go crazy. When you add a background colour, section-gutter size padding is added as well to keep it all looking tickety-boo, lickety-spit.
-//
-// .Section.Section--primary - blue
-// .Section.Section--secondary - green
-// .Section.Section--grey0 - lightest grey
-// .Section.Section--grey1 - grey
-// 
-// markup:
-// <div class="{$modifiers}">
-//     <div class="Section-Inner">
-//         <h2>This is a section container</h2>
-//         Eiusmod eu id commodo labore incididunt anim consectetur deserunt amet minim labore non nostrud irure enim consectetur. Ad nisi laborum laborum nulla aute consectetur sunt ut aute mollit deserunt aute ullamco nostrud. Est tempor irure Lorem exercitation id ullamco nulla. Excepteur do enim in et occaecat veniam exercitation ea.
-//     </div>
-// </div>
-//
-// Styleguide 4.2.4.
-
 .Section {
     margin: $gutter-section-md-sm $gutter 0;
     page-break-inside: avoid;
@@ -136,108 +100,15 @@
         margin-top: 0;
     }
 
-    // first section of content has top margin overriden (so it's constant on every page)
-    #maincontent + &,
-    #maincontent + link + script + &,
-    .Hero + &,
-    .Hero + link + script + &,
-    .HeroNoImage + &,
-    .HeroNoImage + link + script + & {
-        // NOT IMPLEMENTED - A ONE-SIZE-FIOTS-ALL SOLUTION DOESN'T CUT IT - MIGHT HAVE TO BE A DEFAULT TOP MARGIN IN THE CMS ADMIN FOR FIRST BLOCK ON PAGE
-        //margin-top: $gutter-section-sm-sm;
-        //@media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
-        //    margin-top: $gutter-section-sm;
-        //}
-
-        // if we're dead-centering all the content, kill the top margin
-        .Wrap--middle & {
-            margin-top: 0;
-        }
-    }
-
-    // lines
-    &--line-top {
-        border-top: 1px solid $color-line;
-        padding-top: $gutter-section-md-sm;
-        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
-            padding-top: $gutter-section-md;
-        }
-        @media print {
-            padding-top: $print-margin;
-        }
-    }
-    &--line-bottom {
-        border-bottom: 1px solid $color-line;
-        padding-bottom: $gutter-section-md-sm;
-        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
-            padding-bottom: $gutter-section-md;
-        }
-        @media print {
-            padding-bottom: $print-margin;
-        }
-    }
     // sepcific uses
-    &--serif {
-        margin-top: $gutter-section-md;
-        @media print {
-            margin-top: $print-margin;
-        }
-    }
-    &--serif,
     &--center {
         text-align: center;
+        @media screen AND (max-width: $less-than-xs) {
+            text-align: left;
+        }
         @media print {
             text-align: left;
         }
-    }
-    // colors
-    &--white,
-    &--grey0,
-    &--grey1,
-    &--primary,
-    &--secondary {
-        padding: $gutter-section-md-sm $gutter;
-
-        padding-left:  calc(#{$gutter} + env(safe-area-inset-left));
-        padding-right: calc(#{$gutter} + env(safe-area-inset-right));
-
-        @media (min-width: $xs-and-up) and (min-height: $h-md-and-up) {
-            padding-top: $gutter-section-md;
-            padding-bottom: $gutter-section-md;
-            // adjust the padding depending on the external margin?? Sound right - but looks wrong.
-            //&.Section--sm {
-            //    padding-top: $gutter-section-sm-sm;
-            //    padding-bottom: $gutter-section-sm-sm;
-            //}
-            //&.Section--xs {
-            //    padding-top: $gutter-section-xs-sm;
-            //    padding-bottom: $gutter-section-xs-sm;
-            //}
-        }
-        // on mobile, coloured sections stretch to full width (largely because they also have left/right padding, so we're eating away at the available space)
-        @media (max-width: $less-than-xs) and (max-height: $h-less-than-md) {
-            margin-left: 0;
-            margin-right: 0;
-
-            margin-left:  calc(0px - env(safe-area-inset-left));
-            margin-right: calc(0px - env(safe-area-inset-right));
-        }
-        @media print {
-            margin-bottom: -1px;
-            padding-top: $print-margin;
-            padding-bottom: $print-margin;
-            border-top: 1px solid $color-line;
-            border-bottom: 1px solid $color-line;
-        }
-    }
-    &--grey0 {
-        background-color: $color-grey0;
-    }
-    &--grey1 {
-        background-color: $color-grey1;
-    }
-    &--primary {
-        background-color: $color-primary-light;
     }
     &--padding {
         &-sm {

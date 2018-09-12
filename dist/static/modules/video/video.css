@@ -32,13 +32,14 @@
 
 .Video-Mask {
   position: relative;
-  background-color: #312c26;
+  background-color: #312d26;
   height: 0;
   padding-top: 56.25%;
   overflow: hidden;
-  background-color: #312c26;
+  background-color: #312d26;
   background-image: linear-gradient(45deg, #2b2722 25%, transparent 25%, transparent 75%, #2b2722 75%, #2b2722), linear-gradient(-45deg, #2b2722 25%, transparent 25%, transparent 75%, #2b2722 75%, #2b2722);
-  background-size: 120px 120px; }
+  background-size: 120px 120px;
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5); }
   @media print {
     .Video-Mask {
       border: 1px solid #999;
@@ -112,7 +113,7 @@
     height: 100%;
     z-index: 2;
     opacity: 1;
-    background-color: rgba(255, 204, 0, 0.3);
+    background-color: rgba(194, 156, 14, 0.3);
     transition: opacity 300ms; }
   .Video-Poster:focus:not(.focus-visible):after {
     display: none; }
@@ -180,6 +181,7 @@
           transform-origin: 50% 50%;
   margin: 0;
   padding: 12px 0 0;
+  font-size: 1.25rem;
   text-align: center; }
   .wf-mrseavesromanlining-n4-active .Video-Caption {
     -webkit-transform: none;
@@ -261,7 +263,7 @@
     outline: none; }
   .Video-Play.focus-visible:focus {
     outline: none;
-    box-shadow: 0 0 0 15px rgba(255, 204, 0, 0.3);
+    box-shadow: 0 0 0 15px rgba(194, 156, 14, 0.3);
     transition: box-shadow 500ms; }
     @media (pointer: coarse) {
       .Video-Play.focus-visible:focus {
@@ -294,7 +296,7 @@
       .Video-Play--active {
         display: block; } }
     .Video-Play--active .icon-play-disc {
-      fill: #ffcc00; }
+      fill: #c29c0e; }
     .Video-Play--active .icon-play-triangle {
       fill: rgba(255, 255, 255, 0); }
     .Video-Play--active .icon-play-circle {

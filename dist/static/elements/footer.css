@@ -55,14 +55,14 @@
         -webkit-filter: invert(100%);
                 filter: invert(100%); } }
     .Footer-Base-Logo--neon {
-      width: 90px; }
+      width: 100px; }
     .Footer-Base-Logo-Link {
       display: inline-block;
       vertical-align: bottom; }
   .Footer-Base-Text {
     display: block;
     padding: 12px 0 0;
-    color: #9a8a76; }
+    color: #847867; }
     @media print {
       .Footer-Base-Text {
         margin: 0;
@@ -70,7 +70,7 @@
   .Footer-Base-Info {
     display: block;
     padding: 12px 0 0;
-    color: #9a8a76; }
+    color: #847867; }
     @media print {
       .Footer-Base-Info {
         display: none; } }
@@ -103,54 +103,52 @@
     .Social {
       display: none; } }
 
-.Bg-Bottom-Left {
-  display: none;
-  position: absolute;
-  left: 0;
-  bottom: -80px;
-  z-index: -1;
-  width: 469px;
-  height: 644px;
-  opacity: 0.6; }
-  @media (min-width: 980px) {
-    .Bg-Bottom-Left {
-      display: block; } }
-
-.Bg-Bottom-Right1 {
-  display: none;
-  position: absolute;
-  right: -10px;
-  bottom: 310px;
-  z-index: -1;
-  width: 127px;
-  height: 209px; }
-  @media (min-width: 980px) {
-    .Bg-Bottom-Right1 {
-      display: block; } }
-
-.Bg-Bottom-Right2 {
-  display: none;
-  position: absolute;
-  right: -10px;
-  bottom: 60px;
-  z-index: -1;
-  width: 188px;
-  height: 283px; }
-  @media (min-width: 980px) {
-    .Bg-Bottom-Right2 {
-      display: block; } }
-
+.Bg-Bottom-Left,
+.Bg-Bottom-Right1,
+.Bg-Bottom-Right2,
 .Bg-Bottom-Right3 {
   display: none;
   position: absolute;
-  right: -73px;
-  bottom: -80px;
-  z-index: -1;
-  width: 388px;
-  height: 240px;
-  overflow: hidden; }
+  overflow: hidden;
+  z-index: -1; }
   @media (min-width: 980px) {
+    .Bg-Bottom-Left,
+    .Bg-Bottom-Right1,
+    .Bg-Bottom-Right2,
     .Bg-Bottom-Right3 {
       display: block; } }
+  .Bg-Bottom-Left img,
+  .Bg-Bottom-Right1 img,
+  .Bg-Bottom-Right2 img,
+  .Bg-Bottom-Right3 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 0 0; }
+
+.Bg-Bottom-Left {
+  left: 0;
+  bottom: -80px;
+  width: 469px;
+  height: 644px;
+  opacity: 0.6; }
+
+.Bg-Bottom-Right1 {
+  right: 0px;
+  bottom: 310px;
+  width: 117px;
+  height: 209px; }
+
+.Bg-Bottom-Right2 {
+  right: 0px;
+  bottom: 60px;
+  width: 178px;
+  height: 283px; }
+
+.Bg-Bottom-Right3 {
+  right: 0;
+  bottom: -80px;
+  width: 315px;
+  height: 240px; }
 
 /*# sourceMappingURL=footer.css.map */

@@ -17,10 +17,11 @@
         margin: 0;
         padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
         color: #fff;
-        background-position: 0 0;
-        background-color: $color-imaloading;
-        background-image: $stripes-imaloading;
-        background-size : $size-imaloading;
+        background: #000;
+        //background-position: 0 0;
+        //background-color: $color-imaloading;
+        //background-image: $stripes-imaloading;
+        //background-size : $size-imaloading;
         // compensate for 100vh being the maximum screen height not the minumum (which is what you get at paload time) - see the docs 3.2.5
         .android-mobile & {
             max-height: calc(100vh - 56px);
@@ -81,7 +82,7 @@
         @supports ( animation:none ) {
             opacity: 0;
             animation: fade-in 1200ms forwards;
-            animation-delay: 1000ms;
+            animation-delay: 2000ms;
         }
         @media (orientation:portrait) {
             width: auto;
@@ -101,6 +102,7 @@
         position: absolute;
         left: 0;
         top: 0;
+        animation-delay: 0ms;
         @media print {
             display: none !important;
         }
@@ -199,6 +201,9 @@
             svg,img {
                 max-width: 80vw;
                 height: auto;
+                @media (min-width: $sm-and-up) {
+                    max-width: 70vw;
+                }
             }
         }
     }
@@ -206,7 +211,7 @@
         @include typo-smallcaps();
         display: block;
         max-width: 25em;
-        margin: 0 auto;
+        margin: 0.1em auto;
         line-height: 24px;
         font-size: $font-size-md2;
         text-align: center;
@@ -217,11 +222,10 @@
             animation-delay: 800ms;
         }
         @media (min-width: $xs-and-up) AND (min-height: $h-sm-and-up) {
-            margin: 0em auto;
-            font-size: $font-size-lg;
+            font-size: $font-size-xl;
         }
         @media (min-width: $md-and-up) AND (min-height: $h-sm-and-up) {
-            font-size: $font-size-xl;
+            font-size: $font-size-xxl;
         }
     }
     &-More {

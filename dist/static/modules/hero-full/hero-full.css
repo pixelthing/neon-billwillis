@@ -17,10 +17,7 @@
     margin: 0;
     padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
     color: #fff;
-    background-position: 0 0;
-    background-color: #312c26;
-    background-image: linear-gradient(45deg, #2b2722 25%, transparent 25%, transparent 75%, #2b2722 75%, #2b2722), linear-gradient(-45deg, #2b2722 25%, transparent 25%, transparent 75%, #2b2722 75%, #2b2722);
-    background-size: 120px 120px; }
+    background: #000; }
     .android-mobile .HeroFull-Inner {
       max-height: calc(100vh - 56px); }
     .android-tablet .HeroFull-Inner {
@@ -74,8 +71,8 @@
         opacity: 0;
         -webkit-animation: fade-in 1200ms forwards;
                 animation: fade-in 1200ms forwards;
-        -webkit-animation-delay: 1000ms;
-                animation-delay: 1000ms; } }
+        -webkit-animation-delay: 2000ms;
+                animation-delay: 2000ms; } }
     @media (orientation: portrait) {
       .HeroFull-Img {
         width: auto;
@@ -91,7 +88,9 @@
   .HeroFull-Video {
     position: absolute;
     left: 0;
-    top: 0; }
+    top: 0;
+    -webkit-animation-delay: 0ms;
+            animation-delay: 0ms; }
     @media print {
       .HeroFull-Video {
         display: none !important; } }
@@ -185,6 +184,9 @@
     .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
       max-width: 80vw;
       height: auto; }
+      @media (min-width: 768px) {
+        .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
+          max-width: 70vw; } }
   .HeroFull-Text {
     font-family: "mrs-eaves-roman-small-caps", "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
     font-weight: normal;
@@ -193,7 +195,7 @@
     letter-spacing: 0.07em;
     display: block;
     max-width: 25em;
-    margin: 0 auto;
+    margin: 0.1em auto;
     line-height: 24px;
     font-size: 1.25rem;
     text-align: center;
@@ -209,11 +211,10 @@
                 animation-delay: 800ms; } }
     @media (min-width: 600px) and (min-height: 500px) {
       .HeroFull-Text {
-        margin: 0em auto;
-        font-size: 1.5rem; } }
+        font-size: 2rem; } }
     @media (min-width: 980px) and (min-height: 500px) {
       .HeroFull-Text {
-        font-size: 2rem; } }
+        font-size: 2.8rem; } }
   .HeroFull-More {
     -webkit-appearance: none;
     display: inline-block;

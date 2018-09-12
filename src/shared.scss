@@ -5,25 +5,24 @@
 @import "./base/mixins";
 @import "./base/helpers-breakpoints";
 @import "./base/helpers-reset";
-@import "./base/helpers-typography-rte";
+//@import "./base/helpers-typography-rte";
 @import "./base/helpers-animations";
-@import "./base/helpers-page-lock";
-@import "./base/a11y";
+//@import "./base/helpers-page-lock";
+//@import "./base/a11y";
 
-@import "./elements/a11y";
-@import "./elements/position";
-@import "./elements/link";
-@import "./elements/icon";
-@import "./elements/btn";
-@import "./elements/units";
-@import "./elements/lists";
-@import "./elements/spinner";
-@import "./elements/toggle/toggle";
+//@import "./elements/a11y";
+//@import "./elements/position";
+//@import "./elements/link";
+//@import "./elements/icon";
+//@import "./elements/btn";
+//@import "./elements/lists";
+//@import "./elements/spinner";
+//@import "./elements/toggle/toggle";
 
 @import "./mixins/helper-lazyload";
 @import "./mixins/helper-objectfit";
 
-@import "./patterns/grid";
+//@import "./patterns/grid";
 @import "./patterns/sections";
 
 // overrides

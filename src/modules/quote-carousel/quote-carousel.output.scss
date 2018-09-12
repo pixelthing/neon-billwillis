@@ -149,9 +149,10 @@ https://flickity.metafizzy.co
 .Quote-Carousel {
   position: relative;
     overflow: hidden;
+    padding-top: 170px;
     padding-bottom: 45px;
     @media (min-width: $md-and-up) {
-      padding-top: 120px;
+      padding-top: 130px;    
       padding-bottom: 160px;
     }
     &-Inner {
@@ -194,107 +195,92 @@ https://flickity.metafizzy.co
     }
 }
 
-
-.Bg-Mid-Left1 {
+.Bg-Mid-Left1,
+.Bg-Mid-Left2,
+.Bg-Mid-Right0,
+.Bg-Mid-Right1,
+.Bg-Mid-Right2,
+.Bg-Mid-Right3 {
   display: none;
   position: absolute;
-  left: -97px;
-  top: -571px;
   z-index: -1;
-  width: 318px;
-  height: 314px;
+  overflow: hidden;
+  opacity: 0;
+  transform-origin: 120% 100%;
+  transform: rotate(5deg);
+  transition: all 800ms;
+  transition-delay: 500ms;
   @media (min-width: $md-and-up) {
       display: block;
   }
   img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    object-position: 0 0;
   }
 }
+.Bg-Mid-Left1,
 .Bg-Mid-Left2 {
-  display: none;
-  position: absolute;
+  transform-origin: -20% 100%;
+  transform: rotate(-5deg);
+}
+.Bg-Mid-Left1.rolled,
+.Bg-Mid-Left2.rolled,
+.Bg-Mid-Right0.rolled,
+.Bg-Mid-Right1.rolled,
+.Bg-Mid-Right2.rolled,
+.Bg-Mid-Right3.rolled {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+
+.Bg-Mid-Left1 {
+  left: 0;
+  top: -571px;
+  width: 221px;
+  height: 314px;
+    img {
+        object-position: 100% 0;
+    }
+}
+.Bg-Mid-Left2 {
+  display: block;
   left: 80px;
   top: -500px;
-  z-index: -1;
-  width: 258px;
-  height: 234px;
-  @media (min-width: $md-and-up) {
-      display: block;
+  width: 270px;
+  height: 205px;
+  @media (max-width: $less-than-md) {
+      top: -400px;
+      left: calc( 50% - (270px/2) );
   }
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  @media (max-width: $less-than-sm) {
+        top: -500px;
   }
 }
 
 .Bg-Mid-Right0 {
-  display: none;
-  position: absolute;
   right: 139px;
   top: -505px;
-  z-index: -1;
   width: 185px;
   height: 130px;
-  @media (min-width: $md-and-up) {
-      display: block;
-  }
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
 }
 .Bg-Mid-Right1 {
-    display: none;
-    position: absolute;
-    right: -140px;
+    right: 0;
     top: -610px;
-    z-index: -1;
-    width: 338px;
+    width: 198px;
     height: 364px;
-    @media (min-width: $md-and-up) {
-        display: block;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
 }
 .Bg-Mid-Right2 {
-    display: none;
-    position: absolute;
-    right: -100px;
+    right: 0;
     top: -320px;
-    z-index: -1;
-    width: 318px;
+    width: 218px;
     height: 284px;
-    @media (min-width: $md-and-up) {
-        display: block;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
 }
 .Bg-Mid-Right3 {
-    display: none;
-    position: absolute;
-    right: -50px;
+    right: 0;
     top: -160px;
-    z-index: -1;
-    width: 318px;
+    width: 268px;
     height: 284px;
-    @media (min-width: $md-and-up) {
-        display: block;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
 }

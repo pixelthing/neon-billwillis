@@ -15,3 +15,25 @@
           //    navigator.serviceWorker.register('/sw.js');
           //}
         </script>
+        <script>
+            /* Roll in the mid section background images when wthey come into the viewport */
+            var intersectionOptions = {threshold: 0.2};
+            // intersection event handler
+            var intersectionObserved = function(entries, observer) { 
+                for( var i=0; i<entries.length; i++ ) {
+                    var entry = entries[i];
+                    if (entry.intersectionRatio > intersectionOptions.threshold) {
+                        entry.target.classList.add( 'rolled' );
+                    }
+                };
+            };
+            // set-up the intersection observer
+            (function intersectionInit () {
+                var rollers = document.querySelectorAll( '[data-js-roll-in]' );
+                for( var i=0; i<rollers.length; i++ ) {
+                    var el = rollers[i];                
+                    var observer = new IntersectionObserver(intersectionObserved, intersectionOptions);
+                    observer.observe(el);
+                }
+            })();
+        </script>

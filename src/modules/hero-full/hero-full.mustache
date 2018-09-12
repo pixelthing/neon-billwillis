@@ -32,10 +32,21 @@
                         var $videoEl = document.querySelector( '[data-js-hero-video]' );
                         if ( navigator.connection && navigator.connection.effectiveType === "2g" ) {
                             $videoEl.remove();
+                            // log it
+                            if ( typeof(ga) !== 'undefined')
+                                ga('send', 'event', 'video', 'low-bandwidth-remove');
                         // if on a small portrait screen (eg mobile), swap the video for one in portrait. It's not any smaller, but all the pixels are used, so it's sharper on the highest res device you hold closest to your eyes.
                         } else if ( window.innerHeight > window.innerWidth && window.innerWidth < 600 ) {
                             {{#video.hevc}}$videoEl.querySelector('[data-video-codec-hevc]').src = $videoEl.getAttribute('data-hevc-portrait');{{/video.hevc}}
                             {{#video.mp4}}$videoEl.querySelector('[data-video-codec-mp4]').src = $videoEl.getAttribute('data-mp4-portrait');{{/video.mp4}}
+                            // log it
+                            if ( typeof(ga) !== 'undefined')
+                                ga('send', 'event', 'video', 'portrait');
+                        } else {
+                            
+                            // log it
+                            if ( typeof(ga) !== 'undefined')
+                                ga('send', 'event', 'video', 'landscape');
                         }
                     })();
                 </script>
