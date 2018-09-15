@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({9:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({10:[function(require,module,exports){
 'use strict';
 
 var _shared = require('./shared');
@@ -7,7 +7,7 @@ var _shared2 = _interopRequireDefault(_shared);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-},{"./shared":16}],16:[function(require,module,exports){
+},{"./shared":18}],18:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26,6 +26,10 @@ var _helperObjectfit = require('./mixins/helper-objectfit');
 
 var _helperObjectfit2 = _interopRequireDefault(_helperObjectfit);
 
+var _helperUtilities = require('./mixins/helper-utilities');
+
+var _helperUtilities2 = _interopRequireDefault(_helperUtilities);
+
 var _video = require('./modules/video/video');
 
 var _video2 = _interopRequireDefault(_video);
@@ -37,16 +41,17 @@ var _heroFull2 = _interopRequireDefault(_heroFull);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // create a shared instance.
-var instance = (0, _app2.default)();
-
-// register the shared modules
 // INDEX.JS
 
+var instance = (0, _app2.default)();
+(0, _helperUtilities2.default)(true);
+
+// register the shared modules
 instance.registerModules([_helperLazyload2.default, _helperObjectfit2.default, _video2.default, _heroFull2.default]);
 
 exports.default = instance;
 
-},{"./mixins/helper-lazyload":11,"./mixins/helper-objectfit":12,"./modules/app":13,"./modules/hero-full/hero-full":14,"./modules/video/video":15}],15:[function(require,module,exports){
+},{"./mixins/helper-lazyload":12,"./mixins/helper-objectfit":13,"./mixins/helper-utilities":14,"./modules/app":15,"./modules/hero-full/hero-full":16,"./modules/video/video":17}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -233,7 +238,7 @@ videoFrame.selector = selector;
 
 exports.default = videoFrame;
 
-},{"lodash.debounce":3,"promise-polyfill":6}],14:[function(require,module,exports){
+},{"lodash.debounce":4,"promise-polyfill":7}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -377,7 +382,7 @@ heroFull.selector = selector;
 
 exports.default = heroFull;
 
-},{"lodash.debounce":3}],13:[function(require,module,exports){
+},{"lodash.debounce":4}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -496,7 +501,7 @@ var app = function app() {
 
 exports.default = app;
 
-},{"../../mixins/helper-debug":10,"lodash.assign":2}],10:[function(require,module,exports){
+},{"../../mixins/helper-debug":11,"lodash.assign":3}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -556,7 +561,366 @@ var helperDebug = function helperDebug(app) {
 
 exports.default = helperDebug;
 
-},{}],12:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var _localeComparePolyfill = require('locale-compare-polyfill');
+
+var _localeComparePolyfill2 = _interopRequireDefault(_localeComparePolyfill);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * @method
+ */
+var helperUtilities = function helperUtilities(runInit) {
+
+    var init = function init() {
+        // only init this stuff once please!
+        if (runInit) {
+            detectIos();
+            detectAndroid();
+            detectIE();
+            detectEdge();
+            detectTouch();
+            polyfills();
+            detectCachedPage();
+        }
+    };
+
+    var detectIos = function detectIos() {
+        var userAgentTest = navigator.userAgent.toLowerCase();
+        if (typeof document.querySelectorAll != 'undefined' && !document.querySelector('html').classList.contains('ios') && /iphone|ipad|ipod/i.test(userAgentTest)) {
+            window.PLATFORM_IOS = true;
+
+            if (/iphone|ipod|ipad/i.test(userAgentTest)) {
+                document.querySelector('html').classList.add('ios');
+                if (/iphone|ipod/i.test(userAgentTest)) {
+                    document.querySelector('html').classList.add('iphone');
+                } else if (/ipad/i.test(userAgentTest)) {
+                    document.querySelector('html').classList.add('ipad');
+                }
+                if (document.querySelector('body')) {
+                    // testing just because of a bug in the SC5 pattern library
+                    document.querySelector('body').setAttribute('ontouchstart', ''); // this is an old iOS hack to get :hover and :active states working. Not needed for Android.
+                }
+                var safariVersMaj = /version\/([0-9]*)./.exec(userAgentTest);
+                if (safariVersMaj) {
+                    safariVersMaj = parseInt(safariVersMaj[1]);
+                    document.querySelector('html').classList.add('ios' + safariVersMaj);
+                }
+            }
+        }
+    };
+
+    var detectAndroid = function detectAndroid() {
+        var userAgentTest = navigator.userAgent.toLowerCase();
+        if (typeof document.querySelectorAll != 'undefined' && !document.querySelector('html').classList.contains('android') && /android/i.test(userAgentTest)) {
+            window.PLATFORM_ANDROID = true;
+
+            if (/android/i.test(userAgentTest) && /mobile/i.test(userAgentTest)) {
+                document.querySelector('html').classList.add('android', 'android-mobile');
+            } else if (/android/i.test(userAgentTest)) {
+                document.querySelector('html').classList.add('android', 'android-tablet');
+            }
+            // detect samsung browser variation of Chromium (it's a big enough segment that it's worth flagging)
+            if (/samsungbrowser/i.test(userAgentTest)) {
+                document.querySelector('html').classList.add('samsung-browser');
+            }
+            // detect if this version of Android Chrome supports 100%VH as the minimum vertical space (on page load, with url bar/tabs) or maximum vertical space (after scrolling down). 
+            // The behaviour changed in 56, and it has a profound effect if we're trying to guess the vertical size of the screen in CSS! This effects Samsung Browser too, as it normally lags about 8 versions behind in chromium.
+            var chromeVersMaj = /chrome\/([0-9]*)./.exec(userAgentTest);
+            if (chromeVersMaj) {
+                chromeVersMaj = parseInt(chromeVersMaj[1]);
+                if (chromeVersMaj < 56) {
+                    document.querySelector('html').classList.add('android-vh-old');
+                }
+                // else mark that this is a non chrome browsers (probably the old webkit one or possibly Opera mini)
+            } else {
+                window.PLATFORM_ANDROID_PRECHROME = true;
+                document.querySelector('html').classList.add('android-nochrome');
+            }
+        }
+    };
+
+    var detectIE = function detectIE() {
+        var userAgentTest = navigator.userAgent.toLowerCase();
+        if (typeof document.querySelectorAll != 'undefined' && !document.querySelector('html').classList.contains('ie') && /trident/i.test(userAgentTest)) {
+            if (/trident/i.test(userAgentTest)) {
+                window.BROWSER_IE = true;
+                document.querySelector('html').classList.add('ie');
+                var ieVersMaj = /rv:([0-9]*)./.exec(userAgentTest);
+                if (ieVersMaj) {
+                    ieVersMaj = parseInt(ieVersMaj[1]);
+                    document.querySelector('html').classList.add('ie' + ieVersMaj);
+                }
+            }
+        }
+    };
+
+    var detectEdge = function detectEdge() {
+        var userAgentTest = navigator.userAgent.toLowerCase();
+        if (typeof document.querySelectorAll != 'undefined' && !document.querySelector('html').classList.contains('edge') && / Edge/i.test(userAgentTest)) {
+            if (/edge/i.test(userAgentTest)) {
+                window.BROWSER_EDGE = true;
+                document.querySelector('html').classList.add('edge');
+                var EdgeVersMaj = /edge\/([0-9]*)./.exec(userAgentTest);
+                if (EdgeVersMaj) {
+                    EdgeVersMaj = parseInt(EdgeVersMaj[1]);
+                    document.querySelector('html').classList.add('edge' + EdgeVersMaj);
+                }
+            }
+        }
+    };
+
+    // detect touch screens on first countact with a big squidgy finger
+    var detectTouch = function detectTouch(obj) {
+        window.addEventListener('touchstart', function onFirstTouch() {
+            document.querySelector('html').classList.add('touch');
+            window.TOUCH_ENABLED = true;
+            window.removeEventListener('touchstart', onFirstTouch, false);
+        }, supportsPassive ? { passive: true } : false);
+    };
+
+    // Test via a getter in the options object to see if the passive property is accessed
+    var supportsPassive = false;
+    try {
+        var opts = Object.defineProperty({}, 'passive', {
+            get: function get() {
+                supportsPassive = true;
+            }
+        });
+        window.addEventListener("test", null, opts);
+    } catch (e) {}
+
+    // our own clone
+    var clone = function clone(obj) {
+
+        var copy;
+
+        // Handle the 3 simple types, and null or undefined
+        if (null === obj || "object" != (typeof obj === 'undefined' ? 'undefined' : _typeof(obj))) return obj;
+
+        // Handle Date
+        if (obj instanceof Date) {
+            copy = new Date();
+            copy.setTime(obj.getTime());
+            return copy;
+        }
+
+        // Handle Array
+        if (obj instanceof Array) {
+            copy = [];
+            for (var i = 0, len = obj.length; i < len; i++) {
+                copy[i] = clone(obj[i]);
+            }
+            return copy;
+        }
+
+        // Handle Object
+        if (obj instanceof Object) {
+            copy = {};
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+            }
+            return copy;
+        }
+
+        throw new Error("Unable to copy obj! Its type isn't supported.");
+    };
+
+    // array intersection method: http://stackoverflow.com/posts/1885766/revisions
+    var intersect = function intersect(a, b) {
+        var d = {};
+        var results = [];
+        for (var i = 0; i < b.length; i++) {
+            d[b[i]] = true;
+        }
+        for (var j = 0; j < a.length; j++) {
+            if (d[a[j]]) results.push(a[j]);
+        }
+        return results;
+    };
+
+    // from http://www.albertogasparin.it/articles/2014/04/detect-css-support-of-property-value/
+    var featureTestEl = {};
+    var featureTest = function featureTest(property, value, noPrefixes) {
+        // Thanks Modernizr!
+        var prop = property + ':';
+        // only mess with DOM one time if we're going to use this again and again
+        if (typeof featureTestEl.style === 'undefined') {
+            featureTestEl = document.createElement('test');
+        }
+        var featureTestStyle = featureTestEl.style;
+        if (!noPrefixes) {
+            featureTestStyle.cssText = prop + ['-webkit-', '-moz-', '-ms-', '-o-', ''].join(value + ';' + prop) + value + ';';
+        } else {
+            featureTestStyle.cssText = prop + value;
+        }
+        return featureTestStyle[property];
+    };
+
+    var polyfills = function polyfills() {
+
+        // isInteger polyfill (not in IE)
+        Number.isInteger = Number.isInteger || function (value) {
+            return typeof value === 'number' && isFinite(value) && Math.floor(value) === value;
+        };
+
+        // custom event polyfill
+        (function () {
+            if (typeof window.CustomEvent === "function") return false;
+            function CustomEvent(event, params) {
+                params = params || { bubbles: false, cancelable: false, detail: undefined };
+                var evt = document.createEvent('CustomEvent');
+                evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
+                return evt;
+            }
+            CustomEvent.prototype = window.Event.prototype;
+            window.CustomEvent = CustomEvent;
+        })();
+
+        // padLeft (polyfilling the native padStart() method)
+        // https://github.com/uxitten/polyfill/blob/master/string.polyfill.js
+        // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart
+        if (!String.prototype.padStart) {
+            String.prototype.padStart = function padStart(targetLength, padString) {
+                targetLength = targetLength >> 0; //truncate if number or convert non-number to 0;
+                padString = String(typeof padString !== 'undefined' ? padString : ' ');
+                if (this.length > targetLength) {
+                    return String(this);
+                } else {
+                    targetLength = targetLength - this.length;
+                    if (targetLength > padString.length) {
+                        padString += padString.repeat(targetLength / padString.length); //append to original to ensure we are longer than needed
+                    }
+                    return padString.slice(0, targetLength) + String(this);
+                }
+            };
+        }
+    };
+
+    var detectCachedPage = function detectCachedPage() {
+        //window.addEventListener( 'pageshow', function( ev ){
+        //    if (window.performance && window.performance.navigation.type=='2') {
+        //        alert('CACHED')
+        //       console.log('CACHED!!')
+        //    }
+        //});
+    };
+
+    // URL LOCATION/SEARCH MANIPULATION
+
+    var searchToHash = function searchToHash() {
+        var h = {};
+        if (window.location.search == undefined || window.location.search.length < 1) {
+            return h;
+        }
+        var q = window.location.search.slice(1).split('&');
+        for (var i = 0; i < q.length; i++) {
+            var key_val = q[i].split('=');
+            // replace '+' (alt space) char explicitly since decode does not
+            var hkey = decodeURIComponent(key_val[0]).replace(/\+/g, ' ');
+            var hval = decodeURIComponent(key_val[1]).replace(/\+/g, ' ');
+            if (h[hkey] == undefined) {
+                h[hkey] = [];
+            }
+            h[hkey].push(hval);
+        }
+        return h;
+    };
+
+    var hashToSearch = function hashToSearch(h) {
+        var search = "?";
+        for (var k in h) {
+            for (var i = 0; i < h[k].length; i++) {
+                search += search == "?" ? "" : "&";
+                search += encodeURIComponent(k) + "=" + encodeURIComponent(h[k][i]);
+            }
+        }
+        if (search && search.trim() === '?') {
+            search = '';
+        }
+        return search;
+    };
+
+    var getQueryVariable = function getQueryVariable(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+            if (decodeURIComponent(pair[0]) == variable) {
+                return decodeURIComponent(pair[1]);
+            }
+        }
+        //console.log('Query variable %s not found', variable);
+    };
+
+    var addQueryVariable = function addQueryVariable(name, value) {
+        var newSearchHash = hashToSearch();
+        newSearchHash[decodeURIComponent(name)] = decodeURIComponent(value);
+        return hashToSearch(newSearchHash);
+    };
+
+    var removeQueryVariable = function removeQueryVariable(name) {
+        var newSearchHash = searchToHash();
+        if (newSearchHash[name]) {
+            delete newSearchHash[name];
+        }
+        return hashToSearch(newSearchHash);
+    };
+
+    // use an event to detect if a click event is a keyboard enter (ie, a keyboard navigation event), or a mouse click event.
+    // This helps use change the UI like using keyboard highlights where appropriate.
+    // returns true for keyboard events, false for mouseclick events, and optionally runs a callback if it's a keyboard event
+    var keyboardClick = function keyboardClick(ev, callback) {
+
+        if (ev && ev.clientX === 0 && ev.clientY === 0) {
+            // act on results
+            if (typeof callback === 'function') {
+                callback();
+            }
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    // turn a string into a hash (useful for creating DOM element IDs from a text phrase, eg, "Vasagatan 1, London" to "-9616235")
+    var hashCode = function hashCode(s) {
+        return s.split("").reduce(function (a, b) {
+            a = (a << 5) - a + b.charCodeAt(0);return a & a;
+        }, 0);
+    };
+
+    // purpose clear
+    var capitalizeFirstLetter = function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    return {
+        init: init(),
+        clone: clone,
+        intersect: intersect,
+        featureTest: featureTest,
+        supportsPassive: supportsPassive,
+        getQueryVariable: getQueryVariable,
+        removeQueryVariable: removeQueryVariable,
+        keyboardClick: keyboardClick,
+        hashCode: hashCode,
+        capitalizeFirstLetter: capitalizeFirstLetter
+    };
+};
+
+exports.default = helperUtilities;
+
+},{"locale-compare-polyfill":2}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -651,7 +1015,7 @@ helperObjectFit.selector = selector;
 
 exports.default = helperObjectFit;
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -841,7 +1205,7 @@ helperLazyload.selector = selector;
 
 exports.default = helperLazyload;
 
-},{"intersection-observer":1,"raf":7}],7:[function(require,module,exports){
+},{"intersection-observer":1,"raf":8}],8:[function(require,module,exports){
 (function (global){
 var now = require('performance-now')
   , root = typeof window === 'undefined' ? global : window
@@ -920,7 +1284,7 @@ module.exports.polyfill = function(object) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"performance-now":4}],6:[function(require,module,exports){
+},{"performance-now":5}],7:[function(require,module,exports){
 (function (setImmediate){
 (function (root) {
 
@@ -1157,7 +1521,7 @@ module.exports.polyfill = function(object) {
 })(this);
 
 }).call(this,require("timers").setImmediate)
-},{"timers":8}],8:[function(require,module,exports){
+},{"timers":9}],9:[function(require,module,exports){
 (function (setImmediate,clearImmediate){
 var nextTick = require('process/browser.js').nextTick;
 var apply = Function.prototype.apply;
@@ -1236,7 +1600,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
   delete immediateIds[id];
 };
 }).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":5,"timers":8}],4:[function(require,module,exports){
+},{"process/browser.js":6,"timers":9}],5:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.12.2
 (function() {
@@ -1276,7 +1640,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 
 
 }).call(this,require('_process'))
-},{"_process":5}],5:[function(require,module,exports){
+},{"_process":6}],6:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -1462,7 +1826,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 (function (global){
 /**
  * lodash (Custom Build) <https://lodash.com/>
@@ -1843,7 +2207,7 @@ function toNumber(value) {
 module.exports = debounce;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],2:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 /**
  * lodash (Custom Build) <https://lodash.com/>
  * Build: `lodash modularize exports="npm" -o ./`
@@ -2481,6 +2845,41 @@ function keys(object) {
 }
 
 module.exports = assign;
+
+},{}],2:[function(require,module,exports){
+(function() {
+  'use strict';
+
+  var localeCompareSupport = 'ø'.localeCompare('p', 'da-DK') > 0;
+
+  if (!localeCompareSupport) {
+
+    var characterMaps = {
+      'da': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789AaªÁáÀàÂâÃãBbCcÇçDdÐðEeÉéÈèÊêËëFfGgHhIiÍíÌìÎîÏïJjKkLlMmNnÑñOoºÓóÒòÔôÕõPpQqRrSsßTtÞþUuÚúÙùÛûVvWwXxYyÝýÿÜüZzÆæÄäØøÖöÅåµ',
+      'nb': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789aAªáÁàÀâÂãÃbBcCçÇdDðÐeEéÉèÈêÊëËfFgGhHiIíÍìÌîÎïÏjJkKlLmMnNñÑoOºóÓòÒôÔõÕpPqQrRsSßtTþÞuUúÚùÙûÛvVwWxXyYýÝÿüÜzZæÆäÄøØöÖåÅµ',
+      'se': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789aAªáÁàÀâÂåÅäÄãÃæÆbBcCçÇdDðÐeEéÉèÈêÊëËfFgGhHiIíÍìÌîÎïÏjJkKlLmMnNñÑoOºóÓòÒôÔöÖõÕøØpPqQrRsSßtTuUúÚùÙûÛüÜvVwWxXyYýÝÿzZþÞµ',
+      'fi': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789aAªáÁàÀâÂãÃbBcCçÇdDðÐeEéÉèÈêÊëËfFgGhHiIíÍìÌîÎïÏjJkKlLmMnNñÑoOºóÓòÒôÔõÕpPqQrRsSßtTuUúÚùÙûÛvVwWxXyYýÝÿüÜzZþÞåÅäÄæÆöÖøØµ',
+      'de': '­  _-,;:!¡?¿.·\'"«»()[]{}§¶@*/\&#%`´^¯¨¸°©®+±÷×<=>¬|¦~¤¢$£¥01¹½¼2²3³¾456789aAªáÁàÀâÂåÅäÄãÃæÆbBcCçÇdDðÐeEéÉèÈêÊëËfFgGhHiIíÍìÌîÎïÏjJkKlLmMnNñÑoOºóÓòÒôÔöÖõÕøØpPqQrRsSßtTuUúÚùÙûÛüÜvVwWxXyYýÝÿzZþÞµ',
+      'en': ' _-,;:!?.\'"()[]{}@*/\&#%`^+<=>|~$0123456789aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ'
+    };
+
+    var original = String.prototype.localeCompare;
+
+    String.prototype.localeCompare = function(other, locale) {
+      if (!locale) { return original.apply(this, arguments); }
+      var lang = locale.split('-')[0];
+      var map = characterMaps[lang];
+
+      var charA = null, charB = null, index = 0;
+      while (charA === charB && index < 100) {
+        charA = this.toString()[index];
+        charB = other[index];
+        index++;
+      }
+      return Math.max(-1, Math.min(1, map.indexOf(charA) - map.indexOf(charB)));
+    }
+  }
+})();
 
 },{}],1:[function(require,module,exports){
 /**
@@ -3208,4 +3607,4 @@ window.IntersectionObserverEntry = IntersectionObserverEntry;
 
 }(window, document));
 
-},{}]},{},[9]);
+},{}]},{},[10]);

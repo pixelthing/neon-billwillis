@@ -278,7 +278,7 @@
 
 
         <!-- TEXT BLOCK -->
-        <div class="Section Text Text--primary Section--center">
+        <div class="Section Text Text--primary Section--xs Section--center">
             <div class="Section-Inner Text-Inner">
 
                 <div class="Text-Main Rte">
@@ -304,8 +304,19 @@
 
         <!-- QUOTE CAROUSEL BLOCK -->
         <link rel="stylesheet" href="static/modules/quote-carousel/quote-carousel.css" /> 
+
+        <div style="position:relative;">
+            <div class="Bg-Mid-Left1" data-js-roll-in><img data-src="static/imgs/bg-mid-left1.png" class="lazyload" alt="" /></div>
+            <div class="Bg-Mid-Left2" data-js-roll-in><img data-src="static/imgs/bg-mid-left2.png" class="lazyload" alt="" /></div>
+            
+            <div class="Bg-Mid-Right0" data-js-roll-in><img data-src="static/imgs/bg-mid-right0.png" class="lazyload" alt="" /></div>
+            <div class="Bg-Mid-Right2" data-js-roll-in><img data-src="static/imgs/bg-mid-right2.png" class="lazyload" alt="" /></div>
+            <div class="Bg-Mid-Right1" data-js-roll-in><img data-src="static/imgs/bg-mid-right1.png" class="lazyload" alt="" /></div>
+            <div class="Bg-Mid-Right3" data-js-roll-in><img data-src="static/imgs/bg-mid-right3.png" class="lazyload" alt="" /></div>
+        </div>
+
         <script src="static/js/flickity.pkgd.min.js"> </script>
-        <div class="Section Quote-Carousel">
+        <div class="Section Quote-Carousel Section--lg">
             <div class="Section-Inner Quote-Carousel-Inner Quote-Carousel-Inner--sm">
 
                 <blockquote class="Quote-Carousel-Item">
@@ -383,20 +394,9 @@
             cellAlign: 'center',
             contain: true,
             prevNextButtons: false,
-            autoPlay: 5000,
-            pauseAutoPlayOnHover: false
+            autoPlay: 5000
         });
         </script>
-
-        <div style="position:relative;">
-            <div class="Bg-Mid-Left1" data-js-roll-in><img data-src="static/imgs/bg-mid-left1.png" class="lazyload" alt="" /></div>
-            <div class="Bg-Mid-Left2" data-js-roll-in><img data-src="static/imgs/bg-mid-left2.png" class="lazyload" alt="" /></div>
-            
-            <div class="Bg-Mid-Right0" data-js-roll-in><img data-src="static/imgs/bg-mid-right0.png" class="lazyload" alt="" /></div>
-            <div class="Bg-Mid-Right2" data-js-roll-in><img data-src="static/imgs/bg-mid-right2.png" class="lazyload" alt="" /></div>
-            <div class="Bg-Mid-Right1" data-js-roll-in><img data-src="static/imgs/bg-mid-right1.png" class="lazyload" alt="" /></div>
-            <div class="Bg-Mid-Right3" data-js-roll-in><img data-src="static/imgs/bg-mid-right3.png" class="lazyload" alt="" /></div>
-        </div>
     
 
 
@@ -436,7 +436,7 @@
 
         <!-- VIDEO (INLINE) BLOCK -->
         <link rel="stylesheet" href="static/modules/video/video.css" /> <script> </script>
-        <div class="Section Video Video Section--xs" data-js-video>
+        <div class="Section Video Video Section--no-margin" data-js-video>
 
             <figure class="Section-Inner Section-Inner--lg Video-Inner">
 
