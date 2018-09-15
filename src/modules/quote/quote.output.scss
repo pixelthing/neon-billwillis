@@ -66,24 +66,29 @@
         &--xs {
             max-width: $width-xs;
         }
+        @media (max-width: $less-than-xs) {
+            .Quote & {
+                max-width: 19rem;
+            }
+        }
         
         &:before {
-            content: '';
-            display: block;
-            width: 150px;
-            height: 43px;
-            margin: 0 auto;
-            background-image: url("data:image/svg+xml,%3Csvg%20class%3D%27Quote-Separator%27%20width%3D%27250%27%20height%3D%2743%27%20viewBox%3D%270%200%20250%2043%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Ctitle%3Equote%20seperator%3C%2Ftitle%3E%3Cpath%20d%3D%27M119.059%206.248h-8.835v8.837l-6.25%206.249%206.25%206.248v8.837h8.835l6.25%206.248%206.248-6.248h8.836v-8.837l6.249-6.248-6.249-6.249V6.248h-8.836L125.309.001zM0%2021.875l86.888%201.75v-3.501zm163.4%201.751l86.888-1.75-86.888-1.75z%27%20fill%3D%27%23c29c0e%27%20fill-rule%3D%27evenodd%27%2F%3E%3C%2Fsvg%3E");
-            background-repeat: no-repeat;
-            background-position: 100% 50%;
-            background-size: 100%;
-            @supports ( animation:none ) {
-                opacity: 0;
-                animation: fade-in 1000ms forwards;
-                animation-delay: 500ms;
-            }
-            @media print {
-                display: none;
+            display: none;
+            @media screen AND (min-width: $xs-and-up) {
+                content: '';
+                display: block;
+                width: 150px;
+                height: 43px;
+                margin: 0 auto;
+                background-image: url("data:image/svg+xml,%3Csvg%20class%3D%27Quote-Separator%27%20width%3D%27250%27%20height%3D%2743%27%20viewBox%3D%270%200%20250%2043%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Ctitle%3Equote%20seperator%3C%2Ftitle%3E%3Cpath%20d%3D%27M119.059%206.248h-8.835v8.837l-6.25%206.249%206.25%206.248v8.837h8.835l6.25%206.248%206.248-6.248h8.836v-8.837l6.249-6.248-6.249-6.249V6.248h-8.836L125.309.001zM0%2021.875l86.888%201.75v-3.501zm163.4%201.751l86.888-1.75-86.888-1.75z%27%20fill%3D%27%23c29c0e%27%20fill-rule%3D%27evenodd%27%2F%3E%3C%2Fsvg%3E");
+                background-repeat: no-repeat;
+                background-position: 100% 50%;
+                background-size: 100%;
+                @supports ( animation:none ) {
+                    opacity: 0;
+                    animation: fade-in 1000ms forwards;
+                    animation-delay: 500ms;
+                }
             }
         }
     }
@@ -99,9 +104,12 @@
             animation: fade-in 1000ms forwards;
             animation-delay: 1200ms;
         }
-        @media (max-width: $less-than-xs) {
+        @media screen AND  (min-width: 360px) AND (max-width: $less-than-xs) {
             padding: $gutter*2 0;
-            font-size: $font-size-lg;
+            .Quote & {
+                font-size: 2.4rem;
+                line-height: 1.05;
+            }
         }
         &-Inner {
             position: relative;
@@ -138,6 +146,9 @@
             font-size: $font-size-lg-sm;
         }
         &-More {
+            display: block;
+            max-width: 13em;
+            margin: 0 auto;
             font-style: italic;
         }
     }

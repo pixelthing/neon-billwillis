@@ -137,6 +137,9 @@ https://flickity.metafizzy.co
     .Quote-Carousel {
       padding-top: 130px;
       padding-bottom: 160px; } }
+  @media (max-width: 599px) {
+    .Quote-Carousel {
+      margin-bottom: 84px; } }
   .Quote-Carousel-Inner {
     position: relative;
     width: 100%;
@@ -178,8 +181,8 @@ https://flickity.metafizzy.co
   opacity: 0;
   -webkit-transform-origin: 120% 100%;
           transform-origin: 120% 100%;
-  -webkit-transform: rotate(5deg);
-          transform: rotate(5deg);
+  -webkit-transform: rotate(5deg) translate3d(0, 0, 0);
+          transform: rotate(5deg) translate3d(0, 0, 0);
   transition: all 800ms;
   transition-delay: 500ms; }
   @media (min-width: 980px) {
@@ -215,12 +218,12 @@ https://flickity.metafizzy.co
 .Bg-Mid-Right2.rolled,
 .Bg-Mid-Right3.rolled {
   opacity: 1;
-  -webkit-transform: rotate(0deg);
-          transform: rotate(0deg); }
+  -webkit-transform: rotate(0deg) translate3d(0, 0, 0);
+          transform: rotate(0deg) translate3d(0, 0, 0); }
 
 .Bg-Mid-Left1 {
   left: 0;
-  top: -571px;
+  top: -51px;
   width: 221px;
   height: 314px; }
   .Bg-Mid-Left1 img {
@@ -229,38 +232,39 @@ https://flickity.metafizzy.co
 .Bg-Mid-Left2 {
   display: block;
   left: 80px;
-  top: -500px;
+  top: 20px;
   width: 270px;
   height: 205px; }
   @media (max-width: 979px) {
     .Bg-Mid-Left2 {
-      top: -400px;
-      left: calc( 50% - (270px/2)); } }
+      top: -185px;
+      left: calc( 50% - (270px/2));
+      transition-delay: 100ms; } }
   @media (max-width: 767px) {
     .Bg-Mid-Left2 {
-      top: -500px; } }
+      top: 30px; } }
 
 .Bg-Mid-Right0 {
   right: 139px;
-  top: -505px;
+  top: 15px;
   width: 185px;
   height: 130px; }
 
 .Bg-Mid-Right1 {
   right: 0;
-  top: -610px;
+  top: -90px;
   width: 198px;
   height: 364px; }
 
 .Bg-Mid-Right2 {
   right: 0;
-  top: -320px;
+  top: 200px;
   width: 218px;
   height: 284px; }
 
 .Bg-Mid-Right3 {
   right: 0;
-  top: -160px;
+  top: 360px;
   width: 268px;
   height: 284px; }
 

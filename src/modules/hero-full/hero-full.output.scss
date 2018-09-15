@@ -237,7 +237,7 @@
         width: 10em;
         margin: 0 0 0 -5em;
         color: #fff;
-        @include typo-smallcaps();
+        @include typo-serif();
         -webkit-tap-highlight-color: rgba(255,255,255,0);
         outline: none;
         user-select: none;

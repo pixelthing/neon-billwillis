@@ -155,6 +155,9 @@ https://flickity.metafizzy.co
       padding-top: 130px;    
       padding-bottom: 160px;
     }
+    @media (max-width: $less-than-xs) {
+      margin-bottom: $gutter*7;
+    }
     &-Inner {
         position: relative;
         width: 100%;
@@ -207,7 +210,7 @@ https://flickity.metafizzy.co
   overflow: hidden;
   opacity: 0;
   transform-origin: 120% 100%;
-  transform: rotate(5deg);
+  transform: rotate(5deg) translate3d(0,0,0);
   transition: all 800ms;
   transition-delay: 500ms;
   @media (min-width: $md-and-up) {
@@ -232,13 +235,13 @@ https://flickity.metafizzy.co
 .Bg-Mid-Right2.rolled,
 .Bg-Mid-Right3.rolled {
     opacity: 1;
-    transform: rotate(0deg);
+    transform: rotate(0deg) translate3d(0,0,0);
 }
 
 
 .Bg-Mid-Left1 {
   left: 0;
-  top: -571px;
+  top: -51px;
   width: 221px;
   height: 314px;
     img {
@@ -248,39 +251,40 @@ https://flickity.metafizzy.co
 .Bg-Mid-Left2 {
   display: block;
   left: 80px;
-  top: -500px;
+  top: 20px;
   width: 270px;
   height: 205px;
   @media (max-width: $less-than-md) {
-      top: -400px;
+      top: -185px;
       left: calc( 50% - (270px/2) );
+      transition-delay: 100ms;
   }
   @media (max-width: $less-than-sm) {
-        top: -500px;
+        top: 30px;
   }
 }
 
 .Bg-Mid-Right0 {
   right: 139px;
-  top: -505px;
+  top: 15px;
   width: 185px;
   height: 130px;
 }
 .Bg-Mid-Right1 {
     right: 0;
-    top: -610px;
+    top: -90px;
     width: 198px;
     height: 364px;
 }
 .Bg-Mid-Right2 {
     right: 0;
-    top: -320px;
+    top: 200px;
     width: 218px;
     height: 284px;
 }
 .Bg-Mid-Right3 {
     right: 0;
-    top: -160px;
+    top: 360px;
     width: 268px;
     height: 284px;
 }

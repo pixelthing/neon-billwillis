@@ -72,8 +72,8 @@
         display: flex;
         justify-content: center;
         align-content: center;
-        padding-left: 1.3em;
-        padding-right: 1.1em;
+        margin: 0 0 $gutter;
+        padding: 0 1.1em 0 1.3em;
         line-height: 1;
         @include typo-smallcaps();
         &:before,

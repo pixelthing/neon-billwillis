@@ -3,11 +3,11 @@ import localComparePolyfill        from 'locale-compare-polyfill';
 /**
  * @method
  */
-const helperUtilities = function(app) {
+const helperUtilities = function(runInit) {
 
     const init = function() {
         // only init this stuff once please!
-        if (!app.utilitesInit) {
+        if (runInit) {
             detectIos();
             detectAndroid();
             detectIE();
@@ -16,7 +16,6 @@ const helperUtilities = function(app) {
             polyfills();
             detectCachedPage();
         }
-        app.utilitesInit = true;
     };
 
     const detectIos = function() {
@@ -112,15 +111,6 @@ const helperUtilities = function(app) {
         }, supportsPassive ? { passive: true } : false);
     };
 
-    // remove unwanted selected text (often a byproduct of accidently double clicking on a button, link, etc)
-    const unselectAllText = function() {
-        if ( document.selection ) {
-            document.selection.empty();
-        } else if ( window.getSelection ) {
-            window.getSelection().removeAllRanges();
-        }
-    };
-
     // Test via a getter in the options object to see if the passive property is accessed
     var supportsPassive = false;
     try {
@@ -180,13 +170,6 @@ const helperUtilities = function(app) {
                 results.push(a[j]);
         }
         return results;
-    };
-
-    // scroll the page to the top of an element
-    const scrollToEl = function(selector,duration) {
-        if (duration < 0 ) 
-            duration = 600;
-        $("html, body").animate({ scrollTop: $(selector).offset().top }, duration);
     };
     
     // from http://www.albertogasparin.it/articles/2014/04/detect-css-support-of-property-value/
@@ -248,10 +231,6 @@ const helperUtilities = function(app) {
                 }
             };
         }
-    };
-
-    const getAppName = function() {
-        return $('[data-cookie-app]').data('cookie-app');
     };
 
     const detectCachedPage = function() {
@@ -352,13 +331,10 @@ const helperUtilities = function(app) {
 
     return {
         init: init(),
-        unselectAllText,
         clone,
         intersect,
-        scrollToEl,
         featureTest,
         supportsPassive,
-        getAppName,
         getQueryVariable,
         removeQueryVariable,
         keyboardClick,

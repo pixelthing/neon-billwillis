@@ -158,15 +158,6 @@ h1 {
   display: table;
   clear: both; }
 
-.Debug {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 0.5em 12px;
-  text-align: left;
-  color: #666;
-  background: #ccc;
-  font-size: 14px; }
-
 @-webkit-keyframes fade-in {
   0% {
     opacity: 0; }
@@ -178,74 +169,6 @@ h1 {
     opacity: 0; }
   100% {
     opacity: 1; } }
-
-@-webkit-keyframes fallback-load {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 0; } }
-
-@keyframes fallback-load {
-  0% {
-    opacity: 0; }
-  100% {
-    opacity: 0; } }
-
-@-webkit-keyframes loading-pulse {
-  0% {
-    opacity: 0.3; }
-  50% {
-    opacity: 0.7; }
-  100% {
-    opacity: 0.3; } }
-
-@keyframes loading-pulse {
-  0% {
-    opacity: 0.3; }
-  50% {
-    opacity: 0.7; }
-  100% {
-    opacity: 0.3; } }
-
-@-webkit-keyframes loading-bars {
-  from {
-    background-position: 0 0; }
-  to {
-    background-position: 1000px 0; } }
-
-@keyframes loading-bars {
-  from {
-    background-position: 0 0; }
-  to {
-    background-position: 1000px 0; } }
-
-@-webkit-keyframes rotate {
-  from {
-    -webkit-transform: rotate(0) scale(1);
-            transform: rotate(0) scale(1); }
-  to {
-    -webkit-transform: rotate(-360deg) scale(1);
-            transform: rotate(-360deg) scale(1); } }
-
-@keyframes rotate {
-  from {
-    -webkit-transform: rotate(0) scale(1);
-            transform: rotate(0) scale(1); }
-  to {
-    -webkit-transform: rotate(-360deg) scale(1);
-            transform: rotate(-360deg) scale(1); } }
-
-@-webkit-keyframes allyFocusPing {
-  0% {
-    box-shadow: 0 0 0 50vw rgba(194, 156, 14, 0); }
-  100% {
-    box-shadow: 0 0 0 5px rgba(194, 156, 14, 0.3); } }
-
-@keyframes allyFocusPing {
-  0% {
-    box-shadow: 0 0 0 50vw rgba(194, 156, 14, 0); }
-  100% {
-    box-shadow: 0 0 0 5px rgba(194, 156, 14, 0.3); } }
 
 img.lazyload,
 picture.lazyload {
