@@ -204,6 +204,10 @@
                 @media (min-width: $sm-and-up) {
                     max-width: 70vw;
                 }
+                @media (max-width: $less-than-sm) {
+                    width: 270px;
+                    max-width: 100%;
+                }
             }
         }
     }

@@ -19,6 +19,7 @@
                 {{/title}}
                 <div class="Video-Frame">
                     <div class="Video-Mask{{#ratio}} Video-Mask--{{ratio}}{{/ratio}}">
+                        {{#poster}}
                         <button class="Video-Poster" data-js-video-poster data-js-video-src="{{#src.youtube}}http://www.youtube.com/embed/{{src.youtube}}?autoplay=1&modestbranding=1&showinfo=0&rel=0&hl=sv.{{/src.youtube}}{{#src.vimeo}}https://player.vimeo.com/video/{{src.vimeo}}?color=c29c0e&title=0&byline=0&portrait=0{{/src.vimeo}}{{#src.other}}{{.}}{{/src.other}}" data-js-poly-object-fit data-js-beacon-click="movie-open-block,{{src.youtube}}">
                             
                             <picture class="Video-Poster-Img lazyload">
@@ -35,10 +36,16 @@
                             <span class="a11y Video-Ally-Close" data-js-video-ally-close tabindex="-1">Click to close the video</span>
                         </button>
                         <iframe class="Video-Iframe" src="" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe aria-hidden="true"></iframe>
+                        {{/poster}}
+                        {{^poster}}
+                        <iframe class="Video-Iframe" src="{{#src.youtube}}http://www.youtube.com/embed/{{src.youtube}}?autoplay=1&modestbranding=1&showinfo=0&rel=0&hl=sv.{{/src.youtube}}{{#src.vimeo}}https://player.vimeo.com/video/{{src.vimeo}}?color=c29c0e&title=0&byline=0&portrait=0{{/src.vimeo}}{{#src.other}}{{.}}{{/src.other}}" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe></iframe>
+                        {{/poster}}
                     </div>
+                    {{#poster}}
                     <button class="Video-Play" data-js-video-play tabindex="-1">
                         {{> ../../static/icons/sprites/icon-play.svg }}
                     </button>
+                    {{/poster}}
                 </div>
                 {{#caption}}
                 <figcaption class="Video-Caption{{#position}} Video-Caption--{{position}}{{/position}}">

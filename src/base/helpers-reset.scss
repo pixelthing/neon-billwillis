@@ -101,3 +101,8 @@ h1 {
 .clearfix {
     @include clearfix();
 }
+
+.Icon-Store {
+    height: 0;
+    overflow: hidden;
+}

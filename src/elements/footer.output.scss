@@ -40,13 +40,12 @@ $footer-font-size-lg: $font-size-sm;
     }
 
     &-Base {
-        margin: $gutter-section-md-sm 0;
-        margin: $gutter-section-md-sm calc(0px - env(safe-area-inset-right)) $gutter-section-md-sm calc(0px - env(safe-area-inset-left));
+        margin: $gutter*2 0;
         padding: 0 $gutter;
         font-size: $footer-font-size-sm;
         page-break-inside: avoid;
         @media (min-width: $xs-and-up) {
-            margin-top: $gutter-section-md;
+            margin-top: $gutter*4;
             padding-left:  calc(#{$gutter} + env(safe-area-inset-left));
             padding-right: calc(#{$gutter} + env(safe-area-inset-right));
         }
@@ -84,8 +83,8 @@ $footer-font-size-lg: $font-size-sm;
         }
         &-Text {
             display: block;
-            padding: $gutter 0 0;
-            color: $color-bg-hi2;
+            padding: $gutter*4 0 0;
+            color: $color-grey5;
             @media print {
                 margin: 0;
                 padding: 0;

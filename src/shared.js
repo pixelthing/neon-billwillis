@@ -4,7 +4,7 @@ import app                      from './modules/app';
 import helperLazyload           from './mixins/helper-lazyload';
 import helperObjectFit          from './mixins/helper-objectfit';
 import helperUtilities          from './mixins/helper-utilities';
-import videoFrame               from './modules/video/video';
+//import videoFrame               from './modules/video/video';
 import heroFull                 from './modules/hero-full/hero-full';
 
 // create a shared instance.
@@ -15,7 +15,7 @@ helperUtilities(true);
 instance.registerModules([
     helperLazyload,
     helperObjectFit,
-    videoFrame,
+    //videoFrame,
     heroFull
 ]);
 
