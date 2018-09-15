@@ -187,6 +187,10 @@
       @media (min-width: 768px) {
         .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
           max-width: 70vw; } }
+      @media (max-width: 767px) {
+        .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
+          width: 270px;
+          max-width: 100%; } }
   .HeroFull-Text {
     font-family: "mrs-eaves-roman-small-caps", "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
     font-weight: normal;

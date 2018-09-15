@@ -131,6 +131,8 @@ https://flickity.metafizzy.co
 .Quote-Carousel {
   position: relative;
   overflow: hidden;
+  margin-left: 0;
+  margin-right: 0;
   padding-top: 170px;
   padding-bottom: 45px; }
   @media (min-width: 980px) {
@@ -146,6 +148,8 @@ https://flickity.metafizzy.co
     max-width: 50rem;
     margin-top: -0.5em;
     margin-bottom: 0;
+    padding-left: 12px;
+    padding-right: 12px;
     font-size: 0.8rem;
     text-align: center; }
     .Quote-Carousel-Inner--xxl {
@@ -237,12 +241,12 @@ https://flickity.metafizzy.co
   height: 205px; }
   @media (max-width: 979px) {
     .Bg-Mid-Left2 {
-      top: -185px;
+      top: 50px;
       left: calc( 50% - (270px/2));
       transition-delay: 100ms; } }
   @media (max-width: 767px) {
     .Bg-Mid-Left2 {
-      top: 30px; } }
+      top: 40px; } }
 
 .Bg-Mid-Right0 {
   right: 139px;

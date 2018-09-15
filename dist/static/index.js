@@ -1,4 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({10:[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({8:[function(require,module,exports){
 'use strict';
 
 var _shared = require('./shared');
@@ -7,7 +7,7 @@ var _shared2 = _interopRequireDefault(_shared);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-},{"./shared":18}],18:[function(require,module,exports){
+},{"./shared":15}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30,10 +30,6 @@ var _helperUtilities = require('./mixins/helper-utilities');
 
 var _helperUtilities2 = _interopRequireDefault(_helperUtilities);
 
-var _video = require('./modules/video/video');
-
-var _video2 = _interopRequireDefault(_video);
-
 var _heroFull = require('./modules/hero-full/hero-full');
 
 var _heroFull2 = _interopRequireDefault(_heroFull);
@@ -41,204 +37,20 @@ var _heroFull2 = _interopRequireDefault(_heroFull);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // create a shared instance.
+var instance = (0, _app2.default)();
+//import videoFrame               from './modules/video/video';
 // INDEX.JS
 
-var instance = (0, _app2.default)();
 (0, _helperUtilities2.default)(true);
 
 // register the shared modules
-instance.registerModules([_helperLazyload2.default, _helperObjectfit2.default, _video2.default, _heroFull2.default]);
+instance.registerModules([_helperLazyload2.default, _helperObjectfit2.default,
+//videoFrame,
+_heroFull2.default]);
 
 exports.default = instance;
 
-},{"./mixins/helper-lazyload":12,"./mixins/helper-objectfit":13,"./mixins/helper-utilities":14,"./modules/app":15,"./modules/hero-full/hero-full":16,"./modules/video/video":17}],17:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _lodash = require('lodash.debounce');
-
-var _lodash2 = _interopRequireDefault(_lodash);
-
-var _promisePolyfill = require('promise-polyfill');
-
-var _promisePolyfill2 = _interopRequireDefault(_promisePolyfill);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * @module
- * simple polyfill to swap the currentSrc of an object-fit'ed img to be the background of it's container.
- */
-
-var selector = '[data-js-video]';
-var videoFrame = function videoFrame(el, app) {
-
-    var $el = el;
-    var $poster = $el.querySelector('[data-js-video-poster]');
-    var $iframe = $el.querySelector('[data-js-video-iframe]');
-    var $play = $el.querySelector('[data-js-video-play]');
-    var $allyOpen = $el.querySelector('[data-js-video-ally-open]');
-    var $allyClose = $el.querySelector('[data-js-video-ally-close]');
-    var status = false;
-    var duration = 300;
-    var playWidth = 0;
-    var playMargin = 0;
-    var posterWidth = 0;
-    var posterHeight = 0;
-    var viewportWidth = window.innerWidth || document.documentElement.clientWidth || $(window).width();
-    var viewportWidthPrev = viewportWidth;
-
-    var init = function init() {
-        measure();
-        setButtonTransition();
-        registerEvents();
-        // set up the resize event
-        onResize();
-        $iframe.setAttribute('aria-hidden', true);
-    };
-
-    var measure = function measure() {
-        playWidth = $play.offsetWidth;
-        var computedStyle = window.getComputedStyle($play);
-        playMargin = parseInt(computedStyle.marginRight);
-        posterWidth = $poster.offsetWidth;
-        posterHeight = $poster.offsetHeight;
-    };
-
-    var setButtonTransition = function setButtonTransition() {
-        var playEndWidth = 40;
-        var transformScale = playEndWidth / playWidth;
-        var transformX = posterWidth - playEndWidth - (posterWidth / 2 - playWidth / 2) - playEndWidth - (window.innerWidth < 600 ? -2 : 5);
-        var transformY = posterHeight - playEndWidth - (posterHeight / 2 - playWidth / 2) - playEndWidth + 60;
-        var transform = 'translateX(' + transformX + 'px) translateY(-' + transformY + 'px) scale(' + transformScale + ') rotate(90deg)';
-        // store the transform
-        $play.setAttribute('data-js-transform', transform);
-    };
-
-    var registerEvents = function registerEvents() {
-        $poster.addEventListener('click', playStop);
-        $play.addEventListener('click', playStop);
-    };
-
-    var timeStarted = 0;
-    var playStop = function playStop(ev) {
-        ev.preventDefault();
-        if (!status) {
-            play();
-            if (typeof performance !== 'undefined') timeStarted = performance.now();
-            // log it
-            if (typeof ga !== 'undefined') ga('send', 'event', 'video', 'open');
-        } else {
-            stop();
-            if (typeof performance !== 'undefined') {
-                var _timePlayed = performance.now() - timeStarted;
-            }
-            // log it
-            if (typeof ga !== 'undefined') ga('send', 'event', 'video', 'close', false, timePlayed);
-        }
-    };
-
-    var play = function play() {
-        $iframe.setAttribute('aria-hidden', false);
-        $poster.classList.add('Video-Poster--active');
-        $poster.setAttribute('tabindex', '-1');
-        $iframe.classList.add('Video-Iframe--active');
-        var src = $poster.getAttribute('data-js-video-src');
-        $iframe.setAttribute('src', src);
-        // add the classes that control the transition
-        $play.classList.add('Video-Play--play-stop');
-        // set transition going
-        playToStop();
-        status = true;
-        // remove the transition classes once done
-        setTimeout(function playTimer() {
-            $play.classList.remove('Video-Play--play-stop');
-            $play.setAttribute('tabindex', '0');
-            $allyOpen.style.display = 'none';
-            $allyClose.style.display = 'block';
-        }, duration);
-    };
-
-    var playToStop = function playToStop(instant) {
-        var styleCore = 'transform: ' + $play.getAttribute('data-js-transform');
-        $play.classList.add('Video-Play--active');
-        $play.setAttribute('style', styleCore);
-        $allyOpen.style.display = 'block';
-        $allyClose.style.display = 'none';
-        $iframe.setAttribute('aria-hidden', true);
-    };
-
-    var stop = function stop() {
-        $poster.classList.remove('Video-Poster--active');
-        $poster.setAttribute('tabindex', '0');
-        $iframe.classList.remove('Video-Iframe--active');
-        $play.classList.add('Video-Play--play-stop');
-        $play.classList.remove('Video-Play--active');
-        $play.setAttribute('style', '');
-        $play.setAttribute('tabindex', '-1');
-        // when the transition is complete, remove the iFrame src.
-        setTimeout(function stopTimer() {
-            $iframe.src = '';
-            status = false;
-            // remove the transition classes once done
-            $play.classList.remove('Video-Play--play-stop');
-        }, duration);
-    };
-
-    var onResizeMeasurePlay = function onResizeMeasurePlay() {
-        return new _promisePolyfill2.default(function measuringPlay1Promise(resolve, reject) {
-            $play.setAttribute('style', 'transition:all 0ms');
-            measure();
-            if ($play.classList.contains('Video-Play--active')) {
-                resolve(true);
-            } else {
-                resolve(false);
-            }
-        });
-    };
-
-    // things need to be re-positioned when the window is resized
-    var onResize = function onResize() {
-
-        var timer = false;
-
-        var onResizeThrottled = function onResizeThrottled() {
-            onResizeMeasurePlay().then(function (wasActive) {
-                setButtonTransition();
-                // if the play button was active, reset it after the measurements
-                if (wasActive) {
-                    playToStop();
-                }
-                $el.classList.remove('Video--resizing');
-            });
-        };
-
-        // throttle resize events
-        window.addEventListener("resize", function onResizeUnThrottled(ev) {
-            // Don't trigger resize on vertical resize (mobile OS' do this all the time just on scroll). 
-            // Note that we try and do every kind of "soft" measurement before we attempt to recalc styles (which is costly in FPS)
-            viewportWidth = ev.target.innerWidth || window.innerWidth || document.documentElement.clientWidth || $(window).width();
-            if (viewportWidth != viewportWidthPrev) {
-                $el.classList.add('Video--resizing');
-                (0, _lodash2.default)(onResizeThrottled, 500, { 'leading': false })();
-            }
-            viewportWidthPrev = viewportWidth;
-        });
-    };
-
-    return {
-        init: init()
-    };
-};
-
-videoFrame.selector = selector;
-
-exports.default = videoFrame;
-
-},{"lodash.debounce":4,"promise-polyfill":7}],16:[function(require,module,exports){
+},{"./mixins/helper-lazyload":10,"./mixins/helper-objectfit":11,"./mixins/helper-utilities":12,"./modules/app":13,"./modules/hero-full/hero-full":14}],14:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -382,7 +194,7 @@ heroFull.selector = selector;
 
 exports.default = heroFull;
 
-},{"lodash.debounce":4}],15:[function(require,module,exports){
+},{"lodash.debounce":4}],13:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -501,7 +313,7 @@ var app = function app() {
 
 exports.default = app;
 
-},{"../../mixins/helper-debug":11,"lodash.assign":3}],11:[function(require,module,exports){
+},{"../../mixins/helper-debug":9,"lodash.assign":3}],9:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -561,7 +373,7 @@ var helperDebug = function helperDebug(app) {
 
 exports.default = helperDebug;
 
-},{}],14:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -920,7 +732,7 @@ var helperUtilities = function helperUtilities(runInit) {
 
 exports.default = helperUtilities;
 
-},{"locale-compare-polyfill":2}],13:[function(require,module,exports){
+},{"locale-compare-polyfill":2}],11:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1015,7 +827,7 @@ helperObjectFit.selector = selector;
 
 exports.default = helperObjectFit;
 
-},{}],12:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -1205,7 +1017,7 @@ helperLazyload.selector = selector;
 
 exports.default = helperLazyload;
 
-},{"intersection-observer":1,"raf":8}],8:[function(require,module,exports){
+},{"intersection-observer":1,"raf":7}],7:[function(require,module,exports){
 (function (global){
 var now = require('performance-now')
   , root = typeof window === 'undefined' ? global : window
@@ -1284,323 +1096,7 @@ module.exports.polyfill = function(object) {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"performance-now":5}],7:[function(require,module,exports){
-(function (setImmediate){
-(function (root) {
-
-  // Store setTimeout reference so promise-polyfill will be unaffected by
-  // other code modifying setTimeout (like sinon.useFakeTimers())
-  var setTimeoutFunc = setTimeout;
-
-  function noop() {}
-  
-  // Polyfill for Function.prototype.bind
-  function bind(fn, thisArg) {
-    return function () {
-      fn.apply(thisArg, arguments);
-    };
-  }
-
-  function Promise(fn) {
-    if (!(this instanceof Promise)) throw new TypeError('Promises must be constructed via new');
-    if (typeof fn !== 'function') throw new TypeError('not a function');
-    this._state = 0;
-    this._handled = false;
-    this._value = undefined;
-    this._deferreds = [];
-
-    doResolve(fn, this);
-  }
-
-  function handle(self, deferred) {
-    while (self._state === 3) {
-      self = self._value;
-    }
-    if (self._state === 0) {
-      self._deferreds.push(deferred);
-      return;
-    }
-    self._handled = true;
-    Promise._immediateFn(function () {
-      var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
-      if (cb === null) {
-        (self._state === 1 ? resolve : reject)(deferred.promise, self._value);
-        return;
-      }
-      var ret;
-      try {
-        ret = cb(self._value);
-      } catch (e) {
-        reject(deferred.promise, e);
-        return;
-      }
-      resolve(deferred.promise, ret);
-    });
-  }
-
-  function resolve(self, newValue) {
-    try {
-      // Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
-      if (newValue === self) throw new TypeError('A promise cannot be resolved with itself.');
-      if (newValue && (typeof newValue === 'object' || typeof newValue === 'function')) {
-        var then = newValue.then;
-        if (newValue instanceof Promise) {
-          self._state = 3;
-          self._value = newValue;
-          finale(self);
-          return;
-        } else if (typeof then === 'function') {
-          doResolve(bind(then, newValue), self);
-          return;
-        }
-      }
-      self._state = 1;
-      self._value = newValue;
-      finale(self);
-    } catch (e) {
-      reject(self, e);
-    }
-  }
-
-  function reject(self, newValue) {
-    self._state = 2;
-    self._value = newValue;
-    finale(self);
-  }
-
-  function finale(self) {
-    if (self._state === 2 && self._deferreds.length === 0) {
-      Promise._immediateFn(function() {
-        if (!self._handled) {
-          Promise._unhandledRejectionFn(self._value);
-        }
-      });
-    }
-
-    for (var i = 0, len = self._deferreds.length; i < len; i++) {
-      handle(self, self._deferreds[i]);
-    }
-    self._deferreds = null;
-  }
-
-  function Handler(onFulfilled, onRejected, promise) {
-    this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
-    this.onRejected = typeof onRejected === 'function' ? onRejected : null;
-    this.promise = promise;
-  }
-
-  /**
-   * Take a potentially misbehaving resolver function and make sure
-   * onFulfilled and onRejected are only called once.
-   *
-   * Makes no guarantees about asynchrony.
-   */
-  function doResolve(fn, self) {
-    var done = false;
-    try {
-      fn(function (value) {
-        if (done) return;
-        done = true;
-        resolve(self, value);
-      }, function (reason) {
-        if (done) return;
-        done = true;
-        reject(self, reason);
-      });
-    } catch (ex) {
-      if (done) return;
-      done = true;
-      reject(self, ex);
-    }
-  }
-
-  Promise.prototype['catch'] = function (onRejected) {
-    return this.then(null, onRejected);
-  };
-
-  Promise.prototype.then = function (onFulfilled, onRejected) {
-    var prom = new (this.constructor)(noop);
-
-    handle(this, new Handler(onFulfilled, onRejected, prom));
-    return prom;
-  };
-
-  Promise.all = function (arr) {
-    return new Promise(function (resolve, reject) {
-      if (!arr || typeof arr.length === 'undefined') throw new TypeError('Promise.all accepts an array');
-      var args = Array.prototype.slice.call(arr);
-      if (args.length === 0) return resolve([]);
-      var remaining = args.length;
-
-      function res(i, val) {
-        try {
-          if (val && (typeof val === 'object' || typeof val === 'function')) {
-            var then = val.then;
-            if (typeof then === 'function') {
-              then.call(val, function (val) {
-                res(i, val);
-              }, reject);
-              return;
-            }
-          }
-          args[i] = val;
-          if (--remaining === 0) {
-            resolve(args);
-          }
-        } catch (ex) {
-          reject(ex);
-        }
-      }
-
-      for (var i = 0; i < args.length; i++) {
-        res(i, args[i]);
-      }
-    });
-  };
-
-  Promise.resolve = function (value) {
-    if (value && typeof value === 'object' && value.constructor === Promise) {
-      return value;
-    }
-
-    return new Promise(function (resolve) {
-      resolve(value);
-    });
-  };
-
-  Promise.reject = function (value) {
-    return new Promise(function (resolve, reject) {
-      reject(value);
-    });
-  };
-
-  Promise.race = function (values) {
-    return new Promise(function (resolve, reject) {
-      for (var i = 0, len = values.length; i < len; i++) {
-        values[i].then(resolve, reject);
-      }
-    });
-  };
-
-  // Use polyfill for setImmediate for performance gains
-  Promise._immediateFn = (typeof setImmediate === 'function' && function (fn) { setImmediate(fn); }) ||
-    function (fn) {
-      setTimeoutFunc(fn, 0);
-    };
-
-  Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
-    if (typeof console !== 'undefined' && console) {
-      console.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console
-    }
-  };
-
-  /**
-   * Set the immediate function to execute callbacks
-   * @param fn {function} Function to execute
-   * @deprecated
-   */
-  Promise._setImmediateFn = function _setImmediateFn(fn) {
-    Promise._immediateFn = fn;
-  };
-
-  /**
-   * Change the function to execute on unhandled rejection
-   * @param {function} fn Function to execute on unhandled rejection
-   * @deprecated
-   */
-  Promise._setUnhandledRejectionFn = function _setUnhandledRejectionFn(fn) {
-    Promise._unhandledRejectionFn = fn;
-  };
-  
-  if (typeof module !== 'undefined' && module.exports) {
-    module.exports = Promise;
-  } else if (!root.Promise) {
-    root.Promise = Promise;
-  }
-
-})(this);
-
-}).call(this,require("timers").setImmediate)
-},{"timers":9}],9:[function(require,module,exports){
-(function (setImmediate,clearImmediate){
-var nextTick = require('process/browser.js').nextTick;
-var apply = Function.prototype.apply;
-var slice = Array.prototype.slice;
-var immediateIds = {};
-var nextImmediateId = 0;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) { timeout.close(); };
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(window, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// That's not how node.js implements it but the exposed api is the same.
-exports.setImmediate = typeof setImmediate === "function" ? setImmediate : function(fn) {
-  var id = nextImmediateId++;
-  var args = arguments.length < 2 ? false : slice.call(arguments, 1);
-
-  immediateIds[id] = true;
-
-  nextTick(function onNextTick() {
-    if (immediateIds[id]) {
-      // fn.call() is faster so we optimize for the common use-case
-      // @see http://jsperf.com/call-apply-segu
-      if (args) {
-        fn.apply(null, args);
-      } else {
-        fn.call(null);
-      }
-      // Prevent ids from leaking
-      exports.clearImmediate(id);
-    }
-  });
-
-  return id;
-};
-
-exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate : function(id) {
-  delete immediateIds[id];
-};
-}).call(this,require("timers").setImmediate,require("timers").clearImmediate)
-},{"process/browser.js":6,"timers":9}],5:[function(require,module,exports){
+},{"performance-now":5}],5:[function(require,module,exports){
 (function (process){
 // Generated by CoffeeScript 1.12.2
 (function() {
@@ -3607,4 +3103,4 @@ window.IntersectionObserverEntry = IntersectionObserverEntry;
 
 }(window, document));
 
-},{}]},{},[10]);
+},{}]},{},[8]);

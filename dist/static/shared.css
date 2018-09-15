@@ -158,6 +158,10 @@ h1 {
   display: table;
   clear: both; }
 
+.Icon-Store {
+  height: 0;
+  overflow: hidden; }
+
 @-webkit-keyframes fade-in {
   0% {
     opacity: 0; }

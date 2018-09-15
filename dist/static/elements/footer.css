@@ -18,15 +18,14 @@
     overflow: hidden; }
 
 .Footer-Base {
-  margin: 60px 0;
-  margin: 60px calc(0px - env(safe-area-inset-right)) 60px calc(0px - env(safe-area-inset-left));
+  margin: 24px 0;
   padding: 0 12px;
   font-size: 0.8rem;
   page-break-inside: avoid;
   text-align: center; }
   @media (min-width: 600px) {
     .Footer-Base {
-      margin-top: 72px;
+      margin-top: 48px;
       padding-left: calc(12px + env(safe-area-inset-left));
       padding-right: calc(12px + env(safe-area-inset-right)); } }
   @media print {
@@ -61,8 +60,8 @@
       vertical-align: bottom; }
   .Footer-Base-Text {
     display: block;
-    padding: 12px 0 0;
-    color: #847867; }
+    padding: 48px 0 0;
+    color: #666; }
     @media print {
       .Footer-Base-Text {
         margin: 0;
