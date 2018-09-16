@@ -76,7 +76,7 @@
 
 .Social {
   position: absolute;
-  top: 0;
+  top: 15px;
   left: 0;
   right: 0; }
   .Social-Logo {
@@ -97,7 +97,8 @@
   @media (min-width: 600px) {
     .Social {
       left: auto;
-      right: calc(0px + env(safe-area-inset-right)); } }
+      right: 15px;
+      right: calc(15px + env(safe-area-inset-right)); } }
   @media print {
     .Social {
       display: none; } }
@@ -148,6 +149,6 @@
   right: 0;
   bottom: -80px;
   width: 315px;
-  height: 240px; }
+  height: 220px; }
 
 /*# sourceMappingURL=footer.css.map */

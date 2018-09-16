@@ -41,11 +41,11 @@ const heroFull = function(el, app) {
         const $videoEl = el.querySelector( '[data-js-hero-video]' );
         entries.forEach(entry => {
             // when the video if off screen, pause it
-            if (entry.intersectionRatio < intersectionOptions.threshold) {
+            if ( $videoEl && entry.intersectionRatio < intersectionOptions.threshold ) {
                 $videoEl.pause();
             // if it is paused and returns to onscreen, play it!
             } else {
-                if ( $videoEl.paused ) {
+                if ( $videoEl && $videoEl.paused ) {
                     $videoEl.play();
                 }
             }
@@ -67,6 +67,7 @@ const heroFull = function(el, app) {
     const moreButton = function() {
         document.querySelector('[data-js-hero-full-more]').addEventListener('click',function(ev) {
             ev.preventDefault();
+console.log('111');
 
             function scrollTo( endPoint, scrollDuration ) {
                 let   cosParameter = ( endPoint - window.scrollY ) / 2;

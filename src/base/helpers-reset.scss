@@ -39,6 +39,12 @@ html,body {
     font-size: $font-size-base;
     font-family: $font-default;
     line-height: $line-height-default;
+    @media screen AND (min-width:$md-and-up) {
+        font-size: 20px;
+    }
+    @media screen AND (min-width:$lg-and-up) {
+        font-size: 22px;
+    }
 }
 
 /* stacks */

@@ -23,16 +23,7 @@
         //background-image: $stripes-imaloading;
         //background-size : $size-imaloading;
         // compensate for 100vh being the maximum screen height not the minumum (which is what you get at paload time) - see the docs 3.2.5
-        .android-mobile & {
-            max-height: calc(100vh - 56px);
-        }
-        .android-tablet & {
-            max-height: calc(100vh - 96px);
-        }
-        .android-vh-old &,
-        .samsung-browser & {
-            max-height: 100vh;
-        }
+        
         .iphone & {
             max-height: calc(100vh - 75px);
             @media screen AND (min-height:635px) { // iPhone X (The new "home bar" and rounded corners adds quite a bit of chrome);
@@ -41,6 +32,17 @@
             @media screen AND (orientation:landscape) {
                 max-height: calc(100vh - 50px);
             }
+        }
+        .android-mobile & {
+            max-height: calc(100vh - 56px);
+        }
+        .android-tablet & {
+            max-height: calc(100vh - 96px);
+        }
+        .android-vh-old &,
+        .samsung-browser &,
+        .ios-chrome & {
+            max-height: 100vh;
         }
         //.ipad & {
         //    max-height: calc(100vh - 60px);
@@ -128,7 +130,7 @@
         height: 100%;
         margin: 0 auto;
         @media (min-width: $xs-and-up) AND (min-height: $h-sm-and-up) {
-            min-height: 500px;
+            min-height: 400px;
         }
         @media print {
             min-height: 0;
@@ -202,10 +204,13 @@
                 max-width: 80vw;
                 height: auto;
                 @media (min-width: $sm-and-up) {
+                    max-width: 60vw;
+                }
+                @media (min-width: $md-and-up) {
                     max-width: 70vw;
                 }
                 @media (max-width: $less-than-sm) {
-                    width: 270px;
+                    width: 276px;
                     max-width: 100%;
                 }
             }
@@ -226,10 +231,10 @@
             animation-delay: 800ms;
         }
         @media (min-width: $xs-and-up) AND (min-height: $h-sm-and-up) {
-            font-size: $font-size-xl;
+            font-size: 1.8em;
         }
         @media (min-width: $md-and-up) AND (min-height: $h-sm-and-up) {
-            font-size: $font-size-xxl;
+            font-size: $font-size-xl;
         }
     }
     &-More {
@@ -238,6 +243,7 @@
         position: absolute;
         left: 50%;
         bottom: $gutter*2;
+        z-index: 10;
         width: 10em;
         margin: 0 0 0 -5em;
         color: #fff;

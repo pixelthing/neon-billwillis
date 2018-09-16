@@ -18,13 +18,6 @@
     padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
     color: #fff;
     background: #000; }
-    .android-mobile .HeroFull-Inner {
-      max-height: calc(100vh - 56px); }
-    .android-tablet .HeroFull-Inner {
-      max-height: calc(100vh - 96px); }
-    .android-vh-old .HeroFull-Inner,
-    .samsung-browser .HeroFull-Inner {
-      max-height: 100vh; }
     .iphone .HeroFull-Inner {
       max-height: calc(100vh - 75px); }
       @media screen and (min-height: 635px) {
@@ -33,6 +26,14 @@
       @media screen and (orientation: landscape) {
         .iphone .HeroFull-Inner {
           max-height: calc(100vh - 50px); } }
+    .android-mobile .HeroFull-Inner {
+      max-height: calc(100vh - 56px); }
+    .android-tablet .HeroFull-Inner {
+      max-height: calc(100vh - 96px); }
+    .android-vh-old .HeroFull-Inner,
+    .samsung-browser .HeroFull-Inner,
+    .ios-chrome .HeroFull-Inner {
+      max-height: 100vh; }
     @media (min-width: 768px) {
       .HeroFull-Inner {
         max-height: calc(100vw * (56.25*0.01)); } }
@@ -115,7 +116,7 @@
     margin: 0 auto; }
     @media (min-width: 600px) and (min-height: 500px) {
       .HeroFull-Main {
-        min-height: 500px; } }
+        min-height: 400px; } }
     @media print {
       .HeroFull-Main {
         min-height: 0; } }
@@ -186,10 +187,13 @@
       height: auto; }
       @media (min-width: 768px) {
         .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
+          max-width: 60vw; } }
+      @media (min-width: 980px) {
+        .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
           max-width: 70vw; } }
       @media (max-width: 767px) {
         .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
-          width: 270px;
+          width: 276px;
           max-width: 100%; } }
   .HeroFull-Text {
     font-family: "mrs-eaves-roman-small-caps", "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
@@ -215,10 +219,10 @@
                 animation-delay: 800ms; } }
     @media (min-width: 600px) and (min-height: 500px) {
       .HeroFull-Text {
-        font-size: 2rem; } }
+        font-size: 1.8em; } }
     @media (min-width: 980px) and (min-height: 500px) {
       .HeroFull-Text {
-        font-size: 2.8rem; } }
+        font-size: 2rem; } }
   .HeroFull-More {
     -webkit-appearance: none;
     display: inline-block;
@@ -240,6 +244,7 @@
     position: absolute;
     left: 50%;
     bottom: 24px;
+    z-index: 10;
     width: 10em;
     margin: 0 0 0 -5em;
     color: #fff;

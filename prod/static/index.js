@@ -104,11 +104,11 @@ var heroFull = function heroFull(el, app) {
         var $videoEl = el.querySelector('[data-js-hero-video]');
         entries.forEach(function (entry) {
             // when the video if off screen, pause it
-            if (entry.intersectionRatio < intersectionOptions.threshold) {
+            if ($videoEl && entry.intersectionRatio < intersectionOptions.threshold) {
                 $videoEl.pause();
                 // if it is paused and returns to onscreen, play it!
             } else {
-                if ($videoEl.paused) {
+                if ($videoEl && $videoEl.paused) {
                     $videoEl.play();
                 }
             }
@@ -130,6 +130,7 @@ var heroFull = function heroFull(el, app) {
     var moreButton = function moreButton() {
         document.querySelector('[data-js-hero-full-more]').addEventListener('click', function (ev) {
             ev.preventDefault();
+            console.log('111');
 
             function scrollTo(endPoint, scrollDuration) {
                 var cosParameter = (endPoint - window.scrollY) / 2;
@@ -426,6 +427,9 @@ var helperUtilities = function helperUtilities(runInit) {
                 if (safariVersMaj) {
                     safariVersMaj = parseInt(safariVersMaj[1]);
                     document.querySelector('html').classList.add('ios' + safariVersMaj);
+                }
+                if (/CriOS/i.test(userAgentTest)) {
+                    document.querySelector('html').classList.add('ios-chrome');
                 }
             }
         }

@@ -120,6 +120,7 @@ https://flickity.metafizzy.co
     position: absolute;
     width: 100%;
     bottom: -45px;
+    left: 0;
     padding: 0;
     margin: 0;
     list-style: none;
@@ -155,7 +156,7 @@ https://flickity.metafizzy.co
     padding-bottom: 45px;
     @media (min-width: $md-and-up) {
       padding-top: 130px;    
-      padding-bottom: 160px;
+      padding-bottom: 100px;
     }
     @media (max-width: $less-than-xs) {
       margin-bottom: $gutter*7;
@@ -202,6 +203,14 @@ https://flickity.metafizzy.co
     }
 }
 
+.Bg-Mid {
+  position: relative;
+  max-width: 100vw;
+  overflow: hidden;
+  &.rolled {
+    overflow: visible;
+  }
+}
 .Bg-Mid-Left1,
 .Bg-Mid-Left2,
 .Bg-Mid-Right0,

@@ -104,7 +104,7 @@
     &--center {
         text-align: center;
         @media screen AND (max-width: $less-than-xs) {
-            text-align: left;
+            text-align: justify;
         }
         @media print {
             text-align: left;

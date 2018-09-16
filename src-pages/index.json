@@ -56,6 +56,7 @@
         },
         {
             "gallery": {
+                "width": "xl",
                 "content": {
                     "items" : [
                         {
@@ -138,7 +139,7 @@
                         {
                             "text": "He could be outrageous at points but he also had very strong principles, that he often couldn’t live up to.",
                             "source": "Madison Cox",
-                            "sourceMore": "Director of Fondation <br />YSL - Pierre Berge",
+                            "sourceMore": "Director of Fondation <br />YSL - Pierre Bergé",
                             "quoteWidth": "38rem"
                         },
                         {
@@ -152,6 +153,7 @@
         },
         {
             "awards": {
+                "margin": "lg",
                 "content": {
                     "items" : [
                         {

@@ -38,6 +38,9 @@ const helperUtilities = function(runInit) {
                     safariVersMaj = parseInt(safariVersMaj[1]);
                     document.querySelector('html').classList.add('ios' + safariVersMaj);
                 }
+                if (/CriOS/i.test(userAgentTest)) {
+                    document.querySelector('html').classList.add('ios-chrome');
+                }
             }
         }
     };
