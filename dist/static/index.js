@@ -225,8 +225,6 @@ var app = function app() {
   var analytics = null;
   var consumption = 0;
 
-  var modalScaffold = '\n    <div class="Modal" data-js-modal>\n      <div class="Modal-Background" data-js-modal-background>\n        <div class="Modal-Content" data-js-modal-content></div>\n      </div>\n    </div>\n  ';
-
   // this array holds all the javascript modules
   // that should be wired when the page loads.
   var modules = [];
@@ -260,52 +258,9 @@ var app = function app() {
     });
   };
 
-  var openModal = function openModal(options) {
-    $('body').append(modalScaffold);
-
-    var $modal = $('[data-js-modal]');
-    var $modalBackground = $('[data-js-modal-background]');
-    var $modalContent = $('[data-js-modal-content]');
-    var $close = $('[data-js-modal-close]');
-
-    if (options && options.content) {
-      $modalContent.append(options.content);
-    }
-
-    $modal.toggleClass('Modal--Active');
-
-    // close on esc and click on close
-    $close.on('click', closeModal);
-    $modalBackground.on('click', closeModal);
-    $modalContent.on('click', function (e) {
-      return e.preventDefault();
-    });
-
-    $(document).on('keyup.modal', function (e) {
-      if (e.keyCode !== 27) {
-        return;
-      }
-      closeModal();
-    });
-  };
-
-  var closeModal = function closeModal(evt) {
-    if (evt) {
-      evt.preventDefault();
-    }
-    var $modal = $('[data-js-modal]');
-    $modal.toggleClass('Modal--Active');
-    setTimeout(function () {
-      return $modal.remove();
-    }, 300);
-    $(document).off('keyup.modal');
-  };
-
   var self = (0, _lodash2.default)({
     registerModules: registerModules,
     bindModules: bindModules,
-    openModal: openModal,
-    closeModal: closeModal,
     debug: debug
   });
 
