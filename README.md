@@ -49,7 +49,7 @@ Other stuff in the folder:
 - The header movie has a HEVC MP4 version of the movie for platforms that support it (mostly iOS), and an MP4 version for those that don't (which is twice the size - that HEVC is worth it). Small portrait screens get a portrait version of the video to make better use of the available pixels and keep the video sharp.
 - There's an SVG icon system built in, but we don't really use much of it (just a couple of icons). If you drop an SVG into `/src/static/imgs/icons/sprites/`, the gulp process will automatically add it into the SVG spritesheet. It's magic. So drop an SVG called `chevron-right.svg` into the folder and you'll be able to use it your page like this:
 ```
-<svg viewBox="0 0 512 512" class="Icon HeroFull-More-Icon">
+<svg viewBox="0 0 512 512" class="Icon">
     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-right"></use>
 </svg>
 ```
