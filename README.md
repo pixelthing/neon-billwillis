@@ -57,6 +57,8 @@ Other stuff in the folder:
 # Other points
 
 - The CSS is compiled from SCSS sass files, and the CSS rules are constructed using BEM (base-element-modifier) pattern, but with pretty horrible casing (sorry, inherited from another project we didn't have control over). So the CSS classes look like: `.Base-Element-Element--modifier` (note the modifier is all lowercase).
+- jQuery is not in the page. Neither is Angualr, react or other frameworks.
+- Lots of JS is written in ES6 style, then compiled back to ES2015 with babel by gulp.
 - The video element is killed if `Navigator.connection` detects a 2G/slow connection. This is a chrome-android only feature, but that's the target group.
 - The video header stops playing if it leaves the viewport and restarts when it returns, to reduce jank, pointless CPU cycles, heat and battery drain.
 - The hero looks is iPhoneX ready, it plays in landscape full width, but the notch doesn't get in the way.
