@@ -288,7 +288,8 @@
       .HeroFull-More {
         display: none; } }
     .HeroFull-More svg {
-      max-width: 120px; }
+      max-width: 120px;
+      pointer-events: none; }
     .HeroFull-More-Icon {
       display: block;
       width: 1.4em;
