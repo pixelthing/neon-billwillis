@@ -11,9 +11,17 @@
         <!-- META SYMANTIC/SEO -->
         <meta name="description" content="Re-introducing the crafts of interior design in Marrakesh, including Villa Oasis for Yves Saint-Laurent and Pierre Bergé" />
         <meta name="keywords" content="test3" />
+        <meta property="og:url" content="http://www.billwillis.com?utm_source=og%3Ashare&utm_medium=social&utm_campaign=launch" />
         <meta property="og:description" content="Re-introducing the crafts of interior design in Marrakesh, including Villa Oasis for Yves Saint-Laurent and Pierre Bergé" />
         <meta property="og:title" content="Bill Willis Film - Morocco&#39;s finest aesthete." />
         <meta property="og:site_name" content="Bill Willis" />
+        <meta property="og:video" content="static/imgs/hero-back1.mp4" />
+        <meta property="og:video:type" content="video/mp4" />
+        <meta property="og:video:width" content="716" />
+        <meta property="og:video:height" content="404" />
+        <meta property="og:image" content="static/imgs/hero-back1-md.jpg" />
+        <meta property="og:image:width" content="1100" />
+        <meta property="og:image:height" content="611" />
         <meta itemprop="name" content="Bill Willis Film - Morocco&#39;s finest aesthete." />
         <meta itemprop="description" content="Re-introducing the crafts of interior design in Marrakesh, including Villa Oasis for Yves Saint-Laurent and Pierre Bergé" />
         <meta name="twitter.card" content="summary" />
@@ -25,20 +33,20 @@
         <!-- META APP  -->
         <link rel="manifest" href="/static/manifest.json" />
         <meta name="theme-color" content="#fff">
+        <link rel="icon" type="image/png" sizes="32x32" href="static/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="static/icons/favicon-16x16.png">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="application-name" content="Bill Willis">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="application-name" content="Bill Willis">
-        <link rel="icon" href="static/icons/icon-ico.png" type="image/x-icon" />
-        <link rel="icon" sizes="192x192" href="static/icons/icon-192.png" />
         <meta name="apple-mobile-web-app-title" content="Bill Willis">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <link rel="apple-touch-icon" href="static/icons/icon-96.png"/>
-        <link rel="apple-touch-icon" sizes="120x120" href="static/icons/icon-120.png"/>
-        <link rel="apple-touch-icon" sizes="152x152" href="static/icons/icon-152.png"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="static/icons/apple-touch-icon.png">
+        <link rel="mask-icon" href="static/icons/safari-pinned-tab.svg" color="#000000">
         <meta name="msapplication-config" content="none"/>
         <meta name="msapplication-navbutton-color" content="#ffffff">
         <meta name="msapplication-starturl" content="/">
+        <meta name="msapplication-TileColor" content="#000000">
 
 
     
@@ -76,17 +84,18 @@
     <link rel="preload" as="script" type="text/javascript" href="static/shared.js" />  
     <link rel="preload" as="script" type="text/javascript" href="static/index.js" />  
 
-    <!-- Google Tag Manager -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-126129087-1"></script>
     <script>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','GTM-MT5PXT');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-126129087-1', {
+        'anonymizeIp', true,
+        'transport_type': 'beacon'
+    });
     </script>
-    <!-- End Google Tag Manager -->
-    
-    <!-- <script type='text/javascript' src='static/js/firebug-lite.js'></script> -->
+    <!-- Google Analytics -->
     </head>
     <body>
 
@@ -147,8 +156,8 @@
                             <h2 class="HeroFull-Text">Morocco’s Finest Aesthete</h2>
                         </div>
                     </div>
-                    <button type="button" class="HeroFull-More" data-js-hero-full-more>
-                        Watch the film
+                    <button type="button" class="HeroFull-More" data-js-hero-full-more data-hero-full-more-target="[data-js-video]">
+                        <svg width="300" height="29" viewBox="0 0 1049 101" xmlns="htt../www.w3.org/2000/svg"><title>watch-the-film</title><path d="M93.64 99.72H78.808L59.944 28.296 40.936 99.72H26.392L.184 1.944H5.8l24.768 92.592h5.904L60.088 11.16l23.04 83.376h6.192l24.768-92.592h5.904L93.64 99.72zm-7.488-9.504L63.256 7.128h-6.048l-23.76 83.088L10.984 1.944H16.6L33.88 74.52 53.176 1.944h14.4l18.288 72.432 18.144-72.432h5.616L86.152 90.216zM202.008 99h-6.048L159.24 6.408h-5.616L116.616 99h-6.048l39.168-97.776h13.248L202.008 99zm-10.8 0h-5.904l-10.368-26.928h-37.728L126.84 99h-5.904l12.816-32.112h44.928L191.208 99zm-13.824-35.28h-42.336l21.312-53.424 21.024 53.424zm-7.488-5.04l-13.68-35.568-13.68 35.568h27.36zM228.712 99h-5.328V16.056h-33.696v-5.184h39.024V99zm9.36 0h-5.328V10.872h39.024v5.184h-33.696V99zm33.696-91.872h-82.08V1.944h82.08v5.184zm74.208 73.584l3.888 3.456c-8.928 10.8-20.304 16.704-36.288 16.704-30.672 0-44.928-24.768-44.928-50.256 0-25.776 14.256-50.544 44.928-50.544 16.848 0 28.368 6.48 36.288 16.848l-3.888 3.456c-9.504-10.944-17.424-15.12-32.4-15.12-26.928 0-39.456 22.176-39.456 45.36 0 22.896 12.816 45.072 39.744 45.072 12.816 0 22.608-4.032 32.112-14.976zm-7.2-6.48l4.176 3.888c-8.928 10.8-17.424 13.968-28.8 13.968-24.048 0-35.568-20.736-35.568-41.616 0-20.736 10.944-41.616 35.28-41.616 11.952 0 20.88 3.6 29.088 14.112l-4.176 3.744c-5.904-8.208-14.112-12.672-24.912-12.672-20.592 0-29.808 18.288-29.808 36.432 0 18.144 9.216 36.432 29.808 36.432 10.224 0 17.568-3.168 24.912-12.672zm97.296-27.36h-63.216V1.944h5.328v39.888h52.56V1.944h5.328v44.928zM445.432 99h-5.328V1.944h5.328V99zm-9.36 0h-5.328V55.944h-52.56V99h-5.328V50.76h63.216V99zm-67.248 0h-5.328V1.944h5.328V99zm147.072 0h-5.328V16.056h-33.696v-5.184h39.024V99zm9.36 0h-5.328V10.872h39.024v5.184h-33.696V99zm33.696-91.872h-82.08V1.944h82.08v5.184zm84.016 39.744h-63.216V1.944h5.328v39.888h52.56V1.944h5.328v44.928zM652.328 99H647V1.944h5.328V99zm-9.36 0h-5.328V55.944h-52.56V99h-5.328V50.76h63.216V99zm-67.248 0h-5.328V1.944h5.328V99zm157.776 0h-63.072V1.944h60.192v5.184h-54.864v86.688h57.744V99zm0-8.928h-53.712V50.616h46.512v5.04h-41.184v29.232h48.384v5.184zm-7.2-43.056h-46.512V10.872h50.832v5.184h-45.504v25.92h41.184v5.04zm105.312 3.888h-49.536V10.872h53.856v5.184H787.4v29.808h44.208v5.04zm0 8.64H787.4V99h-5.328V54.504h49.536v5.04zM778.04 99h-5.328V1.944h63.216v5.184H778.04V99zm85.2 0h-5.328V1.944h5.328V99zm-9.216 0h-5.328V1.944h5.328V99zm91.68-8.928H890.84V1.944h5.328v82.944h49.536v5.184zm0 8.928H881.48V1.944h5.328v91.872h58.896V99zm93.408 0h-5.328V30.6l-26.208 40.608h-10.368L970.856 30.6V99h-5.184V12.456l34.56 53.28h4.896l33.984-52.992V99zm9.36 0h-5.328V7.128h-5.184l-35.28 55.296-35.856-55.296h-4.896V99h-5.184V1.944h12.96l32.976 51.408 32.688-51.408h13.104V99z" fill="#fff" fill-rule="evenodd"></path></svg>
                         <svg viewBox="0 0 512 512" class="Icon HeroFull-More-Icon">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#chevron-disc-down"></use>
                         </svg>
@@ -278,12 +287,12 @@
 
 
         <!-- TEXT BLOCK -->
-        <div class="Section Text Text--primary Section--xs Section--center">
+        <div class="Section Text Text--primary Section--primary Section--xs Section--center Section--justify-xxs">
             <div class="Section-Inner Text-Inner">
 
                 <div class="Text-Main Rte">
 
-                    Bill Willis (1937-2009) was the father of Moroccan style interior design. He studied and rescued the old techniques of craftsmen from North Africa and gave them a new life by daring to change the paradigms of this ancient style. His life was as interesting as his creations. We tracked down Bill's friends, members of the bohemian high society, in Marrakech, London, Paris and New York to share his story.
+                    Bill Willis (1937-2009) was the leading light of Moroccan-style interior design. He breathed new life into the traditional techniques of North African craftsmen, boldly rewriting the rules of these ancient methods. His life was as captivating as his art. We tracked down Bill’s friends - members of the bohemian high society in Marrakech, London, Paris and New York - to share his story.
 
                 </div>
 
@@ -446,16 +455,64 @@
                     </h3>
                 <div class="Video-Frame">
                     <div class="Video-Mask Video-Mask--169">
-                        <iframe class="Video-Iframe" src="https://player.vimeo.com/video/289373588?color=c29c0e&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe></iframe>
+                        <iframe class="Video-Iframe" src="https://player.vimeo.com/video/290728660?color=c29c0e&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe></iframe>
                     </div>
                 </div>
-                <figcaption class="Video-Caption">
-                    For all enquiries including screening requests, please <a href='#'>Contact Us</a>.
-                </figcaption>
             
             </figure>
 
         </div>
+
+
+
+
+        <!-- TEXT BLOCK -->
+        <div class="Section Text Section--xs Section--center">
+            <div class="Section-Inner Text-Inner Text-Inner--xs Text-Inner--type-sm">
+
+                    <div class="Text-Main Text-Main-Col Rte">
+
+                        <b>Contributors:</b><br />Christine Alaoui <br />*Pierre Bergé <br />Allal Chraibi <br />Madison Cox <br />Marian McEvoy <br />Marianne Faithfull <br />Agnelli Family <br />Quito Fiero <br />*Christopher Gibbs <br />*Kathy Krieger <br />Bernard-Henri Levy <br />Nicolette Meeres <br />*Mohammed Zkhiri <br />Biaggio Strongi <br />Freck Vreeland <br />Ally Von Westernholtz <br />Isham <br />Slimane
+
+                    </div>
+                    <div class="Text-Main Text-Main-Col Rte">
+
+                        <b>Locations:</b><br />Agnelli’s Pagoda <br />Chraibi House <br />Dar Noujoum <br />Dar Saada <br />Les Jardins Majorelle <br />Rick’s Cafe Casablanca <br />Villa Oasis<br />Yacout Restaurant <br />Zahia Palace
+
+                    </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <!-- TEXT BLOCK -->
+        <div class="Section Text Section--xs Section--center">
+            <div class="Section-Inner Text-Inner Text-Inner--xxs Text-Inner--type-sm">
+
+                <div class="Text-Main Rte">
+
+                    * In loving memory of Pierre Bergé, Christopher Gibbs, Kathy Kriger and Mohammed Zkhiri who have since passed away.
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+
+
 
 
         <!-- FOOTER -->
@@ -470,6 +527,10 @@
         
         <footer class="Footer-Base">
             <div class="Footer-Inner">
+
+                <div class="Footer-Screening">
+                    For all enquiries including screening requests, please <a href='hello@billwillis.com'>Contact Us</a>.
+                </div>
 
                 <div class="Footer-Base-Logos">
                     <a href="http://www.neon.com" target="_blank" rel="noopener" class="Footer-Base-Logo-Link">

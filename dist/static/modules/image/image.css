@@ -100,35 +100,6 @@
     .Image-Caption {
       font-size: 0.9rem;
       padding: 12px 12px 0; } }
-  .Image-Caption--pullup {
-    display: block;
-    position: relative;
-    min-width: 15em;
-    margin: -12px 24px 0;
-    padding: 12px 12px 0;
-    color: inherit; }
-    @media (min-width: 600px) {
-      .Image-Caption--pullup {
-        width: 50%;
-        margin: -6px 25% 0; } }
-    @media (min-width: 768px) {
-      .Image-Caption--pullup {
-        padding: 28.8px 28.8px 0; } }
-  @media (min-width: 600px) {
-    .Image-Caption--left {
-      text-align: left; }
-      .Image-Caption--left.ImaCaption--pullup {
-        width: 25em;
-        min-height: 120px;
-        margin: -120px 0 0 50px; } }
-  @media (min-width: 600px) {
-    .Image-Caption--right {
-      text-align: right; }
-      .Image-Caption--right.ImaCaption--pullup {
-        width: 25em;
-        min-height: 120px;
-        margin: -120px 50px 0 auto;
-        text-align: left; } }
   .Image-Caption-Title {
     font-family: "mrs-eaves-roman-small-caps", "Bodoni 72 smallcaps", "Calibri", "Gill Sans MT", georgia, serif;
     font-weight: normal;

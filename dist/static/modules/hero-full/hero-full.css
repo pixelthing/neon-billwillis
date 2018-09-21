@@ -183,14 +183,17 @@
       overflow: hidden;
       text-indent: -9999px; }
     .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
-      max-width: 80vw;
-      height: auto; }
+      display: block;
+      width: 80vw;
+      height: auto;
+      margin: 0 auto;
+      max-width: 880px; }
       @media (min-width: 768px) {
         .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
-          max-width: 60vw; } }
+          width: 60vw; } }
       @media (min-width: 980px) {
         .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
-          max-width: 70vw; } }
+          width: 70vw; } }
       @media (max-width: 767px) {
         .HeroFull-Title-Logo svg, .HeroFull-Title-Logo img {
           width: 276px;
@@ -203,9 +206,10 @@
     letter-spacing: 0.07em;
     display: block;
     max-width: 25em;
-    margin: 0.1em auto;
+    margin: 0.6em auto 0;
     line-height: 24px;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.06em !important;
     text-align: center;
     text-shadow: 0 0 15px rgba(0, 0, 0, 0.4); }
     .wf-mrseavesromansmallcaps-n4-active .HeroFull-Text {
@@ -217,12 +221,18 @@
                 animation: fade-in 1200ms forwards;
         -webkit-animation-delay: 800ms;
                 animation-delay: 800ms; } }
-    @media (min-width: 600px) and (min-height: 500px) {
+    @media (min-width: 768px) and (min-height: 500px) {
       .HeroFull-Text {
-        font-size: 1.8em; } }
+        margin: 1em auto 0;
+        font-size: 1.8em;
+        font-size: calc( 15px + 1.3vw); } }
     @media (min-width: 980px) and (min-height: 500px) {
       .HeroFull-Text {
-        font-size: 2rem; } }
+        font-size: 2rem;
+        font-size: calc( 10px + 2vw); } }
+    @media (min-width: 1200px) {
+      .HeroFull-Text {
+        font-size: 1.75em; } }
   .HeroFull-More {
     -webkit-appearance: none;
     display: inline-block;
@@ -277,6 +287,8 @@
     @media print {
       .HeroFull-More {
         display: none; } }
+    .HeroFull-More svg {
+      max-width: 180px; }
     .HeroFull-More-Icon {
       display: block;
       width: 1.4em;

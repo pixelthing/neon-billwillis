@@ -130,7 +130,10 @@ var heroFull = function heroFull(el, app) {
     var moreButton = function moreButton() {
         document.querySelector('[data-js-hero-full-more]').addEventListener('click', function (ev) {
             ev.preventDefault();
-            console.log('111');
+
+            var targetSelector = this.getAttribute('data-hero-full-more-target');
+            var target = document.querySelector(targetSelector);
+            var targetPos = target.offsetTop;
 
             function scrollTo(endPoint, scrollDuration) {
                 var cosParameter = (endPoint - window.scrollY) / 2;
@@ -146,7 +149,7 @@ var heroFull = function heroFull(el, app) {
                 }
                 window.requestAnimationFrame(step);
             }
-            scrollTo(el.offsetHeight, 500);
+            scrollTo(targetPos, 500);
         });
     };
 
