@@ -75,8 +75,6 @@
 // rather than include a whole font for two small sans-serif titles, we fallback to the regular sans-serif which already has a bold weight.
 .Rte {
   b {
-    font-family: "proxima-nova-bold", "centurygothic", "gill sans nova", "gill sans", $font-fallback;
     font-size: 1.05em;
-    letter-spacing: 0.02em;
   }
 }

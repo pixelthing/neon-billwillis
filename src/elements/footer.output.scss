@@ -40,7 +40,7 @@ $footer-font-size-lg: $font-size-sm;
     }
 
     &-Base {
-        margin: $gutter*10 0;
+        margin: $gutter*10 0 $gutter*2;
         padding: 0 $gutter;
         font-size: $footer-font-size-sm;
         page-break-inside: avoid;
@@ -164,26 +164,26 @@ $footer-font-size-lg: $font-size-sm;
 
 .Bg-Bottom-Left {
     left: 0;
-    bottom: -80px;
+    bottom: 0;
     width: 469px;
     height: 644px;
     opacity: 0.6;
 }
 .Bg-Bottom-Right1 {
     right: 0px;
-    bottom: 310px;
+    bottom: 390px;
     width: 117px;
     height: 209px;
 }
 .Bg-Bottom-Right2 {
     right: 0px;
-    bottom: 60px;
+    bottom: 140px;
     width: 178px;
     height: 283px;
 }
 .Bg-Bottom-Right3 {
     right: 0;
-    bottom: -80px;
+    bottom: 0px;
     width: 315px;
-    height: 220px;
+    height: 200px;
 }
