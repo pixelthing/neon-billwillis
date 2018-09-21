@@ -133,7 +133,8 @@ var heroFull = function heroFull(el, app) {
 
             var targetSelector = this.getAttribute('data-hero-full-more-target');
             var target = document.querySelector(targetSelector);
-            var targetPos = target.offsetTop;
+
+            var targetPos = Math.round(target.getBoundingClientRect().top);
 
             function scrollTo(endPoint, scrollDuration) {
                 var cosParameter = (endPoint - window.scrollY) / 2;
@@ -141,8 +142,12 @@ var heroFull = function heroFull(el, app) {
                 var oldTimestamp = performance.now();
                 function step(newTimestamp) {
                     scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
-                    if (scrollCount >= Math.PI) window.scrollTo(0, endPoint);
-                    if (window.scrollY === endPoint) return;
+                    if (scrollCount >= Math.PI) {
+                        window.scrollTo(0, endPoint);
+                    }
+                    if (Math.round(window.scrollY) === endPoint) {
+                        return;
+                    }
                     window.scrollTo(0, Math.round(cosParameter - cosParameter * Math.cos(scrollCount)));
                     oldTimestamp = newTimestamp;
                     window.requestAnimationFrame(step);

@@ -274,7 +274,8 @@
             display: none;
         }
         svg {
-            max-width: 180px;
+            max-width: 120px;
+            pointer-events: none;
         }
         &-Icon {
             display: block;

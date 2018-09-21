@@ -63,24 +63,26 @@
             var timeStarted = 0;
             player.on('play', function() {
                 timeStarted = 0;
-                console.log('played the video!');
                 gtag('event', 'play', {'event_category':'video'});
             });
             player.on('pause', function() {
                 const timePlayed = Math.round( ( performance.now() - timeStarted )/1000 );
-                console.log('stopped the video!',timePlayed);
                 gtag('event', 'stop', {'event_category':'video','value':timePlayed});
             });
             player.on('ended', function() {
                 gtag('event', 'ended', {'event_category':'video'});
             });
+            var recorded = {};
             player.on('progress', function(val) {
-                if (val.percent >= 0.75) {
+                if (val.percent >= 0.75 && !recorded.step3) {
                     gtag('event', 'progress', {'event_category':'video', 'event_label':'75%'});
-                } else if (val.percent >= 0.5) {
+                    recorded.step3 = true;
+                } else if (val.percent >= 0.5 && !recorded.step2) {
                     gtag('event', 'progress', {'event_category':'video', 'event_label':'50%'});
-                } else if (val.percent >= 0.25) {
+                    recorded.step2 = true;
+                } else if (val.percent >= 0.25 && !recorded.step1) {
                     gtag('event', 'progress', {'event_category':'video', 'event_label':'25%'});
+                    recorded.step1 = true;
                 }
             });
         </script>

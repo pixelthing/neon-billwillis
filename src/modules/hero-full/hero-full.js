@@ -70,7 +70,8 @@ const heroFull = function(el, app) {
 
             const targetSelector = this.getAttribute('data-hero-full-more-target');
             const target = document.querySelector(targetSelector);
-            const targetPos = target.offsetTop;
+
+            const targetPos = Math.round( target.getBoundingClientRect().top );
 
             function scrollTo( endPoint, scrollDuration ) {
                 let   cosParameter = ( endPoint - window.scrollY ) / 2;
@@ -78,8 +79,12 @@ const heroFull = function(el, app) {
                 let   oldTimestamp = performance.now();
                 function step (newTimestamp) {
                     scrollCount += Math.PI / (scrollDuration / (newTimestamp - oldTimestamp));
-                    if (scrollCount >= Math.PI) window.scrollTo(0, endPoint );
-                    if (window.scrollY === endPoint) return;
+                    if (scrollCount >= Math.PI) {
+                        window.scrollTo( 0, endPoint );
+                    }
+                    if ( Math.round( window.scrollY ) === endPoint ) {
+                        return;
+                    }
                     window.scrollTo(0, Math.round(cosParameter - cosParameter * Math.cos(scrollCount)));
                     oldTimestamp = newTimestamp;
                     window.requestAnimationFrame( step );
