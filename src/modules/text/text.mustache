@@ -1,14 +1,23 @@
 {{#content}}
 
         <!-- TEXT BLOCK -->
-        <div class="Section Text{{#primary}} Text--primary{{/primary}}{{#color}} Section--{{.}}{{/color}}{{#margin}} Section--{{.}}{{/margin}}{{#center}} Section--center{{/center}}">
-            <div class="Section-Inner Text-Inner{{#width}} Text-Inner--{{.}}{{/width}}">
+        <div class="Section Text{{#primary}} Text--primary{{/primary}}{{#color}} Section--{{.}}{{/color}}{{#margin}} Section--{{.}}{{/margin}}{{#center}} Section--center{{/center}}{{#justifyXXS}} Section--justify-xxs{{/justifyXXS}}">
+            <div class="Section-Inner Text-Inner{{#width}} Text-Inner--{{.}}{{/width}}{{#fontSize}} Text-Inner--type-{{.}}{{/fontSize}}{{#fontSerif}} Text-Inner--type-serif{{/fontSerif}}">
 
+                {{# html }}
                 <div class="Text-Main Rte">
 
                     {{{html}}}
 
                 </div>
+                {{/ html }}
+                {{# columns }}
+                    <div class="Text-Main Text-Main-Col Rte">
+
+                        {{{html}}}
+
+                    </div>
+                {{/ columns }}
 
                 {{# expandedText }}
                 <div class="Text-Expanded Rte"

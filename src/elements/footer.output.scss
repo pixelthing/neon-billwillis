@@ -40,12 +40,12 @@ $footer-font-size-lg: $font-size-sm;
     }
 
     &-Base {
-        margin: $gutter*2 0;
+        margin: $gutter*10 0;
         padding: 0 $gutter;
         font-size: $footer-font-size-sm;
         page-break-inside: avoid;
         @media (min-width: $xs-and-up) {
-            margin-top: $gutter*4;
+            margin-top: $gutter*6;
             padding-left:  calc(#{$gutter} + env(safe-area-inset-left));
             padding-right: calc(#{$gutter} + env(safe-area-inset-right));
         }
@@ -99,6 +99,16 @@ $footer-font-size-lg: $font-size-sm;
             }
         }
     }
+
+    &-Screening {
+        margin: 0 0 $gutter*3;
+        font-size: $font-size-md2;
+        line-height: 1.3em;
+        @include typo-serif();
+        a {
+            @include typo-smallcaps();
+        }
+    }
 }
 
 .Social {
@@ -106,6 +116,7 @@ $footer-font-size-lg: $font-size-sm;
     top: 15px;
     left: 0;
     right: 0;
+    opacity: 0.8;
     &-Logo {
         display: block;
         @supports ( animation:none ) {

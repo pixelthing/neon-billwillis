@@ -103,11 +103,13 @@
     // sepcific uses
     &--center {
         text-align: center;
-        @media screen AND (max-width: $less-than-xs) {
-            text-align: justify;
-        }
         @media print {
             text-align: left;
+        }
+    }
+    &--justify-xxs {
+        @media screen AND (max-width: $less-than-xs) {
+            text-align: justify;
         }
     }
     &--padding {

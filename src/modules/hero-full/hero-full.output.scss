@@ -201,13 +201,16 @@
                 text-indent: -9999px;
             }
             svg,img {
-                max-width: 80vw;
+                display: block;
+                width: 80vw;
                 height: auto;
+                margin: 0 auto;
+                max-width: 880px;
                 @media (min-width: $sm-and-up) {
-                    max-width: 60vw;
+                    width: 60vw;
                 }
                 @media (min-width: $md-and-up) {
-                    max-width: 70vw;
+                    width: 70vw;
                 }
                 @media (max-width: $less-than-sm) {
                     width: 276px;
@@ -220,9 +223,10 @@
         @include typo-smallcaps();
         display: block;
         max-width: 25em;
-        margin: 0.1em auto;
+        margin: 0.6em auto 0;
         line-height: 24px;
-        font-size: $font-size-md2;
+        font-size: 1.1rem;
+        letter-spacing: 0.06em !important;
         text-align: center;
         text-shadow: 0 0 15px rgba(0,0,0,0.4);
         @supports ( animation:none ) {
@@ -230,11 +234,17 @@
             animation: fade-in 1200ms forwards;
             animation-delay: 800ms;
         }
-        @media (min-width: $xs-and-up) AND (min-height: $h-sm-and-up) {
+        @media (min-width: $sm-and-up) AND (min-height: $h-sm-and-up) {
+            margin: 1em auto 0;
             font-size: 1.8em;
+            font-size: calc( 15px + 1.3vw);
         }
         @media (min-width: $md-and-up) AND (min-height: $h-sm-and-up) {
             font-size: $font-size-xl;
+            font-size: calc( 10px + 2vw);
+        }
+        @media (min-width: $lg-and-up) {
+            font-size: 1.75em;
         }
     }
     &-More {
@@ -262,6 +272,9 @@
         }
         @media print {
             display: none;
+        }
+        svg {
+            max-width: 180px;
         }
         &-Icon {
             display: block;

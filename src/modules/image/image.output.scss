@@ -103,75 +103,6 @@
 
 
 
-// Image caption & caption alignment
-//
-// The figure caption is optional, and can have optional title and text. Both appear centred, underneath the image by default. It can be aligned left or right. Note that on XXS screens, it always appears centrally aligned.
-//
-// .default! - centered
-// .ImaCaption--left - left aligned
-// .ImaCaption--right - left aligned
-//
-// markup:
-//        <link rel="stylesheet" href="static/modules/imacropped/imacropped.css"> <script> </script>
-//        <div class="Section Image">
-//            <figure class="Section-Inner ImaInner">
-//                <div class="ImaFrame">
-//                    <img data-src="static/imgs/dusk-md.jpg" 
-//                         data-srcset=" /static/imgs/dusk-lg.jpg 1600w, /static/imgs/dusk-md.jpg 1100w, /static/imgs/dusk-sm.jpg 600w" 
-//                         width="1100" 
-//                         height="743" 
-//                         alt="test image alt" 
-//                         class=" ImaImg lazyload">
-//                    <noscript>
-//                        <img src="static/imgs/dusk-md.jpg"
-//                             alt="est image alt" 
-//                             class="ImaImg ImaFallback" />
-//                    </noscript>
-//                </div>
-//                <figcaption class="ImaCaption {$modifiers}">
-//                    <h3 class="ImaCaption-Title">Title here</h3>
-//                    This is an image caption.
-//                </figcaption>
-//            </figure>
-//        </div>
-//
-// Styleguide 3.15.4
-
-// Image caption pull-up
-//
-// The figure caption can be pulled up ontop of the image, and interacts with the alignment. These have slightly different effects across different screen sizes, but all pull-ups default to central aligned on XXS screens.
-//
-// .ImaCaption--pullup - pulled up whilst center aligned
-// .ImaCaption--left.ImaCaption--pullup - pulled up whilst left aligned
-// .ImaCaption--right.ImaCaption--pullup - pulled up whilst left aligned
-//
-// markup:
-//        <link rel="stylesheet" href="static/modules/imacropped/imacropped.css"> <script> </script>
-//        <div class="Section Image">
-//            <figure class="Section-Inner ImaInner">
-//                <div class="ImaFrame">
-//                    <img data-src="static/imgs/dusk-md.jpg" 
-//                         data-srcset=" /static/imgs/dusk-lg.jpg 1600w, /static/imgs/dusk-md.jpg 1100w, /static/imgs/dusk-sm.jpg 600w" 
-//                         width="1100" 
-//                         height="743" 
-//                         alt="test image alt" 
-//                         class=" ImaImg lazyload">
-//                    <noscript>
-//                        <img src="static/imgs/dusk-md.jpg"
-//                             alt="est image alt" 
-//                             class="ImaImg ImaFallback" />
-//                    </noscript>
-//                </div>
-//                <figcaption class="ImaCaption {$modifiers}">
-//                    <h3 class="ImaCaption-Title">Title here</h3>
-//                    This is an image caption.
-//                </figcaption>
-//            </figure>
-//        </div>
-//
-// Styleguide 3.15.5
-
-
 
 .Image {
     &-Inner {
@@ -257,42 +188,6 @@
         @media (max-width: $less-than-sm) {
             font-size: $font-size-sm;
             padding: $gutter $gutter 0;
-        }
-        &--pullup {
-            display: block;
-            position: relative;
-            min-width: 15em;
-            margin: -#{$gutter} $gutter*2 0;
-            padding: $gutter $gutter 0;
-            color: inherit;
-            @media (min-width: $xs-and-up) {
-                width: 50%;
-                margin: -#{$gutter/2} 25% 0;
-            }
-            @media (min-width: $sm-and-up) {
-                padding: $gutter*2.4 $gutter*2.4 0;
-            }
-        }
-        &--left {
-            @media (min-width: $xs-and-up) {
-                text-align: left;
-                &.ImaCaption--pullup {
-                    width: 25em;
-                    min-height: 120px;
-                    margin: -120px 0 0 50px;
-                }
-            }
-        }
-        &--right {
-            @media (min-width: $xs-and-up) {
-                text-align: right;
-                &.ImaCaption--pullup {
-                    width: 25em;
-                    min-height: 120px;
-                    margin: -120px 50px 0 auto;
-                    text-align: left;
-                }
-            }
         }
         &-Title {
             @include typo-smallcaps();

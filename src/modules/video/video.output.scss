@@ -292,41 +292,6 @@ $duration: 300ms;
             padding-left: $gutter;
             padding-right: $gutter;
         }
-        &--pullup {
-            display: block;
-            position: relative;
-            min-width: 15em;
-            margin: -$gutter $gutter*2 0;
-            padding: $gutter $gutter 0;
-            @media (min-width: $xs-and-up) {
-                width: 50%;
-                margin: -#{$gutter/2} 25% 0;
-            }
-            @media (min-width: $sm-and-up) {
-                padding: $gutter*2 $gutter*2 0;
-            }
-        }
-        &--left {
-            @media (min-width: $xs-and-up) {
-                text-align: left;
-                &.Video-Caption--pullup {
-                    width: 33.333%;
-                    min-height: 100px;
-                    margin: -100px 0 0 $gutter-section-md;
-                }
-            }
-        }
-        &--right {
-            @media (min-width: $xs-and-up) {
-                text-align: right;
-                &.Video-Caption--pullup {
-                    width: 33.333%;
-                    min-height: 100px;
-                    margin: -100px $gutter-section-md 0 auto;
-                    text-align: left;
-                }
-            }
-        }
         a {
             @include typo-smallcaps();
         }
