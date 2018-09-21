@@ -56,4 +56,32 @@
             </figure>
 
         </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+        <script>
+            var iframe = document.querySelector('iframe');
+            var player = new Vimeo.Player(iframe);
+            var timeStarted = 0;
+            player.on('play', function() {
+                timeStarted = 0;
+                console.log('played the video!');
+                gtag('event', 'play', {'event_category':'video'});
+            });
+            player.on('pause', function() {
+                const timePlayed = Math.round( ( performance.now() - timeStarted )/1000 );
+                console.log('stopped the video!',timePlayed);
+                gtag('event', 'stop', {'event_category':'video','value':timePlayed});
+            });
+            player.on('ended', function() {
+                gtag('event', 'ended', {'event_category':'video'});
+            });
+            player.on('progress', function(val) {
+                if (val.percent >= 0.75) {
+                    gtag('event', 'progress', {'event_category':'video', 'event_label':'75%'});
+                } else if (val.percent >= 0.5) {
+                    gtag('event', 'progress', {'event_category':'video', 'event_label':'50%'});
+                } else if (val.percent >= 0.25) {
+                    gtag('event', 'progress', {'event_category':'video', 'event_label':'25%'});
+                }
+            });
+        </script>
 {{/content}}

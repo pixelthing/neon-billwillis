@@ -91,7 +91,7 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'UA-126129087-1', {
-        'anonymizeIp', true,
+        'anonymizeIp': true,
         'transport_type': 'beacon'
     });
     </script>
@@ -130,19 +130,18 @@
                             $videoEl.remove();
                             // log it
                             if ( typeof(ga) !== 'undefined')
-                                ga('send', 'event', 'video', 'low-bandwidth-remove');
+                                gtag('event', 'load', {'event_category':'hero-video', 'event_label':'low-bandwidth-remove'});
                         // if on a small portrait screen (eg mobile), swap the video for one in portrait. It's not any smaller, but all the pixels are used, so it's sharper on the highest res device you hold closest to your eyes.
                         } else if ( window.innerHeight > window.innerWidth && window.innerWidth < 600 ) {
                             $videoEl.querySelector('[data-video-codec-hevc]').src = $videoEl.getAttribute('data-hevc-portrait');
                             $videoEl.querySelector('[data-video-codec-mp4]').src = $videoEl.getAttribute('data-mp4-portrait');
                             // log it
                             if ( typeof(ga) !== 'undefined')
-                                ga('send', 'event', 'video', 'portrait');
+                                gtag('event', 'load', {'event_category':'hero-video', 'event_label':'portrait'});
                         } else {
-                            
                             // log it
                             if ( typeof(ga) !== 'undefined')
-                                ga('send', 'event', 'video', 'landscape');
+                                gtag('event', 'load', {'event_category':'hero-video', 'event_label':'landscape'});
                         }
                     })();
                 </script>
@@ -462,6 +461,34 @@
             </figure>
 
         </div>
+        <script src="https://player.vimeo.com/api/player.js"></script>
+        <script>
+            var iframe = document.querySelector('iframe');
+            var player = new Vimeo.Player(iframe);
+            var timeStarted = 0;
+            player.on('play', function() {
+                timeStarted = 0;
+                console.log('played the video!');
+                gtag('event', 'play', {'event_category':'video'});
+            });
+            player.on('pause', function() {
+                const timePlayed = Math.round( ( performance.now() - timeStarted )/1000 );
+                console.log('stopped the video!',timePlayed);
+                gtag('event', 'stop', {'event_category':'video','value':timePlayed});
+            });
+            player.on('ended', function() {
+                gtag('event', 'ended', {'event_category':'video'});
+            });
+            player.on('progress', function(val) {
+                if (val.percent >= 0.75) {
+                    gtag('event', 'progress', {'event_category':'video', 'event_label':'75%'});
+                } else if (val.percent >= 0.5) {
+                    gtag('event', 'progress', {'event_category':'video', 'event_label':'50%'});
+                } else if (val.percent >= 0.25) {
+                    gtag('event', 'progress', {'event_category':'video', 'event_label':'25%'});
+                }
+            });
+        </script>
 
 
 

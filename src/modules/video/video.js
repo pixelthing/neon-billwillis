@@ -65,7 +65,7 @@ const videoFrame = function(el, app) {
                 timeStarted = performance.now();
             // log it
             if ( typeof(ga) !== 'undefined')
-                ga('send', 'event', 'video', 'open');
+            gtag('event', 'load', {'event_category':'video', 'event_label':'open'});
         } else {
             stop();
             if ( typeof(performance) !== 'undefined') {
@@ -73,7 +73,7 @@ const videoFrame = function(el, app) {
             }
             // log it
             if ( typeof(ga) !== 'undefined')
-                ga('send', 'event', 'video', 'close', false, timePlayed);
+                gtag('event', 'load', {'event_category':'video', 'event_label':'open', 'value':timePlayed});
         }
     };
 
