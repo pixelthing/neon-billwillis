@@ -27,7 +27,7 @@ const heroFull = function(el, app) {
         // set as ready
         el.classList.add('HeroFull--ready');
         // pause the video if it goes off screen
-        intersectionInit()
+        intersectionInit();
     };
 
     // set-up the intersection observer
@@ -67,7 +67,10 @@ const heroFull = function(el, app) {
     const moreButton = function() {
         document.querySelector('[data-js-hero-full-more]').addEventListener('click',function(ev) {
             ev.preventDefault();
-console.log('111');
+
+            const targetSelector = this.getAttribute('data-hero-full-more-target');
+            const target = document.querySelector(targetSelector);
+            const targetPos = target.offsetTop;
 
             function scrollTo( endPoint, scrollDuration ) {
                 let   cosParameter = ( endPoint - window.scrollY ) / 2;
@@ -83,7 +86,7 @@ console.log('111');
                 }
                 window.requestAnimationFrame( step );
             }
-            scrollTo( el.offsetHeight, 500 )
+            scrollTo( targetPos, 500 );
 
         });
     };

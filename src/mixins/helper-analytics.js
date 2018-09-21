@@ -44,7 +44,7 @@ const helperAnalytics = function(app,noInit) {
             app.analyticsReady = true;
             registerEvents();
             triggerLoaders();
-            landingPage()
+            landingPage();
         }
         
     };
