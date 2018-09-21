@@ -49,13 +49,12 @@
 
     
     <!-- TYPEKIT PRELOAD: PROXIMA NOVA LIGHT -->
-    <link rel="preload" as="font" type="font/woff2" href="//use.typekit.net/af/437c3d/00000000000000003b9b0932/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="https://use.typekit.net/af/437c3d/00000000000000003b9b0932/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3" crossorigin />
     <!-- TYPEKIT PRELOAD: MRS EAVES SMALL CAPS -->
-    <link rel="preload" as="font" type="font/woff2" href="//use.typekit.net/af/cb95a6/00000000000000003b9adc07/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="https://use.typekit.net/af/cb95a6/00000000000000003b9adc07/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3" crossorigin />
     <!-- TYPEKIT PRELOAD: MRS EAVES SROMAN LINING -->
-    <link rel="preload" as="font" type="font/woff2" href="//use.typekit.net/af/f04c9e/00000000000000003b9adc09/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3" crossorigin />
-    <link rel="dns-prefetch" href="//performance.typekit.net" />
-
+    <link rel="preload" as="font" type="font/woff2" href="https://use.typekit.net/af/f04c9e/00000000000000003b9adc09/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n4&v=3" crossorigin />
+    
     <script>
     (function(d) {
         var config = {
@@ -63,7 +62,7 @@
         scriptTimeout: 3000,
         async: true
         },
-        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
     })(document);
     </script>
     <!-- CSS -->
@@ -452,26 +451,24 @@
                     </h3>
                 <div class="Video-Frame">
                     <div class="Video-Mask Video-Mask--169">
-                        <iframe class="Video-Iframe" src="//player.vimeo.com/video/290728660?color=c29c0e&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe></iframe>
+                        <iframe class="Video-Iframe" src="https://player.vimeo.com/video/290728660?color=c29c0e&title=0&byline=0&portrait=0" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe></iframe>
                     </div>
                 </div>
             
             </figure>
 
         </div>
-        <script src="//player.vimeo.com/api/player.js"></script>
+        <script src="https://player.vimeo.com/api/player.js"></script>
         <script>
             var iframe = document.querySelector('iframe');
             var player = new Vimeo.Player(iframe);
             var timeStarted = 0;
             player.on('play', function() {
                 timeStarted = 0;
-                console.log('played the video!');
                 gtag('event', 'play', {'event_category':'video'});
             });
             player.on('pause', function() {
                 const timePlayed = Math.round( ( performance.now() - timeStarted )/1000 );
-                console.log('stopped the video!',timePlayed);
                 gtag('event', 'stop', {'event_category':'video','value':timePlayed});
             });
             player.on('ended', function() {

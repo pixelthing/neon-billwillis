@@ -20,7 +20,7 @@
                 <div class="Video-Frame">
                     <div class="Video-Mask{{#ratio}} Video-Mask--{{ratio}}{{/ratio}}">
                         {{#poster}}
-                        <button class="Video-Poster" data-js-video-poster data-js-video-src="{{#src.youtube}}http://www.youtube.com/embed/{{src.youtube}}?autoplay=1&modestbranding=1&showinfo=0&rel=0&hl=sv.{{/src.youtube}}{{#src.vimeo}}//player.vimeo.com/video/{{src.vimeo}}?color=c29c0e&title=0&byline=0&portrait=0{{/src.vimeo}}{{#src.other}}{{.}}{{/src.other}}" data-js-poly-object-fit data-js-beacon-click="movie-open-block,{{src.youtube}}">
+                        <button class="Video-Poster" data-js-video-poster data-js-video-src="{{#src.youtube}}http://www.youtube.com/embed/{{src.youtube}}?autoplay=1&modestbranding=1&showinfo=0&rel=0&hl=sv.{{/src.youtube}}{{#src.vimeo}}https://player.vimeo.com/video/{{src.vimeo}}?color=c29c0e&title=0&byline=0&portrait=0{{/src.vimeo}}{{#src.other}}{{.}}{{/src.other}}" data-js-poly-object-fit data-js-beacon-click="movie-open-block,{{src.youtube}}">
                             
                             <picture class="Video-Poster-Img lazyload">
                                 {{#jp2}}
@@ -38,7 +38,7 @@
                         <iframe class="Video-Iframe" src="" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe aria-hidden="true"></iframe>
                         {{/poster}}
                         {{^poster}}
-                        <iframe class="Video-Iframe" src="{{#src.youtube}}//www.youtube.com/embed/{{src.youtube}}?autoplay=1&modestbranding=1&showinfo=0&rel=0&hl=sv.{{/src.youtube}}{{#src.vimeo}}//player.vimeo.com/video/{{src.vimeo}}?color=c29c0e&title=0&byline=0&portrait=0{{/src.vimeo}}{{#src.other}}{{.}}{{/src.other}}" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe></iframe>
+                        <iframe class="Video-Iframe" src="{{#src.youtube}}http://www.youtube.com/embed/{{src.youtube}}?autoplay=1&modestbranding=1&showinfo=0&rel=0&hl=sv.{{/src.youtube}}{{#src.vimeo}}https://player.vimeo.com/video/{{src.vimeo}}?color=c29c0e&title=0&byline=0&portrait=0{{/src.vimeo}}{{#src.other}}{{.}}{{/src.other}}" width="640" height="360" frameborder="0" allowTransparency="true" webkitallowfullscreen allowfullscreen data-js-video-iframe></iframe>
                         {{/poster}}
                     </div>
                     {{#poster}}
@@ -56,19 +56,17 @@
             </figure>
 
         </div>
-        <script src="//player.vimeo.com/api/player.js"></script>
+        <script src="https://player.vimeo.com/api/player.js"></script>
         <script>
             var iframe = document.querySelector('iframe');
             var player = new Vimeo.Player(iframe);
             var timeStarted = 0;
             player.on('play', function() {
                 timeStarted = 0;
-                console.log('played the video!');
                 gtag('event', 'play', {'event_category':'video'});
             });
             player.on('pause', function() {
                 const timePlayed = Math.round( ( performance.now() - timeStarted )/1000 );
-                console.log('stopped the video!',timePlayed);
                 gtag('event', 'stop', {'event_category':'video','value':timePlayed});
             });
             player.on('ended', function() {

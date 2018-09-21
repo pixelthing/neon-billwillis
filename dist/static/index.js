@@ -128,17 +128,13 @@ var heroFull = function heroFull(el, app) {
     };
 
     var moreButton = function moreButton() {
-        console.log('1', document.querySelector('[data-js-hero-full-more]'));
         document.querySelector('[data-js-hero-full-more]').addEventListener('click', function (ev) {
-            console.log('2');
             ev.preventDefault();
-            console.log('3');
 
             var targetSelector = this.getAttribute('data-hero-full-more-target');
             var target = document.querySelector(targetSelector);
 
-            var targetPos = target.getBoundingClientRect().top;
-            console.log(target, targetPos);
+            var targetPos = Math.round(target.getBoundingClientRect().top);
 
             function scrollTo(endPoint, scrollDuration) {
                 var cosParameter = (endPoint - window.scrollY) / 2;
@@ -149,7 +145,7 @@ var heroFull = function heroFull(el, app) {
                     if (scrollCount >= Math.PI) {
                         window.scrollTo(0, endPoint);
                     }
-                    if (Math.round(window.scrollY) === Math.round(endPoint)) {
+                    if (Math.round(window.scrollY) === endPoint) {
                         return;
                     }
                     window.scrollTo(0, Math.round(cosParameter - cosParameter * Math.cos(scrollCount)));
