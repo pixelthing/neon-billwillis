@@ -11,9 +11,17 @@
         <!-- META SYMANTIC/SEO -->
         <meta name="description" content="{{ meta.description }}" />
         <meta name="keywords" content="{{ meta.keywords }}" />
+        <meta property="og:url" content="http://www.billwillis.com?utm_source=og%3Ashare&utm_medium=social&utm_campaign=launch" />
         <meta property="og:description" content="{{ meta.description }}" />
         <meta property="og:title" content="{{ meta.title }}" />
         <meta property="og:site_name" content="Bill Willis" />
+        <meta property="og:video" content="static/imgs/hero-back1.mp4" />
+        <meta property="og:video:type" content="video/mp4" />
+        <meta property="og:video:width" content="716" />
+        <meta property="og:video:height" content="404" />
+        <meta property="og:image" content="static/imgs/hero-back1-md.jpg" />
+        <meta property="og:image:width" content="1100" />
+        <meta property="og:image:height" content="611" />
         <meta itemprop="name" content="{{ meta.title }}" />
         <meta itemprop="description" content="{{ meta.description }}" />
         <meta name="twitter.card" content="summary" />
@@ -25,20 +33,20 @@
         <!-- META APP  -->
         <link rel="manifest" href="{{{ app.manifest }}}" />
         <meta name="theme-color" content="{{ app.themeColor }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="static/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="static/icons/favicon-16x16.png">
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="application-name" content="Bill Willis">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="application-name" content="{{ app.applicationName }}">
-        <link rel="icon" href="static/icons/icon-ico.png" type="image/x-icon" />
-        <link rel="icon" sizes="192x192" href="static/icons/icon-192.png" />
         <meta name="apple-mobile-web-app-title" content="{{ app.applicationName }}">
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-        <link rel="apple-touch-icon" href="static/icons/icon-96.png"/>
-        <link rel="apple-touch-icon" sizes="120x120" href="static/icons/icon-120.png"/>
-        <link rel="apple-touch-icon" sizes="152x152" href="static/icons/icon-152.png"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="static/icons/apple-touch-icon.png">
+        <link rel="mask-icon" href="static/icons/safari-pinned-tab.svg" color="#000000">
         <meta name="msapplication-config" content="none"/>
         <meta name="msapplication-navbutton-color" content="#ffffff">
         <meta name="msapplication-starturl" content="/">
+        <meta name="msapplication-TileColor" content="#000000">
 
         {{> head-css }}
 

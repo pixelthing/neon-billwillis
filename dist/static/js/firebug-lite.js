@@ -13,7 +13,6 @@ var firebug = {
       "ml":false,
       "showIconWhenHidden":true,
       "popupTop":1,
-      "popupLeft":1,
       "popupWidth":undefined,
       "popupHeight":undefined,
       "textNodeChars":0
