@@ -18,7 +18,7 @@
     overflow: hidden; }
 
 .Footer-Base {
-  margin: 120px 0;
+  margin: 120px 0 24px;
   padding: 0 12px;
   font-size: 0.8rem;
   page-break-inside: avoid;
@@ -151,27 +151,27 @@
 
 .Bg-Bottom-Left {
   left: 0;
-  bottom: -80px;
+  bottom: 0;
   width: 469px;
   height: 644px;
   opacity: 0.6; }
 
 .Bg-Bottom-Right1 {
   right: 0px;
-  bottom: 310px;
+  bottom: 390px;
   width: 117px;
   height: 209px; }
 
 .Bg-Bottom-Right2 {
   right: 0px;
-  bottom: 60px;
+  bottom: 140px;
   width: 178px;
   height: 283px; }
 
 .Bg-Bottom-Right3 {
   right: 0;
-  bottom: -80px;
+  bottom: 0px;
   width: 315px;
-  height: 220px; }
+  height: 200px; }
 
 /*# sourceMappingURL=footer.css.map */
