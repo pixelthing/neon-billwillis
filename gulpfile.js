@@ -255,8 +255,8 @@ gulp.task('scripts', ['verify-static', 'jshint'], function() {
     .plugin('factor-bundle', {
         outputs: bundles.map((file) => path.join('./' + options.root + '/static/', path.basename(file)))
     });
-    bundleCreator = watchify(bundleCreator);
-    bundleCreator.on('update', update);
+    // bundleCreator = watchify(bundleCreator);
+    // bundleCreator.on('update', update);
 
     // function that bundles
     function bundleBuild() {
