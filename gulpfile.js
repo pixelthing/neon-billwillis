@@ -110,7 +110,6 @@ gulp.task('cleanProd', del.bind(null, 'prod', { dot: true }));
 gulp.task('build', function() {
     runSequence([
         'copyImgs',
-        'copyMovs',
         'copyIcons',
         'copyJsExtra',
         'copyRoot',
@@ -125,6 +124,7 @@ gulp.task('build', function() {
 gulp.task('buildFull', function() {
     runSequence([
         'copyImgs',
+        'copyMovs',
         'copyIcons',
         'copyJsExtra',
         'copyRoot',
