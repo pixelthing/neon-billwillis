@@ -58,7 +58,7 @@ function errorHandler(err) {
  * builds the website, launches a dev-server and start watching for changes. We've removed the pattern library build for speed.
  */
 gulp.task('default', function() {
-    runSequence(['cleanDist'],['build', 'serve', 'watchAll']);
+    runSequence(['cleanDist'],['buildFull', 'serve', 'watchAll']);
 });
 
 /**
@@ -68,7 +68,7 @@ gulp.task('default', function() {
 gulp.task('prod', function() {
     options.dev = false;
     options.root = 'prod';
-    runSequence(['cleanProd'],['build', 'serve', 'watchAll']);
+    runSequence(['cleanProd'],['buildFull', 'serve', 'watchAll']);
 });
 
 /**
@@ -109,7 +109,24 @@ gulp.task('cleanProd', del.bind(null, 'prod', { dot: true }));
  */
 gulp.task('build', function() {
     runSequence([
-        'copyStatic',
+        'copyImgs',
+        'copyMovs',
+        'copyIcons',
+        'copyJsExtra',
+        'copyRoot',
+        'copyFlickity',
+        'pages',
+        'svgstore',
+        'scripts',
+        'scriptsStatic',
+        'styles'
+    ]);
+});
+gulp.task('buildFull', function() {
+    runSequence([
+        'copyImgs',
+        'copyIcons',
+        'copyJsExtra',
         'copyRoot',
         'copyFlickity',
         'pages',
@@ -120,9 +137,21 @@ gulp.task('build', function() {
     ]);
 });
 
-gulp.task('copyStatic', () => gulp
-    .src('src/static/**/*')
-    .pipe(gulp.dest(options.root + '/static')));
+gulp.task('copyIcons', () => gulp
+    .src('src/static/icons/*')
+    .pipe(gulp.dest(options.root + '/static/icons')));
+    
+gulp.task('copyImgs', () => gulp
+    .src('src/static/imgs/*')
+    .pipe(gulp.dest(options.root + '/static/imgs')));
+    
+gulp.task('copyJsExtra', () => gulp
+    .src('src/static/js-e6/*')
+    .pipe(gulp.dest(options.root + '/static/js-e6')));
+    
+gulp.task('copyMovs', () => gulp
+    .src('src/static/movs/*')
+    .pipe(gulp.dest(options.root + '/static/movs')));
 
 gulp.task('copyRoot', () => gulp
     .src('src/*.html')
