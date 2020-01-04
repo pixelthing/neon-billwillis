@@ -78,7 +78,7 @@ gulp.task('prod', function() {
 gulp.task('watchAll', function() {
     gulp.watch(['src/*/**/*.scss'], ['styles']);
     gulp.watch(['src/**/*.js'], ['jshint']); // note: we use watchify for the js
-    gulp.watch(['src/static/**/*'], ['copyStatic']);
+    gulp.watch(['src/static/**/*'], ['copyImgs','copyIcons','copyjsExtra',]);
     gulp.watch(['src/modules/**/static/**/*'], ['copyModuleStatic']);
     //gulp.watch(['src/static/js-es6/sw.js'], ['copySW']);
     gulp.watch(['src/static/js/**/*.js'], ['scriptsStatic', 'pages']);
