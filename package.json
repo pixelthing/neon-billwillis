@@ -58,7 +58,7 @@
     "jshint": "^2.9.3",
     "jshint-stylish": "^2.2.1",
     "locale-compare-polyfill": "0.0.2",
-    "lodash.merge": "^4.6.0",
+    "lodash.merge": "^4.6.2",
     "mkdirp": "^0.5.1",
     "opener": "^1.4.2",
     "promise-polyfill": "^6.0.2",
