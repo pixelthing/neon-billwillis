@@ -291,7 +291,7 @@ gulp.task('scripts', ['verify-static', 'jshint'], function() {
  * Task: scripts
  * uglifies static scripts
  */
-gulp.task('scriptsStatic', ['copyStatic'], function (cb) {
+gulp.task('scriptsStatic', ['copyJsExtra'], function (cb) {
     pump([
             gulp.src( ['src/static/js/**/*.js', '!src/shared.js']),
             //uglify(),
